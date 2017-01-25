@@ -91,7 +91,7 @@ export default class Board extends React.Component {
       body: this.state.body,
       board_id: parseInt(this.props.boardId),
       image_url: this.state.imageUrl})
-
+      this.setState( {imageUrl: false})
   }
 
   update(text) {
@@ -246,6 +246,7 @@ export default class Board extends React.Component {
   boardTitle(){
     return(
       <div className="board-overhead-bar">
+        {this.props.board.owner ? <button onClick={this.handleOpenNewPin}>new pin</button> : null}
         <a id="board-name">
           {this.props.board.name}
         </a>
@@ -253,7 +254,6 @@ export default class Board extends React.Component {
           <a id="board-author">a board by {this.props.board ? this.boardText() : null} </a>
           <div className="owner-edit-buttons">
             {this.props.board.owner? <button onClick={this.handleEditButtonOpen}>edit</button> : null }
-            {this.props.board.owner ? <button onClick={this.handleOpenNewPin}>new pin</button> : null}
           </div>
         </div>
       </div>
@@ -276,6 +276,7 @@ export default class Board extends React.Component {
   handleSelfClose(){
     this.setState({modalIsOpen: false})
     this.props.getPins(this.props.boardId)
+    document.body.style.overflow = "auto";
   }
 
   render() {

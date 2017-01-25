@@ -42,6 +42,8 @@ export default class UserProfileForm extends React.Component {
         profile_picture: this.state.imageUrl.url
       })
       this.props.handleSelfClose()
+      this.setState(imageUrl: null)
+      debugger;
     }
 
     update(text) {

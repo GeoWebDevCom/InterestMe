@@ -150,7 +150,8 @@ export default class Session extends React.Component {
 
   handleProfileClick(){
     debugger;
-    hashHistory.push(`/user/${this.props.currentUser.currentUser.currentUserId}`)
+    let url = this.props.currentUser.currentUser.user_id || this.props.currentUser.currentUser.currentUserId
+    hashHistory.push(`/user/${url}`)
   }
 
   render() {
