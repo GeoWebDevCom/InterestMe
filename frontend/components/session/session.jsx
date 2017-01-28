@@ -18,7 +18,6 @@ export default class Session extends React.Component {
       newBoardFormOpen: false
     };
     this.closeModal = this.closeModal.bind(this);
-    this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.openLogin = this.openLogin.bind(this);
     this.openSignup = this.openSignup.bind(this);
@@ -29,8 +28,8 @@ export default class Session extends React.Component {
     this.handleGuestSubmit = this.handleGuestSubmit.bind(this);
     this.handleChildCancelButton = this.handleChildCancelButton.bind(this);
     this.handleNewBoardClick = this.handleNewBoardClick.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
+    this.loginForms = this.loginForms.bind(this);
   }
 
   handleSubmit(e){
@@ -83,7 +82,6 @@ export default class Session extends React.Component {
   }
 
   _handleLogoutClick(e){
-    debugger;
     this.props.processLogout().then( ()=> {
       hashHistory.replace('/session')
     })
@@ -149,65 +147,85 @@ export default class Session extends React.Component {
   }
 
   handleProfileClick(){
-    debugger;
     let url = this.props.currentUser.currentUser.user_id || this.props.currentUser.currentUser.currentUserId
     hashHistory.push(`/user/${url}`)
+  }
+
+  loginButtons(){
+    return(
+      <div>
+        <button onClick={this.openLogin} className='session'>Login</button>
+        <button onClick={this.openSignup} className='session' >Sign Up</button>
+        <button onClick={this.handleGuestSubmit} className='session' >Guest Login</button>
+      </div>
+    )
+  }
+
+  signedInButtons(){
+    return(
+      <div>
+        <button className="logout-button" onClick={this.handleNewBoardClick}>New board</button>
+        <button onClick={this.handleProfileClick}>My Profile</button>
+        <button className="logout-button" onClick={this._handleLogoutClick}>Logout</button>
+      </div>
+    )
+  }
+
+  loginForms(){
+    return(
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Session form"
+        className="ReactModal__Content"
+        >
+        <div>
+          <b id="session-form-title">{this.state.loginModal ? "Log In" : "Sign Up"}</b>
+          <form className="session-login-form" onSubmit={this.handleSubmit}>
+            { this.props.errors ? this.renderErrors() : null}
+            <br/>
+            <label>
+              <b className="session-login-label">Username</b>
+              <input autoFocus type='text'
+                value={this.state.username}
+                onChange={this.update('username')}
+                />
+            </label>
+            <br/>
+            <br/>
+            <label>
+              <b className="session-login-label">Password</b>
+              <input className="password"
+                type='password'
+                value={this.state.password}
+                onChange={this.update('password')}
+                />
+            </label>
+            <br/>
+            <br/>
+            <div>
+              <button id="submit-button" type="Submit" value="Submit">
+                {this.state.loginModal ? "Log In" : "Sign Up"}
+              </button>
+              <button id="cancel-button" className="session-modal-button" onClick={this.closeModal}>
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+    )
   }
 
   render() {
     return (
       <div>
         <ul className="session-buttons">
-          {this.props.currentUser.currentUser ? null : <button onClick={this.openLogin} className='session'>Login</button>}
-          {this.props.currentUser.currentUser ? null : <button onClick={this.openSignup} className='session' >Sign Up</button>}
-          {this.props.currentUser.currentUser ? null : <button onClick={this.handleGuestSubmit} className='session' >Guest Login</button>}
-          {this.props.currentUser.currentUser ? <button className="logout-button" onClick={this.handleNewBoardClick}>New board</button> : null}
-          {this.props.currentUser.currentUser ? <button onClick={this.handleProfileClick}>My Profile</button> : null}
-          {this.props.currentUser.currentUser ? <button className="logout-button" onClick={this._handleLogoutClick}>Logout</button> : null}
+          {this.props.currentUser.currentUser ? this.signedInButtons() : this.loginButtons()}
         </ul>
         {this.state.newBoardFormOpen ? this.newBoardForm() : null}
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Session form"
-          className="ReactModal__Content"
-          >
-          <div>
-            <b id="session-form-title">{this.state.loginModal ? "Log In" : "Sign Up"}</b>
-            <form className="session-login-form" onSubmit={this.handleSubmit}>
-              { this.props.errors ? this.renderErrors() : null}
-              <br/>
-              <label>
-                <b className="session-login-label">Username</b>
-                <input autoFocus type='text'
-                  value={this.state.username}
-                  onChange={this.update('username')}
-                  />
-              </label>
-              <br/>
-              <br/>
-              <label>
-                <b className="session-login-label">Password</b>
-                <input className="password"
-                  type='password'
-                  value={this.state.password}
-                  onChange={this.update('password')}
-                  />
-              </label>
-              <br/>
-              <br/>
-              <div>
-                <button id="submit-button" type="Submit" value="Submit">
-                  {this.state.loginModal ? "Log In" : "Sign Up"}
-                </button>
-                <button id="cancel-button" className="session-modal-button" onClick={this.closeModal}>
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </Modal>
+        {this.loginForms()}
       </div>
     );
   }

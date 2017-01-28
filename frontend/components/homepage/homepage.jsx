@@ -25,9 +25,7 @@ export default class Homepage extends React.Component{
   }
 
   componentWillMount(){
-    this.props.getHome().then(() => {
-      this.setState({pinsReceieved: true})
-    })
+    this.props.getHome()
   }
 
   handleTileClick(e) {
@@ -37,25 +35,29 @@ export default class Homepage extends React.Component{
     document.body.style.overflow = "hidden";
   }
 
-pinTileRender(){
-  return(
-    this.props.pins.pins.map( (tile, idx) => {
-      return(
-        <div key={idx} className="pin-tile">
-          <button className="board-tile-pic" name={tile.id} onClick={(e) => this.handleTileClick(e)}>
-            <img src={tile.image_url}/>
-          </button>
-        </div>
-      )
-    })
-  )
-}
-
+  pinTileRender(){
+    return(
+      this.props.pins.pins.map( (tile, idx) => {
+        return(
+          <li key={idx} className="pin-tile">
+            <button
+              className="board-tile-pic"
+              name={tile.id}
+              onClick={(e) => this.handleTileClick(e)}
+            >
+              <img src={tile.image_url}/>
+            </button>
+          </li>
+        )
+      })
+    )
+  }
 
   masonryLayout(){
     var masonryOptions = {
       fitWidth: true
     };
+    //multiple divs to fix weird bug
     return (
       <div>
         <div>
@@ -81,8 +83,24 @@ pinTileRender(){
 
   handleSelfClose(){
     this.setState({modalIsOpen: false})
-    this.props.getHome()
     document.body.style.overflow = "auto";
+  }
+
+  pinShow(){
+    return(
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Modal"
+        className="ReactModal__Content"
+      >
+        <PinContainer
+          handleSelfClose={this.handleSelfClose}
+          pinId={this.state.focusedPinId}
+          />
+      </Modal>
+    )
   }
 
   render(){
@@ -91,16 +109,8 @@ pinTileRender(){
         <div className="homepage-welcome">
           Discover something interesting
         </div>
-        {this.state.pinsReceieved ? this.masonryLayout() : null}
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Modal"
-          className="ReactModal__Content"
-        >
-          <PinContainer handleSelfClose={this.handleSelfClose} pinId={this.state.focusedPinId}/>
-        </Modal>
+        {this.masonryLayout()}
+        {this.pinShow()}
       </div>
     )
   }

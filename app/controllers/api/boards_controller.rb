@@ -30,7 +30,7 @@ class Api::BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @current_user = current_user
-    @board_pins = @board.pins
+    @board_pins = @board.pins.reverse
     render :show
   end
 

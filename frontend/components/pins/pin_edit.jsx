@@ -40,28 +40,21 @@ export default class PinEdit extends React.Component {
 
   editForm() {
     return (
-      <div className="pin-edit-form">
-        <form onSubmit={this.handleSubmit}>
-          <a id="pin-edit-title">Edit Pin</a>
-          <br/>
-          <br/>
-          Title
-          <br/>
-          <input
-            autoFocus type='text' onChange={this.update('title')}/>
-          <br/>
-          Body
-          <br/>
-          <textarea
-            autoFocus type='textarea' onChange={this.update('body')}/>
-            <div>
-              {
-                this.state.deleteConfirmBox ?
-                this.deleteConfirm() : this.updateButtonSet()
-              }
-            </div>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <a id="pin-edit-title">Edit Pin</a>
+        Title
+        <input
+          autoFocus type='text' onChange={this.update('title')}/>
+        Body
+        <textarea
+          autoFocus type='textarea' onChange={this.update('body')}/>
+          <div>
+            {
+              this.state.deleteConfirmBox ?
+              this.deleteConfirm() : this.updateButtonSet()
+            }
+          </div>
+      </form>
     );
   }
 

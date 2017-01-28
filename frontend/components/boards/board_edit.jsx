@@ -9,7 +9,6 @@ export default class BoardEdit extends React.Component {
       deleteConfirmBox: false,
       name: ''
     };
-    console.log("ASdf")
     this.editButton = this.editButton.bind(this);
     this.handleEditButton = this.handleEditButton.bind(this);
     this.editForm = this.editForm.bind(this);
@@ -31,16 +30,13 @@ export default class BoardEdit extends React.Component {
 
   handleCancelButton() {
     this.setState({deleteConfirmBox: false, editBoxOpen: false})
-    this.forceUpdate();
   }
 
   editButton(){
     return (
-      <div>
-        <button id="edit-icon" onClick={this.handleEditButton}>
-          edit
-        </button>
-      </div>
+      <button id="edit-icon" onClick={this.handleEditButton}>
+        edit
+      </button>
     )
   }
 
@@ -64,9 +60,9 @@ export default class BoardEdit extends React.Component {
     e.preventDefault();
     this.setState({deleteConfirmBox: false, editBoxOpen: false})
     this.props.editBoard({name: this.state.name,
-      id: this.props.boardId}).then(()=> {
-        this.props.handleChildSubmit()
-      })
+      id: this.props.boardId})
+    this.props.updateBoard()
+
   }
 
   editForm() {

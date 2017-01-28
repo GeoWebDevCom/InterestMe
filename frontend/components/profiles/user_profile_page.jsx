@@ -40,14 +40,13 @@ export default class UserProfile extends React.Component{
 
   componentWillReceiveProps(nextProps){
     if (this.props.userId !== nextProps.userId) {
-      this.props.getProfilePage(nextProps.userId).then(()=> {
-        this.forceUpdate()
-      })
+      this.props.getProfilePage(nextProps.userId)
     }
   }
 
   closeModal() {
     this.setState({modalIsOpen: false, editFormOpen: false, followerModalOpen: false, followedModalOpen: false});
+    this.props.getProfilePage(this.props.userId)
     document.body.style.overflow = "auto";
   }
 
@@ -67,41 +66,6 @@ export default class UserProfile extends React.Component{
     const idx = e.currentTarget.name
     this.setState({focusedPinId: idx, modalIsOpen: true})
     document.body.style.overflow = "hidden";
-  }
-
-  showPins(){
-    return(
-      this.props.user.pins.map( (pin, idx) => {
-        return(
-          <button name={pin.id} onClick={(e) => this.handleTileClick(e)} className="user-profile-pins" key={idx}>
-            <img className="user-profile-pin-img" key={idx} src={pin.image_url}/>
-          </button>
-        )
-      })
-    )
-  }
-
-  showBoards(){
-
-    return(
-      this.props.user.boards.map ((board, idx)=> {
-        return (
-          <button name={board.id} onClick={(e) => this.handleBoardClick(e)} className="user-profile-board-button" key={idx}>
-            {board.name}
-          </button>
-        )
-      })
-    )
-  }
-
-  userInfo(){
-    return (
-      <div className="username-pic-block">
-        <a className="username">
-          {this.props.user.username}
-        </a>
-      </div>
-    )
   }
 
   handleBoardClick(e){
@@ -138,39 +102,6 @@ export default class UserProfile extends React.Component{
     hashHistory.push(`/user/${userId}`)
   }
 
-  followers(){
-    return(
-        this.props.user.following.map( (user, idx) => {
-          return(
-          <li key={idx} className="followers-modal">
-            <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
-              <img src={user.profile_picture}/>
-                <a className="follow-username">
-                  {user.username}
-                </a>
-            </button>
-          </li>
-          )
-        })
-    )
-  }
-
-  followed(){
-    return(
-        this.props.user.followed.map( (user, idx) => {
-          return(
-          <li key={idx} className="followers-modal">
-            <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
-              <img src={user.profile_picture}/>
-              <a className="follow-username">
-                {user.username}
-              </a>
-            </button>
-          </li>
-          )
-        })
-    )
-  }
 
   handleFollowedClick(){
     this.setState({followedModalOpen : true})
@@ -181,8 +112,6 @@ export default class UserProfile extends React.Component{
   }
 
   handleFollowActionClick(e){
-    console.log(this.props.user.currentUserId);
-    console.log(this.props.userId);
     e.preventDefault()
     if (this.state.isFollowing){
       this.props.deleteFollow({user_following_id: this.props.user.currentUserId,
@@ -196,7 +125,6 @@ export default class UserProfile extends React.Component{
   }
 
   isProfileOwner(){
-    debugger;
     if (!this.props.session.currentUser){
       return
     }
@@ -212,31 +140,86 @@ export default class UserProfile extends React.Component{
     )
   }
 
+
+  showPins(){
+    return(
+      this.props.user.pins.map( (pin, idx) => {
+        return(
+          <button name={pin.id} onClick={(e) => this.handleTileClick(e)} className="user-profile-pins" key={idx}>
+            <img className="user-profile-pin-img" key={idx} src={pin.image_url}/>
+          </button>
+        )
+      })
+    )
+  }
+
+  showBoards(){
+    return(
+      this.props.user.boards.map ((board, idx)=> {
+        return (
+          <button name={board.id} onClick={(e) => this.handleBoardClick(e)} className="user-profile-board-button" key={idx}>
+            {board.name}
+          </button>
+        )
+      })
+    )
+  }
+
+  followers(){
+    return(
+      this.props.user.following.map( (user, idx) => {
+        return(
+        <li key={idx} className="followers-modal">
+          <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
+            <img src={user.profile_picture}/>
+              <a className="follow-username">
+                {user.username}
+              </a>
+          </button>
+        </li>
+        )
+      })
+    )
+  }
+
+  followed(){
+    return(
+      this.props.user.followed.map( (user, idx) => {
+        return(
+        <li key={idx} className="followers-modal">
+          <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
+            <img src={user.profile_picture}/>
+            <a className="follow-username">
+              {user.username}
+            </a>
+          </button>
+        </li>
+        )
+      })
+    )
+  }
+
+  userInfo(){
+    return(
+      <div className="user-info">
+        <div className="username-image">
+          {this.followButton()}
+          <img src={this.props.user.user.profile_picture}/>
+          {this.props.user.user.username}
+          <a className="profile-email">{this.props.user.user.email}</a>
+          <button className="edit-user-button" onClick={this.handleEditForm}>
+            edit user
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   render(){
-    debugger;
-    console.log(this.props);
     return(
       <div className="user-profile">
         <div className="user-profile-body">
-          <div className="user-info">
-            <div className="username-image">
-              {this.state.doneLoading ? this.followButton() : null}
-
-              {this.state.doneLoading ?
-                <img src={this.props.user.user.profile_picture}/>
-                 : null
-               }
-               {this.state.doneLoading ? this.props.user.user.username : null }
-
-               {this.state.doneLoading ?
-                 <a className="profile-email">{this.props.user.user.email}</a>
-                  : null
-                }
-                <button className="edit-user-button" onClick={this.handleEditForm}>
-                  edit user
-                </button>
-            </div>
-          </div>
+          {this.state.doneLoading ? this.userInfo() :null}
           <div className="followers">
             <button className="follow-button" onClick={this.handleFollowedClick}>
               followers
@@ -261,7 +244,7 @@ export default class UserProfile extends React.Component{
               contentLabel="Session form"
               className="followed-follower-modal ReactModal__Content"
               >
-                {this.state.doneLoading ? this.followed() : null}
+                {this.followed()}
             </Modal>
           </div>
         </div>

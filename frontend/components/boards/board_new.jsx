@@ -23,7 +23,6 @@ export default class Board extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    
     this.props.handleCancelButton()
     this.props.createBoard({name: this.state.name})
     .then((action) => hashHistory.push(`/boards/${action.board.id}`))
@@ -34,7 +33,6 @@ export default class Board extends React.Component {
       <div className='board-new-form'>
         <form onSubmit={this.handleSubmit}>
           New board
-
           <input
             autoFocus type='text' onChange={this.update('name')}
             />
@@ -51,8 +49,9 @@ export default class Board extends React.Component {
   }
 
   render() {
-return (    <div>
-      {this.newBoardForm()}
-    </div>)
-  }
+    return (
+      <div>
+        {this.newBoardForm()}
+      </div>)
+    }
 }

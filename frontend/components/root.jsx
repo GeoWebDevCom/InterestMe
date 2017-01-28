@@ -25,28 +25,19 @@ const Root = ({ store }) => {
     }
   }
 
-  const _rootDirCheck = (nextState, replace) => {
-    let currentUser = window.store.getState().session.currentUser
-    if (currentUser){
-      replace('/home')
-    } else {
-      replace('/session')
-    }
-  }
-
-    return(
-        <Provider store={ store }>
-        <Router history={hashHistory}>
-          <Route path="/" component={App}>
-            <IndexRedirect to="/session"/>
-            <Route path="session" component={Signup}  onEnter={_redirectIfLoggedIn}/>
-            <Route path="home" component={HomepageContainer}  onEnter={_redirectIfLoggedOut} />
-            <Route path="boards/:boardId" component={BoardContainer}  onEnter={_redirectIfLoggedOut}/>
-            <Route path="user/:userId" component={UserProfileContainer} onEnter={_redirectIfLoggedOut} />
-          </Route>
-        </Router>
-      </Provider>
-    )
+  return(
+      <Provider store={ store }>
+      <Router history={hashHistory}>
+        <Route path="/" component={App}>
+          <IndexRedirect to="/session"/>
+          <Route path="session" component={Signup}  onEnter={_redirectIfLoggedIn}/>
+          <Route path="home" component={HomepageContainer}  onEnter={_redirectIfLoggedOut} />
+          <Route path="boards/:boardId" component={BoardContainer}  onEnter={_redirectIfLoggedOut}/>
+          <Route path="user/:userId" component={UserProfileContainer} onEnter={_redirectIfLoggedOut} />
+        </Route>
+      </Router>
+    </Provider>
+  )
 }
 
 export default Root;

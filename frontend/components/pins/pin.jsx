@@ -56,6 +56,7 @@ export default class Pin extends React.Component {
 
   childHandler() {
     this.setState({editFormOpen: false})
+    console.log("ASdfasdf");
     this.props.handleSelfClose()
   }
 

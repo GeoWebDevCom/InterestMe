@@ -1,6 +1,9 @@
 import React from 'react';
 import {Router} from 'react-router';
 import Dropzone from 'react-dropzone'
+import request from 'superagent';
+const CLOUDINARY_PRESET = 'punlriir'
+const CLOUDINARY_UPLOAD ='https://api.cloudinary.com/v1_1/andoo/upload'
 
 export default class PinNewForm extends React.Component {
   constructor(){
@@ -12,24 +15,22 @@ export default class PinNewForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.cloudinary = this.cloudinary.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
+    this.previewImage = this.previewImage.bind(this);
   }
 
-  cloudinary(e){
-    e.preventDefault();
-    const that = this
-    cloudinary.openUploadWidget(
-      {
-        cloud_name:'andoo',
-        upload_preset: 'punlriir',
-        theme: 'minimal'
-      },
-      (errors, results) => {
-        if (errors === null) {
-          that.setState({imageUrl: results[0]})
-        }
+  handleDrop(img){
+    let imgUploaded = img[0]
+    let upload = request.post(CLOUDINARY_UPLOAD)
+    .field('upload_preset', CLOUDINARY_PRESET)
+    .field('file', img);
+    upload.end((errors, results) => {
+      if (errors === null) {
+        this.setState({imageUrl: results.body.secure_url})
+      } else {
+        console.log("error uploading!");
       }
-    )
+    })
   }
 
   handleSubmit(e) {
@@ -38,8 +39,9 @@ export default class PinNewForm extends React.Component {
       title: this.state.title,
       body: this.state.body,
       board_id: parseInt(this.props.boardId),
-      image_url: this.state.imageUrl.url})
-      this.handleCancelButton()
+      image_url: this.state.imageUrl})
+    this.setState( {imageUrl: false})
+    this.props.selfClose()
   }
 
   update(text) {
@@ -48,34 +50,46 @@ export default class PinNewForm extends React.Component {
     });
   }
 
+  previewImage() {
+    return (
+    <div className="original-filename">
+      {this.state.imageUrl ? null :
+        <div className="upload-mini-text">
+          image preview
+        </div>}
+      { this.state.imageUrl ?
+          <img className="image-preview" src={this.state.imageUrl}/>
+          : null}
+      </div>
+    )
+  }
 
   render() {
     return (
       <div>
-        <div className="image-preview">
-          <div className="original-filename">
-            {this.state.imageUrl ? <div>ddddddddddd</div> :
-              <button onClick={this.cloudinary} className="upload-text">
-                click here to upload image
-              </button>}
+        <Dropzone
+          multiple={false}
+          accept="image/*"
+          onDrop={this.handleDrop}
+          className="image-preview"
+        >
+          {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
+        </Dropzone>
 
-            </div>
-        </div>
         <form onSubmit={this.handleSubmit}>
           <div className="new-pin-form">
             <a>Title</a>
-            <br></br>
-            <input onChange={this.update('title')}/>
-            <br></br>
+              <br/><input onChange={this.update('title')}/><br/>
             <a>Body</a>
-            <br></br>
-            <input onChange={this.update('body')}/>
-            <br></br>
+              <br/>
+              <textarea className="new-pin-textarea"
+                type="textarea"
+                onChange={this.update('body')}
+              /><br/>
             <button type="Submit" value="Submit">Post</button>
           </div>
-          </form>
+        </form>
       </div>
-
     )
   }
 }
