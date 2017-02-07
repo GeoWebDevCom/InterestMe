@@ -1,3 +1,5 @@
+@import "../application.scss";
+
 .session-modal {
   font-family: Arial, Helvetica, sans-serif !important;
   padding-left: 0px;
@@ -9,17 +11,35 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  background-color: white !important;
+  background-color: rgba(#dcebfc, 0.3) !important;
   margin: 10px !important;
-  padding: 30px;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  border: 2px !important;
-  border-style: solid !important;
-  border-color: red !important;
-  border-radius: 10px;
+  padding: 150px 50px 150px 50px;
+  border: 1px solid $color-light !important;
   outline: none !important;
   z-index: 100;
+}
+
+.session-modal-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.textbox-login {
+  width: 350px;
+  font-size: 25px;
+}
+
+.session-input-label {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.submission-session-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .session-login-label {
@@ -28,36 +48,43 @@
   margin-bottom: 90px;
 }
 
+.session-login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #session-form-title {
-  color: #d7432d;
+  color: $color-primary;
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif !important;
-  margin-top: -30px;
+  margin-bottom: 20px;
 }
 
 #submit-button {
   padding: 10px;
   border: solid 1px;
-  border-color: #d7432d;
+  border-color: $color-light;
   border-radius: 5px;
-  margin-right: 20px;
+  margin-right: 40px;
   margin-top: 0px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 #submit-button:hover{
-  background-color: #d7432d;
+  background-color: $color-light;
   color: white;
 }
 
 #cancel-button {
-  background-color: white;
+  background-color: $white;
   padding: 10px;
   border: solid 1px;
-  border-color: solid #d7432d;
+  border-color: solid $color-light;
   border-radius: 5px;
   margin-right: 20px;
   margin-top: 0px;
-  color: #d7432d;
+  color: $color-light;
   font-size: 12px;
 }

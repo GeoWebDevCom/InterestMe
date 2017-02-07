@@ -6,8 +6,9 @@ helper_method :current_user
     @user.profile_picture = "http://res.cloudinary.com/andoo/image/upload/c_crop,h_175,r_100,w_173,x_74,y_0/v1484764852/vonrulf1kpsuhqlxobir.png"
     @user.email = "sample@email.com"
     if @user.save
+      # debugger
       sign_in(@user)
-      render "api/users/show"
+      render "api/pins/index"
     else
       render json: @user.errors.full_messages, status: 422
     end

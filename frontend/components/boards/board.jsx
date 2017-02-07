@@ -38,6 +38,10 @@ export default class Board extends React.Component {
     if (this.props.boardId !== nextProps.boardId){
       this.props.getBoard(nextProps.boardId)
       this.props.getPins(nextProps.boardId)
+      this.findImageHeight()
+    }
+    if (this.props.pins.pins.length >= document.images.length){
+      this.findImageHeight()
     }
   }
 
@@ -57,9 +61,9 @@ export default class Board extends React.Component {
     return(
       this.props.pins.pins.map( (tile, idx) => {
         return(
-          <li key={idx} className="pin-tile">
-            <button className="board-tile-pic" name={tile.id} onClick={(e) => this.handleTileClick(e)}>
-              <img src={tile.image_url}/>
+          <li key={idx} className="pin-tile-hide">
+            <button className="board-tile-pic-hide" name={tile.id} onClick={(e) => this.handleTileClick(e)}>
+              <img className="pin-image-hide" src={tile.image_url}/>
             </button>
           </li>
         )
@@ -69,7 +73,8 @@ export default class Board extends React.Component {
 
   masonryLayout(){
     var masonryOptions = {
-      fitWidth: true
+      fitWidth: true,
+      transitionDuration: 0.3
     };
     return (
       <div>
@@ -168,6 +173,34 @@ export default class Board extends React.Component {
     )
   }
 
+  findImageHeight(){
+    let counter = 0;
+    this.imageHeight = setTimeout( () => {
+      switch(counter){
+        case 0:
+        let allImages = document.images
+        for (let i=0; i < allImages.length; i++){
+          allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
+        }
+        case 3:
+        [
+          "pin-tile-hide",
+          "board-tile-pic-hide",
+          "pin-image-hide"
+        ].forEach( (className) => {
+          let classes = document.getElementsByClassName(`${className}`);
+          while (classes.length){
+            classes[0].className = classes[0].className.replace("-hide","")
+          }
+          clearInterval(this.imageHeight)
+          return
+        })
+        counter += 1
+      }
+    }, 800)
+  }
+
+
   render() {
     return (
       <div>
@@ -177,6 +210,9 @@ export default class Board extends React.Component {
         { this.state.newPinFormOpen ?
           this.openNewPinForm()
         : null }
+        {
+          this.findImageHeight()
+        }
         { this.state.editFormOpen ?
            <BoardEditContainer updateBoard={this.handleBoardEditSubmit} {...this.props}/>
          : null}

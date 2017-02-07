@@ -1,12 +1,17 @@
+@import "../application.scss";
+
 .navigation-bar {
   position: fixed;
+  display:flex;
+  flex-direction: row;
   top: 5px;
-  height: 56px;
+  height: 80px;
   width: 100%;
   margin: -8px;
-  background-color: #d7432d;
+  background-color: $color-primary;
   z-index: 10;
-  padding-left:5px;
+  // padding-left:5px;
+  flex-grow: 1
 }
 
 .interest-me-logo {

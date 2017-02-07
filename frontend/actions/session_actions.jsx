@@ -6,7 +6,8 @@ export const LOG_OUT_USER = "LOG_OUT_USER";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const signup = user => dispatch => (
-  ajax_request.signup(user).then((user) => dispatch(receiveCurrentUser(user)), err => dispatch(receiveErrors(err.responseJSON)))
+  ajax_request.signup(user).then( (user) => dispatch(receiveCurrentUser(user))
+, err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const login = user => dispatch => (

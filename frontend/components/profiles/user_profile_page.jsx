@@ -203,7 +203,9 @@ export default class UserProfile extends React.Component{
     return(
       <div className="user-info">
         <div className="username-image">
-          {this.followButton()}
+          {this.props.currentUserId == this.props.user.user.id ?
+            null :
+            this.followButton()}
           <img src={this.props.user.user.profile_picture}/>
           {this.props.user.user.username}
           <a className="profile-email">{this.props.user.user.email}</a>

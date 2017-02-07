@@ -14,16 +14,27 @@
  *= require_self
  */
 
+$color-primary: #2B4B6F;
+$color-light: #4B698B;
+$color-lightest: #738CA6;
+$color-dark: #133253;
+$color-darkest: #041D37;
+$color-test: rgba(#4f4f4f, 0.7);
+$color-almost-white: #dcebfc;
+$color-green: rgba(#18b50d, 0.7);
+$white: white;
+$background: #d4e1ff;
 
+#root .total-container{
+  width: 100vw;
+  height: 100vh;
+}
 
 body {
-  background: url(http://res.cloudinary.com/andoo/image/upload/v1484168072/white_world-1280x800_amjovm.jpg);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 1800px 1500px;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: $background;
+  width: 100%;
   height: 100%;
+  font-family: sans-serif;
 }
 
 body::-webkit-scrollbar {
@@ -62,21 +73,23 @@ textarea:focus {
 button {
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
-  background-color: #d7432d;
-  padding: 6px;
+  padding: 10px 15px 10px 15px;
+  background-color: $color-lightest;
   border: 4px;
-  border-radius: 5px;
-  margin-right: 10px;
+  border-radius: 4px;
+  margin-right: 20px;
   margin-top: 0px;
-  color: white;
+  color: $white;
   font-weight: bold;
   z-index: 100;
   flex-wrap: wrap;
+  font-size: 15px;
 }
 
 button:hover {
- background-color: white;
- color: #d7432d;
+ background-color: $white;
+ // background-color: #b0eb00;
+ color: $color-dark;
  transition: 0.25s;
  cursor: pointer;
  border: 2px;
@@ -118,12 +131,12 @@ input {
   border-top-style: hidden;
   border-left-style: hidden;
   border-right-style: hidden;
-  border-bottom-color: red;
+  border-bottom-color: $color-dark;
   outline: none;
   margin-left: 10px;
   margin-bottom: 10px;
   font-size: 20px;
-  color: #8c5d5d;
+  color: black;
   padding-left: 10px;
   padding-bottom: 4px;
   z-index: 100;

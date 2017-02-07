@@ -2,7 +2,7 @@ class Api::PinsController < ApplicationController
   helper_method :current_user
 
   def index
-    pins = Pin.all.shuffle
+    pins = Pin.where.not(user_id: current_user.id.to_s).shuffle
     if (pins.length > 40)
       @pins = pins[0..39]
     else
@@ -44,7 +44,7 @@ class Api::PinsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @current_user = current_user
-    @board_pins = @board.pins
+    @board_pins = @board.pins.order(:created_at)
     render :show
   end
 

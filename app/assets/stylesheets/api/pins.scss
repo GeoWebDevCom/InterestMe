@@ -14,12 +14,39 @@
   z-index: 1;
 }
 
+.pin-image-hide {
+  opacity: 0.0;
+}
+
 .pin-tile button:hover {
   transition: 0.25s;
   color: black;
   background-color: #d7432d
 }
 
+.pin-tile-hide button {
+  display: block;
+  position: relative;
+  float: none;
+  top: 20px;
+  padding: 3px;
+  color: transparent;
+  background-color: transparent;
+  margin: 10px;
+  z-index: 1;
+}
+
+.pin-tile-hide button:hover {
+  display: block;
+  position: relative;
+  float: none;
+  top: 20px;
+  padding: 3px;
+  color: transparent;
+  background-color: transparent;
+  margin: 10px;
+  z-index: 1;
+}
 // .tile-title-container{
 //   box-sizing: border-box;
 //   color:white;

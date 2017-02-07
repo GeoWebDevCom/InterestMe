@@ -2,6 +2,7 @@ import React from 'react';
 import Masonry from 'react-masonry-component'
 import Modal from 'react-modal';
 import PinContainer from '../pins/pins_container'
+import ReactHeight from 'react-height'
 
 export default class Homepage extends React.Component{
   constructor(props){
@@ -17,6 +18,13 @@ export default class Homepage extends React.Component{
     this.masonryLayout = this.masonryLayout.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleSelfClose = this.handleSelfClose.bind(this);
+    this.findImageHeight = this.findImageHeight.bind(this);
+  }
+
+  componentWillReceiveProps(){
+    if (this.props.pins.pins.length >= document.images.length){
+      this.findImageHeight()
+    }
   }
 
   closeModal() {
@@ -39,15 +47,15 @@ export default class Homepage extends React.Component{
     return(
       this.props.pins.pins.map( (tile, idx) => {
         return(
-          <li key={idx} className="pin-tile">
-            <button
-              className="board-tile-pic"
-              name={tile.id}
-              onClick={(e) => this.handleTileClick(e)}
-            >
-              <img src={tile.image_url}/>
-            </button>
-          </li>
+            <li key={idx} className="pin-tile-hide">
+              <button
+                className="board-tile-pic-hide"
+                name={tile.id}
+                onClick={(e) => this.handleTileClick(e)}
+                >
+                <img className="pin-image-hide" src={tile.image_url}/>
+              </button>
+            </li>
         )
       })
     )
@@ -55,7 +63,8 @@ export default class Homepage extends React.Component{
 
   masonryLayout(){
     var masonryOptions = {
-      fitWidth: true
+      fitWidth: true,
+      transitionDuration: 0.3
     };
     //multiple divs to fix weird bug
     return (
@@ -74,6 +83,33 @@ export default class Homepage extends React.Component{
       </div>
     </div>
     )
+  }
+
+  findImageHeight(){
+    let counter = 0;
+    this.imageHeight = setTimeout( () => {
+      switch(counter){
+        case 0:
+        let allImages = document.images
+        for (let i=0; i < allImages.length; i++){
+          allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
+        }
+        case 3:
+        [
+          "pin-tile-hide",
+          "board-tile-pic-hide",
+          "pin-image-hide"
+        ].forEach( (className) => {
+          let classes = document.getElementsByClassName(`${className}`);
+          while (classes.length){
+            classes[0].className = classes[0].className.replace("-hide","")
+          }
+          clearInterval(this.imageHeight)
+          return
+        })
+        counter += 1
+      }
+    }, 800)
   }
 
   closeModal() {
@@ -109,6 +145,10 @@ export default class Homepage extends React.Component{
         <div className="homepage-welcome">
           Discover something interesting
         </div>
+        {
+          this.props.pins.pins.length >= document.images.length ?
+          this.findImageHeight() : null
+        }
         {this.masonryLayout()}
         {this.pinShow()}
       </div>

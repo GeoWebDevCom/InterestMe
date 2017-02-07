@@ -43,10 +43,9 @@ export default class Session extends React.Component {
       })
     }
     else {
-      this.props.processSignUp(user).then( ()=> {
-        this.setState({modalIsOpen: false})
-        hashHistory.push('/home')
-    })
+      this.props.processSignUp(user)
+      .then( ()=> this.setState({modalIsOpen: false}))
+      .then( () => {hashHistory.push('/home')})
   }
 }
 
@@ -147,7 +146,7 @@ export default class Session extends React.Component {
   }
 
   handleProfileClick(){
-    let url = this.props.currentUser.currentUser.user_id || this.props.currentUser.currentUser.currentUserId
+    let url = this.props.currentUser.currentUserId
     hashHistory.push(`/user/${url}`)
   }
 
@@ -180,31 +179,31 @@ export default class Session extends React.Component {
         contentLabel="Session form"
         className="ReactModal__Content"
         >
-        <div>
-          <b id="session-form-title">{this.state.loginModal ? "Log In" : "Sign Up"}</b>
+        <div className="session-modal-container">
           <form className="session-login-form" onSubmit={this.handleSubmit}>
+            <b id="session-form-title">{this.state.loginModal ? "Log In" : "Sign Up"}</b>
             { this.props.errors ? this.renderErrors() : null}
             <br/>
-            <label>
-              <b className="session-login-label">Username</b>
-              <input autoFocus type='text'
+            <label className="session-input-label">
+              <input className="textbox-login" autoFocus type='text'
                 value={this.state.username}
                 onChange={this.update('username')}
+                placeholder="username"
                 />
             </label>
             <br/>
             <br/>
-            <label>
-              <b className="session-login-label">Password</b>
-              <input className="password"
+            <label className="session-input-label">
+              <input className="textbox-login"
                 type='password'
                 value={this.state.password}
                 onChange={this.update('password')}
+                placeholder="password"
                 />
             </label>
             <br/>
             <br/>
-            <div>
+            <div className="submission-session-buttons">
               <button id="submit-button" type="Submit" value="Submit">
                 {this.state.loginModal ? "Log In" : "Sign Up"}
               </button>

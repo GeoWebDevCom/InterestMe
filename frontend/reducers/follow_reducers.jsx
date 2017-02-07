@@ -13,7 +13,6 @@ const FollowReducer = (state = defaultState, action) =>{
 
       return 0
     case DELETE_FOLLOW:
-      debugger
       console.log("deleted follow");
       return 0
     default:

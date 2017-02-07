@@ -15,18 +15,20 @@ export default class NavBar extends React.Component {
 
   render() {
     return(
-    <div className="navigation-bar">
-      <img className="interest-me-logo"
-        onClick={this.handleImageClick}
-        src="http://res.cloudinary.com/andoo/image/upload/v1484187051/Logomakr_2W78HQ_k95ah7.png"
-        alt="Interest Me!">
-      </img>
-      <div className="flex-searchbar">
+      <div>
+        <div className="navigation-bar">
+          <img className="interest-me-logo"
+            onClick={this.handleImageClick}
+            src="http://res.cloudinary.com/andoo/image/upload/v1484187051/Logomakr_2W78HQ_k95ah7.png"
+            alt="Interest Me!">
+          </img>
+          <div className="flex-searchbar">
+          </div>
+          <div className="session-button-container">
+            <SessionContainer/>
+          </div>
+        </div>
       </div>
-      <div className="authentication">
-        <SessionContainer/>
-      </div>
-    </div>
     )
   }
 }
