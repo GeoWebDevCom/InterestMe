@@ -3,7 +3,7 @@ import {Router} from 'react-router';
 import Dropzone from 'react-dropzone'
 import request from 'superagent';
 const CLOUDINARY_PRESET = 'punlriir'
-const CLOUDINARY_UPLOAD ='https://api.cloudinary.com/v1_1/andoo/upload'
+const CLOUDINARY_UPLOAD ='http://api.cloudinary.com/v1_1/andoo/upload'
 
 export default class PinNewForm extends React.Component {
   constructor(){

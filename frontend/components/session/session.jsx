@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import {Router, Link, hashHistory } from 'react-router';
 import BoardNewFormContainer from '../boards/board_new_container'
-
+import PinNewFormContainer from '../pins/pin_new_container'
 
 export default class Session extends React.Component {
   constructor() {
@@ -15,7 +15,7 @@ export default class Session extends React.Component {
       signupModal: false,
       showDropdown: false,
       error: false,
-      newBoardFormOpen: false
+      newPinFormOpen: false
     };
     this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -111,7 +111,7 @@ export default class Session extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false, newBoardFormOpen: false});
+    this.setState({modalIsOpen: false, newPinFormOpen: false});
     this.props.clearErrors();
   }
 
@@ -124,25 +124,25 @@ export default class Session extends React.Component {
   }
 
   handleChildCancelButton(){
-    this.setState({newBoardFormOpen: false})
+    this.setState({newPinFormOpen: false})
   }
 
   newBoardForm(){
     return(
       <Modal
-        isOpen={this.state.newBoardFormOpen}
+        isOpen={this.state.newPinFormOpen}
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
         contentLabel="Session form"
         className="ReactModal__Content"
         >
-          <BoardNewFormContainer handleCancelButton={this.handleChildCancelButton}/>
+          <PinNewFormContainer handleCancelButton={this.handleChildCancelButton}/>
       </Modal>
     )
   }
 
   handleNewBoardClick(){
-    this.setState({newBoardFormOpen: true})
+    this.setState({newPinFormOpen: true})
   }
 
   handleProfileClick(){
@@ -162,10 +162,20 @@ export default class Session extends React.Component {
 
   signedInButtons(){
     return(
-      <div>
-        <button className="logout-button" onClick={this.handleNewBoardClick}>New board</button>
-        <button onClick={this.handleProfileClick}>My Profile</button>
-        <button className="logout-button" onClick={this._handleLogoutClick}>Logout</button>
+      <div className="session-button-list">
+      <button className="session-add-item" onClick={this.handleNewBoardClick}>
+        <i
+          className="fa fa-plus-circle fa-3x"
+          aria-hidden="true"
+          >
+        </i>
+      </button>
+        <button className="session-button" onClick={this.handleProfileClick}>
+          My Profile
+        </button>
+        <button className="session-button" onClick={this._handleLogoutClick}>
+          Logout
+        </button>
       </div>
     )
   }
@@ -223,7 +233,7 @@ export default class Session extends React.Component {
         <ul className="session-buttons">
           {this.props.currentUser.currentUser ? this.signedInButtons() : this.loginButtons()}
         </ul>
-        {this.state.newBoardFormOpen ? this.newBoardForm() : null}
+        {this.state.newPinFormOpen ? this.newBoardForm() : null}
         {this.loginForms()}
       </div>
     );

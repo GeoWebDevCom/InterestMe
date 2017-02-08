@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import {hashHistory} from 'react-router';
 import Dropzone from 'react-dropzone'
 import request from 'superagent';
-const CLOUDINARY_PRESET = 'punlriir'
+const CLOUDINARY_PRESET = 'hzwjhd4e'
 const CLOUDINARY_UPLOAD ='https://api.cloudinary.com/v1_1/andoo/upload'
 
 export default class UserProfileForm extends React.Component {
@@ -44,7 +44,8 @@ export default class UserProfileForm extends React.Component {
     .field('file', img);
     upload.end((errors, results) => {
       if (errors === null) {
-        this.setState({imageUrl: results.body.secure_url})
+        this.setState({imageUrl: results.body.secure_url,
+        id: this.props.currentUserId})
       } else {
         console.log("error uploading!");
       }
@@ -53,10 +54,10 @@ export default class UserProfileForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger
     this.props.editProfilePage({
-      id: this.props.userId,
-      email: this.state.email,
-      profile_picture: this.state.imageUrl
+      profile_picture: this.state.imageUrl,
+      id: this.props.user.currentUserId
     })
     this.props.handleSelfClose()
     this.setState({imageUrl: null})
@@ -73,7 +74,7 @@ export default class UserProfileForm extends React.Component {
     <div className="original-filename">
       {this.state.imageUrl ? null :
         <div className="upload-mini-text">
-          image preview
+          Image preview
         </div>}
       { this.state.imageUrl ?
           <img className="image-preview" src={this.state.imageUrl}/>
@@ -95,13 +96,7 @@ export default class UserProfileForm extends React.Component {
           </Dropzone>
 
           <form onSubmit={this.handleSubmit}>
-            <div className="new-pin-form">
-              <a>email</a>
-              <br></br>
-              <input onChange={this.update('email')}/>
-              <br></br>
-              <button type="Submit" value="Submit">Post</button>
-            </div>
+              <button type="Submit" value="Submit">Update</button>
           </form>
         </div>
       )

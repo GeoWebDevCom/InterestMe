@@ -3,7 +3,6 @@ import { getPin } from '../../actions/pin_actions';
 import Pin from './pin';
 
 const mapStateToProps = (state, ownProps) => {
-     ;
   return {pin: state}
 };
 

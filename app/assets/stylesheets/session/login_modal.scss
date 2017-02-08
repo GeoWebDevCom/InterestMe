@@ -6,6 +6,7 @@
   height: 30px;
 }
 
+
 .ReactModal__Content{
   position: absolute !important;
   top: 50% !important;
@@ -26,6 +27,16 @@
   flex-grow: 1;
 }
 
+.session-add-item {
+  background-color: transparent;
+  margin: 10px;
+}
+
+.session-add-item:hover {
+  background-color: transparent;
+  color: white;
+}
+
 .textbox-login {
   width: 350px;
   font-size: 25px;
@@ -34,6 +45,16 @@
 .session-input-label {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.session-button {
+  padding: 0px 10px 0px 10px;
+  margin: 22px 23px 22px 10px;
+}
+
+.session-button-list{
+  display: flex;
+  flex-direction: row
 }
 
 .submission-session-buttons {

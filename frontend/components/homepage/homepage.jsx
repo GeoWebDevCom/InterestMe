@@ -47,15 +47,15 @@ export default class Homepage extends React.Component{
     return(
       this.props.pins.pins.map( (tile, idx) => {
         return(
-            <li key={idx} className="pin-tile-hide">
-              <button
-                className="board-tile-pic-hide"
-                name={tile.id}
-                onClick={(e) => this.handleTileClick(e)}
-                >
-                <img className="pin-image-hide" src={tile.image_url}/>
-              </button>
-            </li>
+          <li key={idx} className="pin-tile-hide">
+            <button
+              className="board-tile-pic-hide"
+              name={tile.id}
+              onClick={(e) => this.handleTileClick(e)}
+              >
+              <img className="pin-image-hide" src={tile.image_url}/>
+            </button>
+          </li>
         )
       })
     )
@@ -143,7 +143,6 @@ export default class Homepage extends React.Component{
     return(
       <div>
         <div className="homepage-welcome">
-          Discover something interesting
         </div>
         {
           this.props.pins.pins.length >= document.images.length ?

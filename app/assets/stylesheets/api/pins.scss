@@ -6,6 +6,28 @@
   display: block;
   position: relative;
   float: none;
+  filter: 70%;
+  top: 20px;
+  padding: 3px;
+  color: transparent;
+  background-color: transparent;
+  margin: 10px;
+  z-index: 1;
+}
+
+.pin-image {
+  border-radius: 10px;
+}
+
+.pin-image:hover {
+  transition: 0.5s;
+  filter: brightness(80%);
+}
+
+.board-tile-pic {
+  display: block;
+  position: relative;
+  float: none;
   top: 20px;
   padding: 3px;
   color: transparent;
@@ -21,7 +43,7 @@
 .pin-tile button:hover {
   transition: 0.25s;
   color: black;
-  background-color: #d7432d
+  background-color: transparent !important;
 }
 
 .pin-tile-hide button {

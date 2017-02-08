@@ -125,18 +125,14 @@ export default class UserProfile extends React.Component{
   }
 
   isProfileOwner(){
-    if (!this.props.session.currentUser){
-      return
-    }
-    return this.props.session.currentUser.currentUserId == this.props.userId
+    return this.props.user.user.id == this.props.user.currentUserId
   }
 
   followButton(){
     return (
-      this.isProfileOwner() ? null :
-        <button onClick={this.handleFollowActionClick}>
-          { this.state.isFollowing ? "unfollow" : "follow" }
-        </button>
+      <button onClick={this.handleFollowActionClick}>
+        { this.state.isFollowing ? "unfollow" : "follow" }
+      </button>
     )
   }
 
@@ -203,7 +199,7 @@ export default class UserProfile extends React.Component{
     return(
       <div className="user-info">
         <div className="username-image">
-          {this.props.currentUserId == this.props.user.user.id ?
+          {this.isProfileOwner() ?
             null :
             this.followButton()}
           <img src={this.props.user.user.profile_picture}/>
@@ -268,7 +264,7 @@ export default class UserProfile extends React.Component{
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           contentLabel="Modal"
-          className="ReactModal__Content"
+          className="user-profile-update-picture-modal"
         >
         {<UserProfileFormContainer {...this.props} handleSelfClose={this.closeModal} userId={this.props.userId}/>}
         </Modal>
