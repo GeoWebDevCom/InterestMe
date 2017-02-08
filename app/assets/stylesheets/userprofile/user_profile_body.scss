@@ -16,6 +16,7 @@
   height:538px;
   background-color: transparent;
   width:100%;
+  margin-top:70px;
   z-index: -2;
 }
 
@@ -55,26 +56,25 @@
 }
 
 .user-info {
-  position: fixed;
   display:flex;
   align-items: center;
   justify-content: center;
   height: 65%;
   background-color: transparent;
-  width: 30%;
+  width: 50vw;
   min-width: 400px;
 }
 
 .followers {
-  position: fixed;
   display: flex;
-  flex-direction: column;
-  height: 50% !important;
-  width: 70%;
-  padding-left: 30%;
+  flex-direction: row;
   background-color: transparent;
+  justify-content: center;
+  align-items: center;
   z-index: -1;
-  min-width: 60%
+  min-width: 60%;
+  margin-top: 45px;
+  height: 85%;
 }
 
 .follow-button {
@@ -93,16 +93,6 @@ border-radius: 50%;
   font-size: 30px;
   margin-left: 100px;
   background-color: transparent;
-  justify-content: center;
-  align-items: center;
-}
-
-.followers {
-  display:flex;
-  margin-top: 45px;
-  height: 85%;
-  padding-bottom: 50px;
-  width: 70%;
   justify-content: center;
   align-items: center;
 }

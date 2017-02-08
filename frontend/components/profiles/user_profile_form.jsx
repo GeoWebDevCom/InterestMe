@@ -44,8 +44,7 @@ export default class UserProfileForm extends React.Component {
     .field('file', img);
     upload.end((errors, results) => {
       if (errors === null) {
-        this.setState({imageUrl: results.body.secure_url,
-        id: this.props.currentUserId})
+        this.setState({imageUrl: results.body.secure_url})
       } else {
         console.log("error uploading!");
       }
@@ -57,7 +56,7 @@ export default class UserProfileForm extends React.Component {
     debugger
     this.props.editProfilePage({
       profile_picture: this.state.imageUrl,
-      id: this.props.user.currentUserId
+      id: this.props.user.user.id
     })
     this.props.handleSelfClose()
     this.setState({imageUrl: null})
