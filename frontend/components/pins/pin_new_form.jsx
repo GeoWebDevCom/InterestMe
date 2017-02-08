@@ -2,6 +2,7 @@ import React from 'react';
 import {Router} from 'react-router';
 import Dropzone from 'react-dropzone'
 import request from 'superagent';
+import BoardNewContainer from '../boards/board_new_container'
 const CLOUDINARY_PRESET = 'punlriir'
 const CLOUDINARY_UPLOAD ='http://api.cloudinary.com/v1_1/andoo/upload'
 
@@ -11,7 +12,8 @@ export default class PinNewForm extends React.Component {
     this.state = {
       imageUrl: null,
       body: "",
-      title: ""
+      title: "",
+      pinEditing: true
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -64,31 +66,48 @@ export default class PinNewForm extends React.Component {
     )
   }
 
+  dropZoneDropBox(){
+    return (
+      <Dropzone
+        multiple={false}
+        accept="image/*"
+        onDrop={this.handleDrop}
+        className="image-preview"
+      >
+        {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
+      </Dropzone>
+    )
+  }
+
+  inputForm(){
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <div className="new-pin-form">
+          <a>Title</a>
+            <br/><input onChange={this.update('title')}/><br/>
+          <a>Body</a>
+            <br/>
+            <textarea className="new-pin-textarea"
+              type="textarea"
+              onChange={this.update('body')}
+            /><br/>
+          <button type="Submit" value="Submit">Post</button>
+        </div>
+      </form>
+    )
+  }
+
+  newBoardForm(){
+    return (
+      <BoardNewContainer/>
+    )
+  }
+
   render() {
     return (
-      <div>
-        <Dropzone
-          multiple={false}
-          accept="image/*"
-          onDrop={this.handleDrop}
-          className="image-preview"
-        >
-          {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
-        </Dropzone>
-
-        <form onSubmit={this.handleSubmit}>
-          <div className="new-pin-form">
-            <a>Title</a>
-              <br/><input onChange={this.update('title')}/><br/>
-            <a>Body</a>
-              <br/>
-              <textarea className="new-pin-textarea"
-                type="textarea"
-                onChange={this.update('body')}
-              /><br/>
-            <button type="Submit" value="Submit">Post</button>
-          </div>
-        </form>
+      <div className="pin-new-modal">
+        {this.dropZoneDropBox()}
+        {this.state.pinEditing ? this.inputForm() : this.newBoardForm()}
       </div>
     )
   }

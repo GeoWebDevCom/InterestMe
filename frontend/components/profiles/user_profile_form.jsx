@@ -20,23 +20,6 @@ export default class UserProfileForm extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
   }
 
-  // cloudinary(e){
-  //   e.preventDefault();
-  //   const that = this
-  //   cloudinary.openUploadWidget(
-  //     {
-  //       cloud_name:'andoo',
-  //       upload_preset: 'punlriir',
-  //       theme: 'minimal'
-  //     },
-  //     (errors, results) => {
-  //       if (errors === null) {
-  //         that.setState({imageUrl: results[0]})
-  //       }
-  //     }
-  //   )
-  // }
-
   handleDrop(img){
     let imgUploaded = img[0]
     let upload = request.post(CLOUDINARY_UPLOAD)

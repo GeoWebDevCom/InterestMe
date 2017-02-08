@@ -34,6 +34,10 @@ export default class Board extends React.Component {
     this.closeModal()
   }
 
+  componentDidMount(){
+    this.findImageHeight()
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.boardId !== nextProps.boardId){
       this.props.getBoard(nextProps.boardId)
@@ -182,7 +186,7 @@ export default class Board extends React.Component {
         for (let i=0; i < allImages.length; i++){
           allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
         }
-        case 3:
+        case 1:
         [
           "pin-tile-hide",
           "board-tile-pic-hide",
@@ -210,9 +214,6 @@ export default class Board extends React.Component {
         { this.state.newPinFormOpen ?
           this.openNewPinForm()
         : null }
-        {
-          this.findImageHeight()
-        }
         { this.state.editFormOpen ?
            <BoardEditContainer updateBoard={this.handleBoardEditSubmit} {...this.props}/>
          : null}

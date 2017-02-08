@@ -21,15 +21,14 @@ export default class Homepage extends React.Component{
     this.findImageHeight = this.findImageHeight.bind(this);
   }
 
-  componentWillReceiveProps(){
-    if (this.props.pins.pins.length >= document.images.length){
-      this.findImageHeight()
-    }
-  }
 
   closeModal() {
     this.setState({modalIsOpen: false});
     document.body.style.overflow = "auto";
+  }
+
+  componentDidMount(){
+    this.findImageHeight()
   }
 
   componentWillMount(){
@@ -64,7 +63,7 @@ export default class Homepage extends React.Component{
   masonryLayout(){
     var masonryOptions = {
       fitWidth: true,
-      transitionDuration: 0.3
+      transitionDuration: 1.2
     };
     //multiple divs to fix weird bug
     return (
@@ -94,7 +93,7 @@ export default class Homepage extends React.Component{
         for (let i=0; i < allImages.length; i++){
           allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
         }
-        case 3:
+        case 1:
         [
           "pin-tile-hide",
           "board-tile-pic-hide",
@@ -139,15 +138,16 @@ export default class Homepage extends React.Component{
     )
   }
 
+
   render(){
+    // {
+    //   this.props.pins.pins.length >= document.images.length ?
+    //   this.findImageHeight() : null
+    // }
     return(
       <div>
         <div className="homepage-welcome">
         </div>
-        {
-          this.props.pins.pins.length >= document.images.length ?
-          this.findImageHeight() : null
-        }
         {this.masonryLayout()}
         {this.pinShow()}
       </div>
