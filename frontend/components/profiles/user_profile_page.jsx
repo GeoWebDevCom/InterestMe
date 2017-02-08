@@ -213,6 +213,62 @@ export default class UserProfile extends React.Component{
     )
   }
 
+  followersModal(){
+    return (
+      <Modal
+        isOpen={this.state.followerModalOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Session form"
+        className="followed-follower-modal ReactModal__Content"
+        >
+          {this.state.doneLoading ? this.followers() : null}
+      </Modal>
+    )
+  }
+
+  followedModal(){
+    return(
+      <Modal
+        isOpen={this.state.followedModalOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Session form"
+        className="followed-follower-modal ReactModal__Content"
+        >
+          {this.followed()}
+      </Modal>
+    )
+  }
+
+  pictureUpdateForm(){
+    return(
+      <Modal
+        isOpen={this.state.editFormOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Modal"
+        className="user-profile-update-picture-modal"
+      >
+        {<UserProfileFormContainer {...this.props} handleSelfClose={this.closeModal} userId={this.props.userId}/>}
+      </Modal>
+    )
+  }
+
+  pinShow(){
+    return(
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Modal"
+        className="ReactModal__Content"
+      >
+        {<PinContainer pinId={this.state.focusedPinId} handleSelfClose={this.closeModal}/> }
+      </Modal>
+    )
+  }
+
   render(){
     return(
       <div className="user-profile">
@@ -225,32 +281,15 @@ export default class UserProfile extends React.Component{
               <button className="follow-button" onClick={this.handleFollowerClick}>
               followed
             </button>
-            <Modal
-              isOpen={this.state.followerModalOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
-              contentLabel="Session form"
-              className="followed-follower-modal ReactModal__Content"
-              >
-                {this.state.doneLoading ? this.followers() : null}
-            </Modal>
-
-            <Modal
-              isOpen={this.state.followedModalOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
-              contentLabel="Session form"
-              className="followed-follower-modal ReactModal__Content"
-              >
-                {this.followed()}
-            </Modal>
+            {this.state.doneLoading ? this.followersModal() : null}
+            {this.state.doneLoading ? this.followedModal() : null}
           </div>
         </div>
         <div className="user-profile-buttons-bar">
           <div className="tab-block">
-          <button className="profile-tab-button" onClick={this.handleBoardTabClick}>Boards</button>
-          <button className="profile-tab-button" onClick={this.handlePinTabClick}>Pins</button>
-        </div>
+            <button className="profile-tab-button" onClick={this.handleBoardTabClick}>Boards</button>
+            <button className="profile-tab-button" onClick={this.handlePinTabClick}>Pins</button>
+          </div>
         </div>
         <div>
           <div className="board-pin-underbar">
@@ -258,26 +297,8 @@ export default class UserProfile extends React.Component{
               {this.state.selectPinTab && this.state.doneLoading ? this.showPins() : null }
             </div>
         </div>
-
-        <Modal
-          isOpen={this.state.editFormOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Modal"
-          className="user-profile-update-picture-modal"
-        >
-        {<UserProfileFormContainer {...this.props} handleSelfClose={this.closeModal} userId={this.props.userId}/>}
-        </Modal>
-
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          contentLabel="Modal"
-          className="ReactModal__Content"
-        >
-          {<PinContainer pinId={this.state.focusedPinId} handleSelfClose={this.closeModal}/> }
-        </Modal>
+          {this.state.doneLoading ? this.pictureUpdateForm() : null}
+          {this.state.doneLoading ? this.pinShow() : null }
       </div>
     )
   }

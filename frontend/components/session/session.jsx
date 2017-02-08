@@ -146,7 +146,9 @@ export default class Session extends React.Component {
   }
 
   handleProfileClick(){
-    let url = this.props.currentUser.currentUserId
+    let url = this.props.currentUser.currentUser.user_id ||
+    this.props.currentUser.currentUser.currentUserId ||
+    this.props.currentUser.currentUserId;
     hashHistory.push(`/user/${url}`)
   }
 
