@@ -42,7 +42,6 @@ export default class Board extends React.Component {
     if (this.props.boardId !== nextProps.boardId){
       this.props.getBoard(nextProps.boardId)
       this.props.getPins(nextProps.boardId)
-      this.findImageHeight()
     }
     if (this.props.pins.pins.length >= document.images.length){
       this.findImageHeight()
