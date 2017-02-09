@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import {Router, Link, hashHistory } from 'react-router';
+import {withRouter, Router, Link, hashHistory } from 'react-router';
 import BoardNewFormContainer from '../boards/board_new_container'
 import PinNewFormContainer from '../pins/pin_new_container'
 
@@ -63,6 +63,10 @@ export default class Session extends React.Component {
     )
   }
 
+  componentWillReceiveProps(){
+    this.forceUpdate()
+  }
+
   onSettingsClick(){
     if (this.state.showDropdown){
       this.setState({showDropdown: false})
@@ -81,6 +85,7 @@ export default class Session extends React.Component {
   }
 
   _handleLogoutClick(e){
+    e.preventDefault()
     this.props.processLogout().then( ()=> {
       hashHistory.replace('/session')
     })
@@ -89,12 +94,12 @@ export default class Session extends React.Component {
   componentWillMount() {
     Modal.setAppElement('body');
    }
-
-   componentDidMount() {
-      if (this.state.showDropdown) {
-        return
-      }
-   }
+   //
+  //  componentDidMount() {
+  //     if (this.state.showDropdown) {
+  //       return
+  //     }
+  //  }
 
    update(text) {
      return e => this.setState({
@@ -145,10 +150,9 @@ export default class Session extends React.Component {
     this.setState({newPinFormOpen: true})
   }
 
-  handleProfileClick(){
-    let url = this.props.currentUser.currentUser.user_id ||
-    this.props.currentUser.currentUser.currentUserId ||
-    this.props.currentUser.currentUserId;
+  handleProfileClick(e){
+    e.preventDefault()
+    let url = this.props.currentUser.currentUser.user_id || this.props.currentUser.currentUser.currentUserId || this.props.currentUser.currentUserId;
     hashHistory.push(`/user/${url}`)
   }
 
