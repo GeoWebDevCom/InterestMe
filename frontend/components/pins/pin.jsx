@@ -78,9 +78,8 @@ export default class Pin extends React.Component {
     //TODO Maybe one day...
   }
 
-  handleBoardNameClick(e){
+  handleBoardNameClick(){
     this.props.handleSelfClose()
-    e.preventDefault()
     hashHistory.push(`/boards/${this.props.pin.pins.pins.board_id}`)
     document.body.style.overflow = "auto"
   }
@@ -113,8 +112,7 @@ export default class Pin extends React.Component {
     )
   }
 
-  redirectToProfile(e){
-    e.preventDefault()
+  redirectToProfile(){
     this.props.handleSelfClose()
     hashHistory.push(`/user/${this.props.pin.pins.pins.author_id}`)
   }
