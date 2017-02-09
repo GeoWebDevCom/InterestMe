@@ -19,8 +19,8 @@ const UserReducer = (state = defaultState, action) => {
       console.log("received updated user data")
       return merge({}, state, {user: action.userData.user})
     case GET_PROFILE:
-
       console.log("got profile info");
+      debugger
       return action.userData
     default:
     console.log("defaulted user data");

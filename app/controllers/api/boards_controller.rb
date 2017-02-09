@@ -5,6 +5,10 @@ class Api::BoardsController < ApplicationController
     @board = Board.new()
   end
 
+  def index
+    user_id = current_user.id
+  end
+
   def create
     @board = Board.new(board_params)
     @board.user_id = current_user.id

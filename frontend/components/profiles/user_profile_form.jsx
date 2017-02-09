@@ -36,7 +36,6 @@ export default class UserProfileForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
     this.props.editProfilePage({
       profile_picture: this.state.imageUrl,
       id: this.props.user.user.id

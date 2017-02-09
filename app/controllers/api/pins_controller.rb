@@ -13,6 +13,9 @@ class Api::PinsController < ApplicationController
 
   def new
     @pin = Pin.new()
+    debugger
+    user_id = current_user.id
+    @boards = User.find(user_id).boards
 
   end
 
@@ -20,7 +23,6 @@ class Api::PinsController < ApplicationController
     # debugger
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
-    id_board = @pin.board.id
     if @pin.save
       @pins = Pin.where(:board_id => id_board)
       render :index

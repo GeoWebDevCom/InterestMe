@@ -13,6 +13,7 @@ const SessionReducer = (state = defaultState, action) => {
     case RECEIVE_CURRENT_USER:
 
       console.log("received user");
+      debugger
       if (action.currentUser.current_user){
         const userId = action.currentUser.user_id
         const username = action.currentUser.current_user

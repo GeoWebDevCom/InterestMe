@@ -127,16 +127,16 @@ export default class Session extends React.Component {
     this.setState({newPinFormOpen: false})
   }
 
-  newBoardForm(){
+  newPinForm(){
     return(
       <Modal
         isOpen={this.state.newPinFormOpen}
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
         contentLabel="Session form"
-        className="ReactModal__Content"
+        className="newPinModal"
         >
-          <PinNewFormContainer handleCancelButton={this.handleChildCancelButton}/>
+          <PinNewFormContainer {...this.props} handleCancelButton={this.handleChildCancelButton}/>
       </Modal>
     )
   }
@@ -235,7 +235,7 @@ export default class Session extends React.Component {
         <ul className="session-buttons">
           {this.props.currentUser.currentUser ? this.signedInButtons() : this.loginButtons()}
         </ul>
-        {this.state.newPinFormOpen ? this.newBoardForm() : null}
+        {this.state.newPinFormOpen ? this.newPinForm() : null}
         {this.loginForms()}
       </div>
     );

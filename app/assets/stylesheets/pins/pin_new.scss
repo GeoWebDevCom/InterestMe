@@ -1,3 +1,41 @@
+.newPinModal {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  overflow: hidden !important;
+  padding: 1px;
+  width: auto;
+  max-width: 70%;
+  max-height: 80vh;
+  min-width: 500px;
+  padding: 30px 40px 30px 40px !important;
+  background-color: white;
+  border-radius: 15px;
+  border: solid 2px;
+  border-color: #d7432d;
+}
+
+.pin-new-content-in-box {
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row
+}
+
+.pin-board-new-user-input {
+  margin-left: 30px;
+}
+
+.pin-new-image-drop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 40vw;
+  min-height: 40vw;
+}
+
 .new-pin-modal{
   display: flex;
   height: 640px;
@@ -16,7 +54,7 @@
   width:300px;
   height:80px;
   max-width: 300px;
-  height:80px;
+  max-height:80px;
 }
 
 .click-to-upload button {
@@ -43,11 +81,9 @@
   align-items: center;
 }
 
-.image-preview {
-  height: 400px;
-  width: 400px;
-  // margin-top: -40px;
-  margin-left: 5px;
+.pin-new-image-preview {
+  height: 35vw;
+  width: 35vw;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -55,7 +91,6 @@
   vertical-align: middle;
   border: dashed 2px;
   border-color: #d7432d;
-  margin-bottom: 15px;
 }
 
 .upload-text {
