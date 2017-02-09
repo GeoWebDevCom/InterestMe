@@ -20,7 +20,6 @@ const UserReducer = (state = defaultState, action) => {
       return merge({}, state, {user: action.userData.user})
     case GET_PROFILE:
       console.log("got profile info");
-      debugger
       return action.userData
     default:
     console.log("defaulted user data");

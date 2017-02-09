@@ -1,19 +1,23 @@
+@import '../application.scss';
+
 .user-profile {
-  display: flex;
-  width: 99vw;
-  height: 97vh;
-  position: absolute;
-  margin-left: -8px;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: transparent;
-  z-index: -2;
+  // display: flex;
+  // width: 99vw;
+  // height: 97vh;
+  // position: absolute;
+  // margin-left: -8px;
+  // flex-direction: column;
+  // align-items: flex-start;
+  // background-color: transparent;
+  // z-index: -2;
 }
 
 .user-profile-body {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
-  height:538px;
+  height:40vh;
   background-color: transparent;
   width:100%;
   margin-top:70px;
@@ -22,33 +26,28 @@
 
 
 .user-profile-buttons-bar {
-  position:fixed;
-  display: block;
-  background-color: #d7432d;
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  justify-content: center;
+  align-items: flex-end;
   width: 100%;
   height:55px;
   bottom: 301px;
-  z-index:10;
+  z-index: -1;
+  border-bottom: 1px solid black;
 }
 
 .user-profile-buttons button {
-  margin-left: 30px !important;
+  margin-left: 100px !important;
 }
 
 .board-pin-underbar{
   display: flex;
-  position: fixed;
   flex-direction: row;
-  width: 100%;
-  height: 300px;
-  bottom: 2px;
-  margin-left: -8px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  background-color: white;
-  padding-left: 9px;
-  margin-right: 300px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .edit-user-button {
@@ -73,8 +72,7 @@
   align-items: center;
   z-index: -1;
   min-width: 60%;
-  margin-top: 45px;
-  height: 85%;
+  height: 65%;
 }
 
 .follow-button {
@@ -119,6 +117,13 @@ border-radius: 50%;
   z-index: 100;
 }
 
+
+.user-profile-board-pins {
+    position: relative;
+    background-color: transparent;
+    width: 100vw;
+}
+
 .tab-block{
   display: flex;
   flex-direction: row;
@@ -127,36 +132,12 @@ border-radius: 50%;
 }
 
 .profile-tab-button {
-  display:flex;
-  background-color: #d7432d;
-  height: 54px;
-  font-size: 20px;
-  padding: 0px 40px 0px 40px;
-  min-width: 80px;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  padding: 12px 10px 12px 10px;
+  font-size: 15px;
+  font-weight: bold;
+  z-index: 0;
 }
 
-.user-profile-board-button {
-  display: flex;
-  height: 300px;
-  max-height:283px;
-  width: 400px;
-  min-width: 400px;
-  background-color: white;
-  border: solid #8c5d5d;
-  border-width: medium;
-  font-size: 30px;
-  justify-content: center;
-  align-content: center;
-  color: #d7432d;
-}
-
-.user-profile-board-button:hover {
-  background-color: white;
-  border: solid #d7432d;
-}
 
 .user-profile-pins {
   max-height: 400px;
@@ -177,4 +158,99 @@ border-radius: 50%;
   position: static;
   bottom: 0px;
   width: 100%;
+}
+
+.user-profile-board-button {
+  display: flex;
+  width: 20vw;
+  height: 20vw;
+  background-color: white;
+  border: solid #8c5d5d;
+  border-width: medium;
+  font-size: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  color: #d7432d;
+  border-radius: 10px;
+}
+
+.user-profile-board-button:hover {
+  background-color: white;
+  border: solid #d7432d;
+}
+
+.user-profile-board-images{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+// .user-profile-main-image-board-pin {
+//   border: 2px solid black;
+//   max-width: 100%;
+//   max-height: 50%;
+// }
+// .user-profile-main-board-pin {
+//   border: 2px solid black;
+// }
+.user-profile-main-image-board-pin-container {
+  display:flex;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 50%;
+  min-height: 50%;
+}
+.user-profile-sub-image-board-pin-container {
+  min-width: 96%;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-profile-main-board-pin{
+  min-width: 46%;
+  max-width: 46%;
+  overflow:hidden;
+  padding: 2%;
+}
+.user-profile-main-image-board-pin {
+  overflow:hidden;
+  padding: 2%;
+}
+
+.user-profile-sub-image-board-pin {
+  height:auto;
+  width: 46%;
+  overflow:hidden;
+}
+
+.board-button-set {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.board-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.user-profile-board-show {
+  margin-top: 5vh;
+  margin-top: 5vh;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 1;
+}
+
+.user-profile-boards-container {
+  margin: 0 auto;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -52,12 +52,12 @@ export default class UserProfileForm extends React.Component {
 
   previewImage() {
     return (
-    <div className="original-filename">
-      {this.state.imageUrl ? null :
-        <div className="upload-mini-text">
-          Image preview
-        </div>}
-      { this.state.imageUrl ?
+      <div className="original-filename">
+        {this.state.imageUrl ? null :
+          <div className="upload-mini-text">
+            Image preview
+          </div>}
+        { this.state.imageUrl ?
           <img className="image-preview" src={this.state.imageUrl}/>
           : null}
       </div>

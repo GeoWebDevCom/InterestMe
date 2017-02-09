@@ -61,13 +61,13 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   border: solid 2px;
-  border-color: #d7432d;
-  color: #8c5d5d;
+  border-color: $color-primary;
+  color: $color-primary;
 }
 
 textarea:focus {
-  border-color: #d7432d;
-  color: #8c5d5d;
+  border-color: $color-primary;
+  color: black;
 }
 
 button {

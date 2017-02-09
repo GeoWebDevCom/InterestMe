@@ -70,9 +70,9 @@ export default class PinNewForm extends React.Component {
   }
 
   componentWillMount(){
-    let id = this.props.currentUser.currentUserId
-    if (this.props.currentUser.currentUserId){
-      id = this.props.currentUser.currentUserId
+    let id
+    if (this.props.currentUser.currentUser.currentUserId){
+      id = this.props.currentUser.currentUser.currentUserId
     } else if ( this.props.currentUser.currentUserId){
       id = this.props.currentUser.currentUserId
     } else {
@@ -128,7 +128,6 @@ export default class PinNewForm extends React.Component {
     const options = this.selectBoardForNewPin()
     // for (let i = 0; i < options.length; )
     const defaultOption = options[0]
-    debugger
     return (
       <Dropdown onChange={this.onSelect} options={options} value={defaultOption} placeholder="Select an option">
       </Dropdown>

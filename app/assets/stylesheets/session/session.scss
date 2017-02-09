@@ -3,12 +3,21 @@
   height: 100vh;
   margin: 15px 0px -6px -8px;
 }
+// .splashscreen {
+//   height: auto;
+//   width: 110vw;
+//   margin: 0px auto;
+//   overflow: hidden !important;
+//   background-position: -80px 8px;
+// }
+
 .splashscreen {
-  height: auto;
-  width: 110vw;
-  margin: 0px auto;
-  overflow: hidden !important;
+  // height: 100vh
+  background-position: center center;
+  background-size: cover;
+  width: 100vw;
   min-width: 1800px;
+  min-height: auto
 }
 
 .session-container {
@@ -24,6 +33,7 @@
   flex-grow: 2;
   margin-right: 40px;
   margin-top: 3px;
+  min-width: 500px;
 }
 
 .splashtext {

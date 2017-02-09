@@ -1,3 +1,5 @@
+@import '../application.scss';
+
 .newPinModal {
   position: fixed;
   top: 50px;
@@ -7,8 +9,8 @@
   overflow: hidden !important;
   padding: 1px;
   width: auto;
-  max-width: 70%;
-  max-height: 80vh;
+  max-width: 60%;
+  max-height: 60vh;
   min-width: 500px;
   padding: 30px 40px 30px 40px !important;
   background-color: white;
@@ -21,7 +23,9 @@
   min-width: 100%;
   min-height: 100%;
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .pin-board-new-user-input {
@@ -32,8 +36,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 40vw;
-  min-height: 40vw;
+  min-width: 25vw;
+  min-height: 25vw;
 }
 
 .new-pin-modal{
@@ -82,15 +86,15 @@
 }
 
 .pin-new-image-preview {
-  height: 35vw;
-  width: 35vw;
+  height: 25vw;
+  width: 25vw;
   display:flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   vertical-align: middle;
   border: dashed 2px;
-  border-color: #d7432d;
+  border-color: $color-primary;
 }
 
 .upload-text {

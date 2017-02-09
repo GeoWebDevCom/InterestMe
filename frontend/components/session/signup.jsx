@@ -10,7 +10,7 @@ export default class Signup extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className="splash-container">
         <img className="splashscreen" src="http://res.cloudinary.com/andoo/image/upload/v1486436876/dandelion-1737324_1920_q66mjt.jpg"/>
         <div className="splashtext">
           Everything you're looking for in one place

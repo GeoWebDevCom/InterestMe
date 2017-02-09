@@ -63,9 +63,8 @@ export default class Homepage extends React.Component{
   masonryLayout(){
     var masonryOptions = {
       fitWidth: true,
-      transitionDuration: 1.2
+      transitionDuration: 10
     };
-    //multiple divs to fix weird bug
     return (
       <div>
         <div>

@@ -1,3 +1,5 @@
+@import '../application.scss';
+
 .modal-container {
   position: fixed;
   top: 50px;
@@ -8,13 +10,14 @@
   padding: 1px;
   width: auto;
   max-width: 70%;
-  max-height: 80vh;
+  max-height: 75vh;
   min-width: 500px;
   padding: 30px 60px 100px 60px;
   background-color: white;
   border-radius: 15px;
+  margin-top: 10vh;
   border: solid 2px;
-  border-color: #d7432d;
+  border-color: $color-primary;
 }
 
 .ReactModal__Overlay--after-open {

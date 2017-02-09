@@ -13,7 +13,6 @@ class Api::PinsController < ApplicationController
 
   def new
     @pin = Pin.new()
-    debugger
     user_id = current_user.id
     @boards = User.find(user_id).boards
 

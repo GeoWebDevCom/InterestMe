@@ -24,6 +24,14 @@ helper_method :current_user
     curr_user_record = User.find(current_user.id)
     follow_ids = curr_user_record.following.map { |follow| follow.id}
     @isFollowing = follow_ids.include?(@user.id)
+    @sample_pins = []
+    @user_boards.each do |board|
+      board_pins = []
+      board.pins[0..2].each do |pin|
+        board_pins << pin.image_url
+      end
+      @sample_pins << board_pins
+    end
     render :show
   end
 
