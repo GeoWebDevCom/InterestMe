@@ -140,7 +140,7 @@ export default class UserProfile extends React.Component{
     return(
       this.props.user.pins.map( (pin, idx) => {
         return(
-          <button key={idx} name={pin.id} onClick={(e) => this.handleTileClick(e)} className="user-profile-pins" key={idx}>
+          <button name={pin.id} onClick={(e) => this.handleTileClick(e)} className="user-profile-pins" key={idx}>
             <img className="user-profile-pin-img" key={idx} src={pin.image_url}/>
           </button>
         )

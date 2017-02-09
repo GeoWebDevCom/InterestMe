@@ -162,8 +162,8 @@ border-radius: 50%;
 
 .user-profile-board-button {
   display: flex;
-  width: 250px;
-  height: 250px;
+  width: 20vw;
+  height: 20vw;
   background-color: white;
   border: solid #8c5d5d;
   border-width: medium;
@@ -173,7 +173,6 @@ border-radius: 50%;
   align-content: center;
   color: #d7432d;
   border-radius: 10px;
-  margin-top: 20px;
 }
 
 .user-profile-board-button:hover {
@@ -211,7 +210,6 @@ border-radius: 50%;
 .user-profile-main-board-pin{
   min-width: 46%;
   max-width: 46%;
-  height: auto;
   overflow:hidden;
   padding: 2%;
 }
