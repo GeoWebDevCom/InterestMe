@@ -29,6 +29,7 @@ export default class Homepage extends React.Component{
 
   componentDidMount(){
     this.findImageHeight()
+    this.props.getHome()
   }
 
   componentWillMount(){
@@ -72,7 +73,7 @@ export default class Homepage extends React.Component{
             <Masonry
               elementType={'div'}
               disableImagesLoaded={false}
-              className='board'
+              className='homepage-board'
               options={masonryOptions}
               >
               {this.pinTileRender()}

@@ -9,6 +9,7 @@ export default class NavBar extends React.Component {
   }
 
   handleLogoImageClick(e){
+    debugger
     e.preventDefault();
     hashHistory.push(`/home`)
   }
