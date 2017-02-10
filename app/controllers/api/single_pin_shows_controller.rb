@@ -5,6 +5,7 @@ class Api::SinglePinShowsController < ApplicationController
   def show
     @pin = Pin.find(params[:id])
     @current_user = current_user
+    render :show
   end
 
 end

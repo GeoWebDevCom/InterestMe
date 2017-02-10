@@ -4,7 +4,7 @@ import Masonry from 'react-masonry-component'
 import PinContainer from '../pins/pins_container'
 import {hashHistory} from 'react-router';
 
-export default class Board extends React.Component {
+export default class NewBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

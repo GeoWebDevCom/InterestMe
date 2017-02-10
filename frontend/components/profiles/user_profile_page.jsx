@@ -49,7 +49,6 @@ export default class UserProfile extends React.Component{
     if (this.props.userId !== nextProps.userId) {
       this.props.getProfilePage(nextProps.userId)
     }
-    debugger
     if (this.state.followStateChanged){
       this.props.getProfilePage(nextProps.userId).then( () => {
         this.setState({followStateChanged: false})
@@ -213,9 +212,10 @@ export default class UserProfile extends React.Component{
   }
 
   followButton(){
+    debugger
     return (
       <button className="profile-follow-button" onClick={this.handleFollowActionClick}>
-        { this.state.isFollowing ? "unfollow" : "follow" }
+        { this.props.user.isFollowing ? "unfollow" : "follow" }
       </button>
     )
   }

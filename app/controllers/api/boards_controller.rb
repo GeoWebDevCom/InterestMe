@@ -13,7 +13,9 @@ class Api::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.user_id = current_user.id
     if @board.save
-      'blank'
+      @current_user = current_user
+      @board_pins = @board.pins.reverse
+      render :show
     else
       render json: @board.errors.full_messages, status: 422
     end

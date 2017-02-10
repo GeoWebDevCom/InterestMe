@@ -15,7 +15,7 @@ class Api::PinsController < ApplicationController
     @pin = Pin.new()
     user_id = current_user.id
     @boards = User.find(user_id).boards
-
+    render '/api/boards/show'
   end
 
   def create
@@ -53,7 +53,7 @@ class Api::PinsController < ApplicationController
     @pin = Pin.find(params[:id])
     if @pin
       @pin.destroy
-      render 'api/boards/30'
+      render :index
     else
       render json: @pin.errors.full_messages, status: 422
     end

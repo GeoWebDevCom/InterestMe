@@ -5,6 +5,7 @@ import BoardEditContainer from './board_edit_container'
 import PinContainer from '../pins/pins_container'
 import PinNewContainer from '../pins/pin_new_container'
 import Dropzone from 'react-dropzone'
+import {hashHistory} from 'react-router'
 
 export default class Board extends React.Component {
 
@@ -18,6 +19,7 @@ export default class Board extends React.Component {
       newPinFormOpen: false,
       finishedLoading: false,
       imageUrl: null,
+      editFormOpen: false
     }
     document.body.style.overflow = "auto"
     this.handleTileClick = this.handleTileClick.bind(this);
@@ -27,6 +29,7 @@ export default class Board extends React.Component {
     this.handleBoardEditSubmit = this.handleBoardEditSubmit.bind(this);
     this.handleEditButtonOpen = this.handleEditButtonOpen.bind(this);
     this.openNewPinForm = this.openNewPinForm.bind(this);
+    this.redirectToAuthorProfile = this.redirectToAuthorProfile.bind(this);
   }
 
   handleChildCancelButton(){
@@ -96,21 +99,23 @@ export default class Board extends React.Component {
     )
   }
 
-  boardText(){
-    return this.props.board.owner ? "you" : this.props.board.author
+  boardAuthor(){
+    debugger
+    return (
+      <button className="board-name-author-link" onClick={this.redirectToAuthorProfile}>
+        {this.props.board.owner ? "you" : this.props.board.author}
+      </button>
+    )
   }
 
+  redirectToAuthorProfile(e){
+    e.preventDefault()
+    debugger
+    hashHistory.replace(`/user/${this.props.board.owner_id}`)
+  }
 
   handleBoardEditSubmit(){
     this.props.getBoard(this.props.boardId)
-  }
-
-  handleEditButtonOpen(){
-    if (this.state.editFormOpen) {
-      this.setState({editFormOpen: false})
-    } else {
-      this.setState({editFormOpen: true})
-    }
   }
 
   closeModal() {
@@ -132,9 +137,13 @@ export default class Board extends React.Component {
             {this.props.board.name}
           </a>
           <div className="author-edit-flexbox">
-            <a id="board-author">a board by {this.props.board ? this.boardText() : null} </a>
+            <a id="board-author">a board by {this.props.board ? this.boardAuthor() : null} </a>
             <div className="owner-edit-buttons">
-              {this.props.board.owner? <button onClick={this.handleEditButtonOpen}>edit</button> : null }
+              {this.props.board.owner?
+                <button className="board-edit-button" onClick={this.handleEditButtonOpen}>
+                  <i className="fa fa-cog fa-2x" aria-hidden="true"></i>
+                </button>
+                 : null }
             </div>
           </div>
         </div>
@@ -169,6 +178,24 @@ export default class Board extends React.Component {
             selfClose={this.handleSelfClose}
             {...this.props}
           />
+      </Modal>
+    )
+  }
+
+  handleEditButtonOpen(){
+    this.setState({editFormOpen: true})
+  }
+
+  openEditBoardForm(){
+    return(
+      <Modal
+        isOpen={this.state.editFormOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        contentLabel="Session form"
+        className="new-pin-modal ReactModal__Content"
+        >
+        <BoardEditContainer updateBoard={this.handleBoardEditSubmit} {...this.props}/>
       </Modal>
     )
   }
@@ -211,7 +238,7 @@ export default class Board extends React.Component {
           this.openNewPinForm()
         : null }
         { this.state.editFormOpen ?
-           <BoardEditContainer updateBoard={this.handleBoardEditSubmit} {...this.props}/>
+           this.openEditBoardForm()
          : null}
       </div>
     )
