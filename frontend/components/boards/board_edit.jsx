@@ -10,7 +10,6 @@ export default class BoardEdit extends React.Component {
       name: ''
     };
     this.editButton = this.editButton.bind(this);
-    this.handleEditButton = this.handleEditButton.bind(this);
     this.editForm = this.editForm.bind(this);
     this.update = this.update.bind(this);
     this.handleCancelButton = this.handleCancelButton.bind(this);
@@ -20,21 +19,14 @@ export default class BoardEdit extends React.Component {
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
   }
 
-  handleEditButton(){
-    if (this.state.editBoxOpen || this.state.deleteConfirmBox){
-      this.setState({editBoxOpen: false, deleteConfirmBox: false})
-    } else{
-      this.setState({editBoxOpen: true});
-    }
-  }
-
   handleCancelButton() {
     this.setState({deleteConfirmBox: false, editBoxOpen: false})
+    this.props.handleSelfClose()
   }
 
   editButton(){
     return (
-      <button id="edit-icon" onClick={this.handleEditButton}>
+      <button onClick={this.handleEditButton}>
         edit
       </button>
     )
@@ -52,7 +44,7 @@ export default class BoardEdit extends React.Component {
 
   handleDeleteConfirm() {
     this.props.deleteBoard({id: this.props.boardId});
-    hashHistory.push('/home')
+    hashHistory.replace('/home')
     this.forceUpdate()
   }
 
@@ -67,7 +59,7 @@ export default class BoardEdit extends React.Component {
 
   editForm() {
     return (
-      <div className="board-edit-form">
+      <div>
         <form onSubmit={this.handleUpdateSubmit}>
           <a>Edit name</a>
           <input
@@ -89,18 +81,17 @@ export default class BoardEdit extends React.Component {
 
   confirmDeleteBox() {
     return(
-      <div className="delete-confirm-form">
-        <div id="delete-confirm">Are you sure you want to delete this board?</div>
-        <button className="confirm-delete-button" onClick={this.handleDeleteConfirm}>Yes</button>
-        <button className="confirm-delete-button" onClick={this.handleCancelButton}>Cancel</button>
+      <div>
+        <div>Are you sure you want to delete this board?</div>
+        <button onClick={this.handleDeleteConfirm}>Yes</button>
+        <button onClick={this.handleCancelButton}>Cancel</button>
       </div>
     )
   }
 
   render() {
     return (
-      <div>
-        {this.editButton()}
+      <div className="edit-board-form">
         {this.state.editBoxOpen ? this.editForm() : null }
         {this.state.deleteConfirmBox ? this.confirmDeleteBox() : null}
       </div>

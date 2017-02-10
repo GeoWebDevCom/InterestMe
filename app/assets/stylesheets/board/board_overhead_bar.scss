@@ -62,7 +62,7 @@
 
 .board-edit-button:hover {
   background-color: transparent;
-  color: black;
+  color: white;
 }
 
 #board-author {
@@ -89,4 +89,9 @@
   color: $color-primary;
   font-weight: bold;
   padding: 0px;
+}
+
+.board-name-author-link:hover {
+  background-color: transparent;
+  color: white;
 }

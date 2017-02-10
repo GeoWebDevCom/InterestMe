@@ -119,7 +119,8 @@ export default class Board extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false, newPinFormOpen: false});
+    debugger
+    this.setState({modalIsOpen: false, newPinFormOpen: false, editFormOpen: false});
     document.body.style.overflow = "auto";
   }
 
@@ -193,9 +194,9 @@ export default class Board extends React.Component {
         onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
         contentLabel="Session form"
-        className="new-pin-modal ReactModal__Content"
+        className="board-edit-modal"
         >
-        <BoardEditContainer updateBoard={this.handleBoardEditSubmit} {...this.props}/>
+        <BoardEditContainer handleSelfClose={this.closeModal} {...this.props}/>
       </Modal>
     )
   }
