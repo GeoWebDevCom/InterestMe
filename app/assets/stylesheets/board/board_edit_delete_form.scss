@@ -1,6 +1,11 @@
 .board-edit-modal {
-  width: 30vw;
-  height: 20vh;
+  max-width: 700px;
+  width: 20vw;
+  min-width: 400px;
+  height: 25vh;
+  max-height: 700px;
+  padding: 50px !important;
+  border-radius: 10px;
 }
 
 // .board-edit-form {
@@ -18,17 +23,35 @@
 //   z-index: 15;
 // }
 
-.edit-board-form {
+
+
+.edit-board-text {
+  font-size: 25px;
+  margin-bottom: 27px;
+}
+
+.board-edit-form {
   display: flex;
-  width: 100%;
-  height: 20vh;
+  height: 100%;
   flex-direction: column;
+
+}
+
+.board-edit-form-buttons {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  margin-top: 20px;
 }
 
 .board-edit-form input {
-  border-color: white;
-  color: #ffe0e0;
+  color: black;
   margin-right: 15px;
+}
+
+.board-edit-delete-confirm-text {
+  margin-top: 15px;
+  font-size: 20px;
 }
 
 .delete-confirm-form {

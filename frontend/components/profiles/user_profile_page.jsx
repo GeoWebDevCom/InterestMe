@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import PinContainer from '../pins/pins_container';
 import UserProfileFormContainer from './user_profile_form_container';
 import Masonry from 'react-masonry-component'
-
+import NewBoardContainer from '../boards/board_new_container'
 
 export default class UserProfile extends React.Component{
   constructor(props) {
@@ -12,7 +12,7 @@ export default class UserProfile extends React.Component{
     this.state={
       doneLoading: false,
       selectPinTab: false,
-      selectBoardTab: false,
+      selectBoardTab: true,
       modalIsOpen: false,
       focusedPinId: null,
       editFormOpen: false,
@@ -20,22 +20,23 @@ export default class UserProfile extends React.Component{
       followedOpen: false,
       isFollowing: false,
       pinButtonFocus: false,
-      boardButtonFocus: false,
+      boardButtonFocus: true,
       followerButtonFocus: false,
       followedButtonFocus: false,
-      followStateChanged: false
+      followStateChanged: false,
+      showNewBoardForm: false,
+      newBoardModalIsOpen: false
     }
 
     this.showPins = this.showPins.bind(this);
     this.showBoards = this.showBoards.bind(this);
     this.userInfo = this.userInfo.bind(this);
     this.handleBoardClick = this.handleBoardClick.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
     this.handlePinTabClick = this.handlePinTabClick.bind(this);
     this.handleBoardTabClick = this.handleBoardTabClick.bind(this);
     this.handleEditForm = this.handleEditForm.bind(this);
-    this.closeEditModal = this.closeEditModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.handleFollowerClick = this.handleFollowerClick.bind(this);
     this.followed = this.followed.bind(this);
     this.handleFollowedClick = this.handleFollowedClick.bind(this);
@@ -43,6 +44,8 @@ export default class UserProfile extends React.Component{
     this.handleFollowActionClick = this.handleFollowActionClick.bind(this);
     this.followButton = this.followButton.bind(this);
     this.isProfileOwner = this.isProfileOwner.bind(this);
+    this.boardsAndCreateBoard = this.boardsAndCreateBoard.bind(this);
+    this.handleNewBoardClick = this.handleNewBoardClick.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
@@ -74,7 +77,7 @@ export default class UserProfile extends React.Component{
   }
 
   handleSelfClose(){
-    this.setState({modalIsOpen: false})
+    this.setState({modalIsOpen: false, newBoardModalIsOpen: false})
   }
 
   handleTileClick(e) {
@@ -96,8 +99,8 @@ export default class UserProfile extends React.Component{
     this.setState({editFormOpen: true})
   }
 
-  closeEditModal(){
-    this.setState({editFormOpen: false})
+  closeModal(){
+    this.setState({modalIsOpen: false, editFormOpen: false, newBoardModalIsOpen: false})
   }
 
   handleProfileRedirect(e){
@@ -212,7 +215,6 @@ export default class UserProfile extends React.Component{
   }
 
   followButton(){
-    debugger
     return (
       <button className="profile-follow-button" onClick={this.handleFollowActionClick}>
         { this.props.user.isFollowing ? "unfollow" : "follow" }
@@ -301,7 +303,7 @@ export default class UserProfile extends React.Component{
     return(
       this.props.user.boards.map ((board, idx)=> {
         return (
-          <div className="board-button-set">
+          <div key={idx} className="board-button-set">
             <button name={board.id} onClick={(e) => this.handleBoardClick(e)} className="user-profile-board-button" key={idx}>
               <div className="user-profile-board-images">
                 <div className="user-profile-main-image-board-pin-container">
@@ -327,11 +329,36 @@ export default class UserProfile extends React.Component{
     )
   }
 
+  handleNewBoardClick(e){
+    e.preventDefault()
+    this.setState({showNewBoardForm: true, newBoardModalIsOpen: true})
+  }
+
   boardsAndCreateBoard(){
     return(
       <div className="user-profile-board-show">
-        <button className="user-profile-board-button">
-          Create a new board
+        <button className="user-profile-board-button" onClick={this.handleNewBoardClick}>
+          <div className="add-new-board-container">
+            <div>
+              <i className="fa fa-plus fa-1x" aria-hidden="true"></i>
+              <div className="create-new-board-text">
+                Create a new Board
+              </div>
+            </div>
+          </div>
+          {
+            this.state.showNewBoardForm ?
+            <Modal
+              isOpen={this.state.newBoardModalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              contentLabel="Modal"
+              className="board-new-modal"
+            >
+              <NewBoardContainer handleSelfClose={this.closeModal}/>
+            </Modal>
+            : null
+          }
         </button>
         {this.showBoards()}
       </div>
@@ -428,7 +455,8 @@ export default class UserProfile extends React.Component{
       <div className="user-profile">
         <div className="user-profile-body">
           {this.state.doneLoading ? this.userInfo() :null}
-          <div className="followers">
+          <div className="user-profile-description">
+
           </div>
         </div>
         <div className="user-profile-buttons-bar-container">

@@ -17,11 +17,16 @@ export default class BoardEdit extends React.Component {
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
     this.handleDeleteConfirm = this.handleDeleteConfirm.bind(this);
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this);
+    this.handleDeleteCancelButton = this.handleDeleteCancelButton.bind(this);
   }
 
   handleCancelButton() {
     this.setState({deleteConfirmBox: false, editBoxOpen: false})
     this.props.handleSelfClose()
+  }
+
+  handleDeleteCancelButton(){
+    this.setState({deleteConfirmBox: false})
   }
 
   editButton(){
@@ -39,11 +44,12 @@ export default class BoardEdit extends React.Component {
   }
 
   handleDeleteButton() {
-    this.setState({deleteConfirmBox: true, editBoxOpen: false})
+    debugger
+    this.setState({deleteConfirmBox: true})
   }
 
   handleDeleteConfirm() {
-    this.props.deleteBoard({id: this.props.boardId});
+    this.props.deleteBoard({id: this.props.board.boards.id});
     hashHistory.replace('/home')
     this.forceUpdate()
   }
@@ -52,28 +58,48 @@ export default class BoardEdit extends React.Component {
     e.preventDefault();
     this.setState({deleteConfirmBox: false, editBoxOpen: false})
     this.props.editBoard({name: this.state.name,
-      id: this.props.boardId})
-    this.props.updateBoard()
+      id: this.props.board.boards.id})
 
   }
 
   editForm() {
     return (
       <div>
-        <form onSubmit={this.handleUpdateSubmit}>
-          <a>Edit name</a>
+        <form className="board-edit-form" onSubmit={this.handleUpdateSubmit}>
+          <span className="edit-board-text">Edit name</span>
           <input
             autoFocus type='text' onChange={this.update('name')}
             />
-            <button type="Submit" value="Submit">
-              Update
-            </button>
-            <button onClick={this.handleCancelButton}>
-              Cancel
-            </button>
-            <button onClick={this.handleDeleteButton}>
-              Delete board
-            </button>
+          <div className="board-edit-form-buttons">
+            {
+              this.state.deleteConfirmBox ?
+              null
+              :
+              <div>
+                <button type="Submit" value="Submit">
+                  Update
+                </button>
+                <button onClick={this.handleCancelButton}>
+                  Cancel
+                </button>
+                <button onClick={this.handleDeleteButton}>
+                  Delete board
+                </button>
+              </div>
+            }
+            {
+              this.state.deleteConfirmBox ?
+              <div>
+                <button onClick={this.handleDeleteConfirm}>Yes</button>
+                <button onClick={this.handleDeleteCancelButton}>Cancel</button>
+                <div className="board-edit-delete-confirm-text">
+                  Are you sure you want to delete this board?
+                </div>
+              </div>
+              :
+              null
+            }
+          </div>
         </form>
       </div>
     );
@@ -90,10 +116,10 @@ export default class BoardEdit extends React.Component {
   }
 
   render() {
+    // {this.state.deleteConfirmBox ? this.confirmDeleteBox() : null}
     return (
       <div className="edit-board-form">
-        {this.state.editBoxOpen ? this.editForm() : null }
-        {this.state.deleteConfirmBox ? this.confirmDeleteBox() : null}
+        {this.editForm()}
       </div>
     )
   }

@@ -30,6 +30,7 @@ export default class Session extends React.Component {
     this.handleNewBoardClick = this.handleNewBoardClick.bind(this);
     this.handleProfileClick = this.handleProfileClick.bind(this);
     this.loginForms = this.loginForms.bind(this);
+    this.handleLogoImageClick = this.handleLogoImageClick.bind(this);
   }
 
   handleSubmit(e){
@@ -177,10 +178,10 @@ export default class Session extends React.Component {
         </i>
       </button>
         <button className="session-button" onClick={this.handleProfileClick}>
-          My Profile
+          <i className="fa fa-user fa-3x" aria-hidden="true"></i>
         </button>
         <button className="session-button" onClick={this._handleLogoutClick}>
-          Logout
+          <i className="fa fa-sign-out fa-3x" aria-hidden="true"></i>
         </button>
       </div>
     )
@@ -232,10 +233,26 @@ export default class Session extends React.Component {
       </Modal>
     )
   }
+  handleLogoImageClick(e){
+    e.preventDefault();
+    hashHistory.push(`/home`)
+  }
 
   render() {
     return (
       <div>
+        {
+          this.props.currentUser.currentUser ?
+          <div className="logo-container">
+            <img className="interest-me-logo"
+              onClick={this.handleLogoImageClick}
+              src="http://res.cloudinary.com/andoo/image/upload/v1484187051/Logomakr_2W78HQ_k95ah7.png"
+              alt="Interest Me!">
+            </img>
+          </div>
+          :
+          null
+        }
         <ul className="session-buttons">
           {this.props.currentUser.currentUser ? this.signedInButtons() : this.loginButtons()}
         </ul>

@@ -14,14 +14,10 @@ export default class NavBar extends React.Component {
   }
 
   render() {
+    debugger
     return(
       <div>
         <div className="navigation-bar">
-          <img className="interest-me-logo"
-            onClick={this.handleLogoImageClick}
-            src="http://res.cloudinary.com/andoo/image/upload/v1484187051/Logomakr_2W78HQ_k95ah7.png"
-            alt="Interest Me!">
-          </img>
           <div className="flex-searchbar">
           </div>
           <div className="session-button-container">

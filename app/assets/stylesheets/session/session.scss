@@ -12,12 +12,15 @@
 // }
 
 .splashscreen {
-  // height: 100vh
-  background-position: center center;
+  opacity: .8;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: url(http://res.cloudinary.com/andoo/image/upload/v1486436876/dandelion-1737324_1920_q66mjt.jpg) no-repeat center;
   background-size: cover;
-  width: 100vw;
-  min-width: 1800px;
-  min-height: auto
+  text-align: center;
+  z-index: 0;
 }
 
 .session-container {

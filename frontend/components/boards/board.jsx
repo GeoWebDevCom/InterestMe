@@ -79,7 +79,6 @@ export default class Board extends React.Component {
   masonryLayout(){
     var masonryOptions = {
       fitWidth: true,
-      transitionDuration: 0.3
     };
     return (
       <div>
@@ -100,7 +99,6 @@ export default class Board extends React.Component {
   }
 
   boardAuthor(){
-    debugger
     return (
       <button className="board-name-author-link" onClick={this.redirectToAuthorProfile}>
         {this.props.board.owner ? "you" : this.props.board.author}
@@ -110,7 +108,6 @@ export default class Board extends React.Component {
 
   redirectToAuthorProfile(e){
     e.preventDefault()
-    debugger
     hashHistory.replace(`/user/${this.props.board.owner_id}`)
   }
 
@@ -119,7 +116,6 @@ export default class Board extends React.Component {
   }
 
   closeModal() {
-    debugger
     this.setState({modalIsOpen: false, newPinFormOpen: false, editFormOpen: false});
     document.body.style.overflow = "auto";
   }

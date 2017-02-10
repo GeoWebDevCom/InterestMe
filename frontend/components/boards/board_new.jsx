@@ -4,7 +4,7 @@ import Masonry from 'react-masonry-component'
 import PinContainer from '../pins/pins_container'
 import {hashHistory} from 'react-router';
 
-export default class NewBoard extends React.Component {
+export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,26 +23,31 @@ export default class NewBoard extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.handleCancelButton()
+    this.props.handleSelfClose()
     this.props.createBoard({name: this.state.name})
-    .then((action) => hashHistory.push(`/boards/${action.board.id}`))
+    .then((action) => hashHistory.replace(`/boards/${action.board.id}`))
   }
 
   newBoardForm() {
     return(
-      <div className='board-new-form'>
-        <form onSubmit={this.handleSubmit}>
-          New board
+      <div className='board-new-form-container'>
+        <form className="board-new-form" onSubmit={this.handleSubmit}>
+          <span className="board-new-text">
+            New board
+          </span>
+          <br/>
           <input
             autoFocus type='text' onChange={this.update('name')}
             />
           <br/>
+          <div className="board-new-form-buttons-container">
             <button type="Submit" value="Submit">
               Create
             </button>
-            <button onClick={this.props.handleCancelButton}>
+            <button onClick={() => this.props.handleSelfClose()}>
               Cancel
             </button>
+          </div>
         </form>
       </div>
     );

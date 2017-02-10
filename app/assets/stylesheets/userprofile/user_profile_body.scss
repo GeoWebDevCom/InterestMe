@@ -77,7 +77,7 @@
   min-width: 400px;
 }
 
-.followers {
+.user-profile-description {
   display: flex;
   flex-direction: row;
   background-color: transparent;
@@ -202,8 +202,6 @@ border-radius: 50%;
   width: 250px;
   height: 250px;
   background-color: white;
-  border: solid #8c5d5d;
-  border-width: medium;
   font-size: 30px;
   flex-direction: column;
   justify-content: center;
@@ -215,7 +213,7 @@ border-radius: 50%;
 
 .user-profile-board-button:hover {
   background-color: white;
-  border: solid #d7432d;
+  filter: brightness(92%);
 }
 
 .user-profile-board-images{
@@ -294,4 +292,23 @@ border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.add-new-board-container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-new-board-text {
+  font-size: 20px;
+  color: $color-primary;
+  font-weight: normal;
+}
+
+.fa-plus {
+  color: $color-primary;
 }
