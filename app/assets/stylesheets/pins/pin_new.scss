@@ -124,3 +124,19 @@
   width: 500px;
   height: auto;
 }
+
+.new-pin-board-select-dropdown {
+  display: flex;
+  width: 100%;
+  background: transparent;
+  border: 0px solid transparent;
+  border-bottom: 2px solid $color-primary;
+  margin-top: 30px;
+  font-size: 15px;
+  outline: none;
+}
+
+
+option {
+  text-align: center
+}

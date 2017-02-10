@@ -1,22 +1,18 @@
 module.exports = {
   entry: './frontend/interest_me.jsx',
   output: {
-    path: 'app/assets/javascripts',
+    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
     filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
         test: [/\.jsx?$/, /\.js?$/],
-        exclude: /(node_modules)/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel',
         query: {
           presets: ['es2015', 'react']
         }
-      },
-      {
-        test: /masonry|imagesloaded|fizzy\-ui\-utils|desandro\-|outlayer|get\-size|doc\-ready|eventie|eventemitter/,
-        loader: 'imports?define=>false&this=>window'
       }
     ]
   },

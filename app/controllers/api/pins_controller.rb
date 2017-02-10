@@ -23,8 +23,8 @@ class Api::PinsController < ApplicationController
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
     if @pin.save
-      @pins = Pin.where(:board_id => id_board)
-      render :index
+      @pins = Pin.where(:board_id => @pin.board_id)
+      render "/api/boards/show"
     else
       render json: @pin.errors.full_messages, status: 422
     end
@@ -36,7 +36,7 @@ class Api::PinsController < ApplicationController
   def update
     @pin = Pin.find(params[:id])
     if @pin.update_attributes(pin_params)
-      render '/api/boards/#{@pin.board_id}'
+      render "/api/boards/show"
     else
       render json: @pin.errors.full_messages, status: 422
     end

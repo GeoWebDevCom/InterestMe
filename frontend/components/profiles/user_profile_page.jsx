@@ -53,6 +53,7 @@ export default class UserProfile extends React.Component{
   }
 
   componentWillMount(){
+    debugger;
     this.props.getProfilePage(this.props.userId)
     .then( () => {
       this.setState({doneLoading: true, isFollowing: this.props.user.isFollowing})
@@ -228,8 +229,13 @@ export default class UserProfile extends React.Component{
                   <img className="user-profile-main-image-board-pin" src={this.props.user.samplePins[idx][0]}/>
                 </div>
                 <div className="user-profile-sub-image-board-pin-container">
-                  <img className="user-profile-main-board-pin" src={this.props.user.samplePins[idx][1]}/>
-                  <img className="user-profile-sub-image-board-pin" src={this.props.user.samplePins[idx][2]}/>
+                  <div className="sub-image-single-pic-container">
+                    <img src={this.props.user.samplePins[idx][1]}/>
+
+                  </div>
+                  <div className="sub-image-single-pic-container">
+                    <img src={this.props.user.samplePins[idx][2]}/>
+                  </div>
                 </div>
               </div>
             </button>

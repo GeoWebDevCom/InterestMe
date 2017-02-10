@@ -28,14 +28,12 @@ export default class Board extends React.Component {
     this.handleBoardEditSubmit = this.handleBoardEditSubmit.bind(this);
     this.handleEditButtonOpen = this.handleEditButtonOpen.bind(this);
     this.openNewPinForm = this.openNewPinForm.bind(this);
+    this.setImageHeight = this.setImageHeight.bind(this);
+    this.revealImages = this.revealImages.bind(this);
   }
 
   handleChildCancelButton(){
     this.closeModal()
-  }
-
-  componentDidMount(){
-    this.findImageHeight()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,8 +47,10 @@ export default class Board extends React.Component {
   }
 
   componentWillMount() {
-    this.props.getPins(this.props.boardId)
+    this.props.getPins(this.props.boardId);
     this.props.getBoard(this.props.boardId)
+    .then( () => {this.setImageHeight()})
+    .then( () => {this.revealImages()})
   }
 
   handleTileClick(e) {
@@ -176,31 +176,24 @@ export default class Board extends React.Component {
     )
   }
 
-  findImageHeight(){
-    let counter = 0;
-    this.imageHeight = setTimeout( () => {
-      switch(counter){
-        case 0:
-        let allImages = document.images
-        for (let i=0; i < allImages.length; i++){
-          allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
-        }
-        case 1:
-        [
-          "pin-tile-hide",
-          "board-tile-pic-hide",
-          "pin-image-hide"
-        ].forEach( (className) => {
-          let classes = document.getElementsByClassName(`${className}`);
-          while (classes.length){
-            classes[0].className = classes[0].className.replace("-hide","")
-          }
-          clearInterval(this.imageHeight)
-          return
-        })
-        counter += 1
+  setImageHeight(){
+    let allImages = document.images
+    for (let i=0; i < allImages.length; i++){
+      allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
+    }
+  }
+
+  revealImages(){
+    [
+      "pin-tile-hide",
+      "board-tile-pic-hide",
+      "pin-image-hide"
+    ].forEach( (className) => {
+      let classes = document.getElementsByClassName(`${className}`);
+      while (classes.length){
+        classes[0].className = classes[0].className.replace("-hide","")
       }
-    }, 800)
+    })
   }
 
 

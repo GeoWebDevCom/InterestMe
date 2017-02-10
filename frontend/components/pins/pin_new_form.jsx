@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router} from 'react-router';
+import {Router, hashHistory} from 'react-router';
 import Dropzone from 'react-dropzone'
 import request from 'superagent';
 import BoardNewContainer from '../boards/board_new_container';
@@ -16,7 +16,8 @@ export default class PinNewForm extends React.Component {
       body: "",
       title: "",
       pinEditing: true,
-      doneLoading: false
+      doneLoading: false,
+      boardId: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -43,10 +44,11 @@ export default class PinNewForm extends React.Component {
     this.props.newPin({
       title: this.state.title,
       body: this.state.body,
-      board_id: parseInt(this.props.boardId),
+      board_id: parseInt(this.state.boardId),
       image_url: this.state.imageUrl})
     this.setState( {imageUrl: false})
-    this.props.selfClose()
+    this.props.handleChildCancelButton()
+    hashHistory.replace(`/boards/${this.state.boardId}`)
   }
 
   update(text) {
@@ -98,6 +100,7 @@ export default class PinNewForm extends React.Component {
   }
 
   inputForm(){
+    debugger
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="new-pin-form">
@@ -110,9 +113,15 @@ export default class PinNewForm extends React.Component {
               onChange={this.update('body')}
             />
           <br/>
-          <div>
-            {this.boardChoiceDropdown()}
-          </div>
+            <select className="new-pin-board-select-dropdown" onChange={this.update("boardId")}>
+              <option selected disabled>--Choose a board--</option>
+              {
+                this.props.x.boards.map(board =>
+                  <option value={board.id} key={board.id}>{board.name}</option>
+                )
+              }
+        </select>
+        <br/>
           <button type="Submit" value="Submit">Post</button>
         </div>
       </form>
@@ -121,17 +130,6 @@ export default class PinNewForm extends React.Component {
 
   onSelect(){
     console.log("choices")
-  }
-
-  boardChoiceDropdown(){
-    let newArr = []
-    const options = this.selectBoardForNewPin()
-    // for (let i = 0; i < options.length; )
-    const defaultOption = options[0]
-    return (
-      <Dropdown onChange={this.onSelect} options={options} value={defaultOption} placeholder="Select an option">
-      </Dropdown>
-    )
   }
 
   newBoardForm(){
@@ -155,6 +153,7 @@ export default class PinNewForm extends React.Component {
 
   render() {
     // {this.state.doneLoading ? this.selectBoardForNewPin() : null}
+    debugger;
     return (
       <div className="pin-new-content-in-box">
         <div className="pin-new-image-drop">

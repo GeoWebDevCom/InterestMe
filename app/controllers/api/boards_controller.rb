@@ -25,7 +25,7 @@ class Api::BoardsController < ApplicationController
   def update
     @board = Board.find(params[:id])
     if @board.update_attributes(board_params)
-      render 'blank'
+      render :show
     else
       render json: @board.errors.full_messages, status: 422
     end
@@ -42,7 +42,7 @@ class Api::BoardsController < ApplicationController
     @board = Board.find(params[:id])
     if @board
       @board.destroy
-      render 'blank'
+      render :show
     else
       render json: @board.errors.full_messages, status: 422
     end

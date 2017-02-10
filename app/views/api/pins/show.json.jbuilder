@@ -1,1 +1,1 @@
-json.pins @board.pins
+json.pins @board ? @board.pins : @pin.board.pins

@@ -141,7 +141,7 @@ export default class Session extends React.Component {
         contentLabel="Session form"
         className="newPinModal"
         >
-          <PinNewFormContainer {...this.props} handleCancelButton={this.handleChildCancelButton}/>
+          <PinNewFormContainer {...this.props} handleChildCancelButton={this.handleChildCancelButton}/>
       </Modal>
     )
   }

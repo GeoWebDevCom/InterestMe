@@ -18,7 +18,8 @@ export default class Homepage extends React.Component{
     this.masonryLayout = this.masonryLayout.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleSelfClose = this.handleSelfClose.bind(this);
-    this.findImageHeight = this.findImageHeight.bind(this);
+    this.setImageHeight = this.setImageHeight.bind(this);
+    this.revealImages = this.revealImages.bind(this);
   }
 
 
@@ -28,12 +29,13 @@ export default class Homepage extends React.Component{
   }
 
   componentDidMount(){
-    this.findImageHeight()
     this.props.getHome()
   }
 
   componentWillMount(){
     this.props.getHome()
+    .then( () => {this.setImageHeight()})
+    .then( () => {this.revealImages()})
   }
 
   handleTileClick(e) {
@@ -84,31 +86,24 @@ export default class Homepage extends React.Component{
     )
   }
 
-  findImageHeight(){
-    let counter = 0;
-    this.imageHeight = setTimeout( () => {
-      switch(counter){
-        case 0:
-        let allImages = document.images
-        for (let i=0; i < allImages.length; i++){
-          allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
-        }
-        case 1:
-        [
-          "pin-tile-hide",
-          "board-tile-pic-hide",
-          "pin-image-hide"
-        ].forEach( (className) => {
-          let classes = document.getElementsByClassName(`${className}`);
-          while (classes.length){
-            classes[0].className = classes[0].className.replace("-hide","")
-          }
-          clearInterval(this.imageHeight)
-          return
-        })
-        counter += 1
+  setImageHeight(){
+    let allImages = document.images
+    for (let i=0; i < allImages.length; i++){
+      allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
+    }
+  }
+
+  revealImages(){
+    [
+      "pin-tile-hide",
+      "board-tile-pic-hide",
+      "pin-image-hide"
+    ].forEach( (className) => {
+      let classes = document.getElementsByClassName(`${className}`);
+      while (classes.length){
+        classes[0].className = classes[0].className.replace("-hide","")
       }
-    }, 800)
+    })
   }
 
   closeModal() {
@@ -140,10 +135,6 @@ export default class Homepage extends React.Component{
 
 
   render(){
-    // {
-    //   this.props.pins.pins.length >= document.images.length ?
-    //   this.findImageHeight() : null
-    // }
     return(
       <div>
         <div className="homepage-welcome">
