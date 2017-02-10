@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170120031156) do
     t.string   "username",        null: false
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
-    t.string   "email"
+    t.string   "description"
     t.string   "profile_picture"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

@@ -38,6 +38,7 @@
   align-items: center;
   min-width: 25vw;
   min-height: 25vw;
+  border: 2px dashed $color-primary;
 }
 
 .new-pin-modal{
@@ -86,14 +87,26 @@
 }
 
 .pin-new-image-preview {
-  height: 25vw;
+  height: auto;
+  overflow: hidden;
   width: 25vw;
   display:flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   vertical-align: middle;
-  border: dashed 2px;
+  border-color: $color-primary;
+}
+
+.pin-new-image-empty {
+  height: 25vw;
+  overflow: hidden;
+  width: 25vw;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
   border-color: $color-primary;
 }
 

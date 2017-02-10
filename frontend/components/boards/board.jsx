@@ -23,7 +23,6 @@ export default class Board extends React.Component {
     this.handleTileClick = this.handleTileClick.bind(this);
     this.pinTileRender = this.pinTileRender.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.handleOpenNewPin = this.handleOpenNewPin.bind(this);
     this.handleSelfClose = this.handleSelfClose.bind(this);
     this.handleBoardEditSubmit = this.handleBoardEditSubmit.bind(this);
     this.handleEditButtonOpen = this.handleEditButtonOpen.bind(this);
@@ -101,9 +100,6 @@ export default class Board extends React.Component {
     return this.props.board.owner ? "you" : this.props.board.author
   }
 
-  handleOpenNewPin(){
-    this.setState({newPinFormOpen: true})
-  }
 
   handleBoardEditSubmit(){
     this.props.getBoard(this.props.boardId)
@@ -130,15 +126,16 @@ export default class Board extends React.Component {
 
   boardTitle(){
     return(
-      <div className="board-overhead-bar">
-        {this.props.board.owner ? <button onClick={this.handleOpenNewPin}>new pin</button> : null}
-        <a id="board-name">
-          {this.props.board.name}
-        </a>
-        <div className="author-edit-flexbox">
-          <a id="board-author">a board by {this.props.board ? this.boardText() : null} </a>
-          <div className="owner-edit-buttons">
-            {this.props.board.owner? <button onClick={this.handleEditButtonOpen}>edit</button> : null }
+      <div className="board-overhead-bar-container">
+        <div className="board-overhead-bar">
+          <a id="board-name">
+            {this.props.board.name}
+          </a>
+          <div className="author-edit-flexbox">
+            <a id="board-author">a board by {this.props.board ? this.boardText() : null} </a>
+            <div className="owner-edit-buttons">
+              {this.props.board.owner? <button onClick={this.handleEditButtonOpen}>edit</button> : null }
+            </div>
           </div>
         </div>
       </div>

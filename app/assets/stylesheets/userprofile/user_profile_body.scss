@@ -17,13 +17,18 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  height:40vh;
+  height:38vh;
   background-color: transparent;
   width:100%;
-  margin-top:70px;
+  margin-top:110px;
   z-index: -2;
 }
 
+.user-profile-buttons-bar-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .user-profile-buttons-bar {
   display: flex;
@@ -31,11 +36,12 @@
   background-color: transparent;
   justify-content: center;
   align-items: flex-end;
-  width: 100%;
+  width: 90vw;
   height:55px;
   bottom: 301px;
-  z-index: -1;
+  z-index: 1;
   border-bottom: 1px solid black;
+  padding-bottom: 10px;
 }
 
 .user-profile-buttons button {
@@ -51,7 +57,14 @@
 }
 
 .edit-user-button {
+  padding: 8px 6px 8px 6px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
   z-index: 0;
+  background-color: transparent;
+  color: black;
+  margin: 0px;
 }
 
 .user-info {
@@ -131,13 +144,37 @@ border-radius: 50%;
   margin-left: 20px;
 }
 
-.profile-tab-button {
+.profile-tab-button-active {
   padding: 12px 10px 12px 10px;
   font-size: 15px;
+  border-radius: 30px;
   font-weight: bold;
   z-index: 0;
+  background-color: white;
+  color: black;
 }
 
+.profile-tab-button-inactive {
+  padding: 12px 10px 12px 10px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  z-index: 0;
+  background-color: transparent;
+  color: black;
+}
+
+
+.profile-follow-button {
+  padding: 8px 6px 8px 6px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  z-index: 0;
+  background-color: transparent;
+  color: black;
+  margin: 0px;
+}
 
 .user-profile-pins {
   max-height: 400px;

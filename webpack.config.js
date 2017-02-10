@@ -1,7 +1,7 @@
 module.exports = {
   entry: './frontend/interest_me.jsx',
   output: {
-    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    path: 'app/assets/javascripts',
     filename: 'bundle.js',
   },
   module: {

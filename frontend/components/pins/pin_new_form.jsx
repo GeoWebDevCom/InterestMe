@@ -92,7 +92,7 @@ export default class PinNewForm extends React.Component {
         multiple={false}
         accept="image/*"
         onDrop={this.handleDrop}
-        className="pin-new-image-preview"
+        className={ this.state.imageUrl ? "pin-new-image-preview" : "pin-new-image-empty"}
       >
         {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
       </Dropzone>
@@ -100,7 +100,6 @@ export default class PinNewForm extends React.Component {
   }
 
   inputForm(){
-    debugger
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="new-pin-form">
@@ -153,7 +152,6 @@ export default class PinNewForm extends React.Component {
 
   render() {
     // {this.state.doneLoading ? this.selectBoardForNewPin() : null}
-    debugger;
     return (
       <div className="pin-new-content-in-box">
         <div className="pin-new-image-drop">

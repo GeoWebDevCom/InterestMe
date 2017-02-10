@@ -16,9 +16,14 @@ export default class UserProfile extends React.Component{
       modalIsOpen: false,
       focusedPinId: null,
       editFormOpen: false,
-      followerOPen: false,
+      followerOpen: false,
       followedOpen: false,
-      isFollowing: false
+      isFollowing: false,
+      pinButtonFocus: false,
+      boardButtonFocus: false,
+      followerButtonFocus: false,
+      followedButtonFocus: false,
+      followStateChanged: false
     }
 
     this.showPins = this.showPins.bind(this);
@@ -44,16 +49,25 @@ export default class UserProfile extends React.Component{
     if (this.props.userId !== nextProps.userId) {
       this.props.getProfilePage(nextProps.userId)
     }
+    debugger
+    if (this.state.followStateChanged){
+      this.props.getProfilePage(nextProps.userId).then( () => {
+        this.setState({followStateChanged: false})
+      })
+    }
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false, editFormOpen: false, followerOPen: false, followedOpen: false});
+    this.setState({modalIsOpen: false, editFormOpen: false, followerOpen: false, followedOpen: false});
     this.props.getProfilePage(this.props.userId)
     document.body.style.overflow = "auto";
   }
 
+  componentDidMount(){
+    this.props.getProfilePage(this.props.userId)
+  }
+
   componentWillMount(){
-    debugger;
     this.props.getProfilePage(this.props.userId)
     .then( () => {
       this.setState({doneLoading: true, isFollowing: this.props.user.isFollowing})
@@ -96,19 +110,83 @@ export default class UserProfile extends React.Component{
 
 
   handleBoardTabClick(){
-      this.setState({selectPinTab: false, selectBoardTab: true, followedOpen: false, followerOPen: false})
+    if (this.state.selectBoardTab){
+      this.setState({
+        selectBoardTab: false,
+        boardButtonFocus: false
+      })
+    } else {
+      this.setState({
+        selectPinTab: false,
+        selectBoardTab: true,
+        followedOpen: false,
+        followerOpen: false,
+        boardButtonFocus: true,
+        pinButtonFocus: false,
+        followerButtonFocus: false,
+        followedButtonFocus: false
+      })
+    }
   }
 
   handlePinTabClick(){
-      this.setState({selectPinTab: true, selectBoardTab: false, followedOpen: false, followerOPen: false})
+    if (this.state.selectPinTab){
+      this.setState({
+        selectPinTab: false,
+        pinButtonFocus: false
+      })
+    } else {
+      this.setState({selectPinTab: true,
+        selectBoardTab: false,
+        followedOpen: false,
+        followerOpen: false,
+        boardButtonFocus: false,
+        pinButtonFocus: true,
+        followerButtonFocus: false,
+        followedButtonFocus: false
+      })
       this.findImageHeight()
+    }
   }
+
   handleFollowedClick(){
-    this.setState({selectPinTab: false, selectBoardTab: false, followedOpen: true, followerOPen: false})
+    if (this.state.followedOpen){
+      this.setState({
+        followedOpen: false,
+        followedButtonFocus: false
+      })
+    } else {
+      this.setState({
+        selectPinTab: false,
+        selectBoardTab: false,
+        followedOpen: true,
+        followerOpen: false,
+        boardButtonFocus: false,
+        pinButtonFocus: false,
+        followerButtonFocus: false,
+        followedButtonFocus: true
+      })
+    }
   }
 
   handleFollowerClick(){
-    this.setState({selectPinTab: false, selectBoardTab: false, followedOpen: false, followerOPen: true})
+    if (this.state.followerOpen){
+      this.setState({
+        followerOpen: false,
+        followerButtonFocus: false
+      })
+    } else {
+      this.setState({
+        selectPinTab: false,
+        selectBoardTab: false,
+        followedOpen: false,
+        followerOpen: true,
+        boardButtonFocus: false,
+        pinButtonFocus: false,
+        followerButtonFocus: true,
+        followedButtonFocus: false
+      })
+    }
   }
 
   handleFollowActionClick(e){
@@ -116,21 +194,27 @@ export default class UserProfile extends React.Component{
     if (this.state.isFollowing){
       this.props.deleteFollow({user_following_id: this.props.user.currentUserId,
       user_followed_by_id: parseInt(this.props.user.user.id)})
-      this.setState({isFollowing: false})
+      .then( () => {
+        this.props.getProfilePage(this.props.userId)
+      })
+      this.setState({isFollowing: false, followStateChanged: true})
     } else {
       this.props.createFollow({user_following_id: this.props.userId,
       user_followed_by_id: this.props.user.currentUserId})
-      this.setState({isFollowing: true})
+      .then( () => {
+        this.props.getProfilePage(this.props.userId)
+      })
+      this.setState({isFollowing: true, followStateChanged: true})
     }
   }
 
   isProfileOwner(){
-    return this.props.user.user.id == this.props.user.currentUserId
+    return this.props.user.user.id === this.props.user.currentUserId
   }
 
   followButton(){
     return (
-      <button onClick={this.handleFollowActionClick}>
+      <button className="profile-follow-button" onClick={this.handleFollowActionClick}>
         { this.state.isFollowing ? "unfollow" : "follow" }
       </button>
     )
@@ -205,17 +289,12 @@ export default class UserProfile extends React.Component{
           while (classes.length){
             classes[0].className = classes[0].className.replace("-hide","")
           }
-          debugger
           clearInterval(this.imageHeight)
           return
         })
         counter += 1
       }
     }, 500)
-  }
-
-  boardImage(){
-
   }
 
   showBoards(){
@@ -260,34 +339,34 @@ export default class UserProfile extends React.Component{
   }
 
   followers(){
-    return(
-      this.props.user.following.map( (user, idx) => {
-        return(
-        <li key={idx} className="followers-modal">
+    return (
+      this.props.user.followed.map( (user, idx) => {
+        return (
+        <div key={idx} className="followers-modal">
           <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
-            <img src={user.profile_picture}/>
+            <img className="follow-button-image" src={user.profile_picture}/>
               <a className="follow-username">
-                {user.username}
               </a>
           </button>
-        </li>
+          {user.username}
+        </div>
         )
       })
     )
   }
 
   followed(){
-    return(
-      this.props.user.followed.map( (user, idx) => {
-        return(
-        <li key={idx} className="followers-modal">
+    return (
+      this.props.user.following.map( (user, idx) => {
+        return (
+        <div key={idx} className="followers-modal">
           <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
-            <img src={user.profile_picture}/>
+            <img className="follow-button-image" src={user.profile_picture}/>
             <a className="follow-username">
-              {user.username}
             </a>
           </button>
-        </li>
+          {user.username}
+        </div>
         )
       })
     )
@@ -297,15 +376,19 @@ export default class UserProfile extends React.Component{
     return(
       <div className="user-info">
         <div className="username-image">
-          {this.isProfileOwner() ?
-            null :
-            this.followButton()}
           <img src={this.props.user.user.profile_picture}/>
           {this.props.user.user.username}
           <a className="profile-email">{this.props.user.user.email}</a>
-          <button className="edit-user-button" onClick={this.handleEditForm}>
-            edit user
-          </button>
+          {this.isProfileOwner() ?
+            <button className="edit-user-button" onClick={this.handleEditForm}>
+              edit user
+            </button>
+            :
+            null
+          }
+          {this.isProfileOwner() ?
+            null :
+            this.followButton()}
         </div>
       </div>
     )
@@ -339,6 +422,7 @@ export default class UserProfile extends React.Component{
     )
   }
 
+
   render(){
     return(
       <div className="user-profile">
@@ -347,15 +431,21 @@ export default class UserProfile extends React.Component{
           <div className="followers">
           </div>
         </div>
-        <div className="user-profile-buttons-bar">
-          <button className="profile-tab-button" onClick={this.handleBoardTabClick}>Boards</button>
-          <button className="profile-tab-button" onClick={this.handlePinTabClick}>Pins</button>
-          <button className="profile-tab-button" onClick={this.handleFollowedClick}>
-            followers
-          </button>
-          <button className="profile-tab-button" onClick={this.handleFollowerClick}>
-            followed
-          </button>
+        <div className="user-profile-buttons-bar-container">
+          <div className="user-profile-buttons-bar">
+            <button className={this.state.boardButtonFocus ? "profile-tab-button-active" :"profile-tab-button-inactive"} onClick={this.handleBoardTabClick}>
+              Boards
+            </button>
+            <button className={this.state.pinButtonFocus ? "profile-tab-button-active" :"profile-tab-button-inactive"} onClick={this.handlePinTabClick}>
+              Pins
+            </button>
+            <button className={this.state.followerButtonFocus ? "profile-tab-button-active" :"profile-tab-button-inactive"} onClick={this.handleFollowerClick}>
+              Followers
+            </button>
+            <button className={this.state.followedButtonFocus ? "profile-tab-button-active" :"profile-tab-button-inactive"} onClick={this.handleFollowedClick}>
+              Followed
+            </button>
+          </div>
         </div>
         <div>
           <div className="board-pin-underbar">
