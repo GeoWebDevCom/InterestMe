@@ -18,8 +18,7 @@ export default class Homepage extends React.Component{
     this.masonryLayout = this.masonryLayout.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleSelfClose = this.handleSelfClose.bind(this);
-    this.setImageHeight = this.setImageHeight.bind(this);
-    this.revealImages = this.revealImages.bind(this);
+    this.findImageHeight = this.findImageHeight.bind(this);
   }
 
 
@@ -33,9 +32,9 @@ export default class Homepage extends React.Component{
   }
 
   componentWillMount(){
-    this.props.getHome()
-    .then( () => {this.setImageHeight()})
-    .then( () => {this.revealImages()})
+    this.props.getHome().then( () => {
+      this.findImageHeight()
+    } )
   }
 
   handleTileClick(e) {
@@ -86,24 +85,31 @@ export default class Homepage extends React.Component{
     )
   }
 
-  setImageHeight(){
-    let allImages = document.images
-    for (let i=0; i < allImages.length; i++){
-      allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
-    }
-  }
-
-  revealImages(){
-    [
-      "pin-tile-hide",
-      "board-tile-pic-hide",
-      "pin-image-hide"
-    ].forEach( (className) => {
-      let classes = document.getElementsByClassName(`${className}`);
-      while (classes.length){
-        classes[0].className = classes[0].className.replace("-hide","")
+  findImageHeight(){
+    let counter = 0;
+    this.imageHeight = setTimeout( () => {
+      switch(counter){
+        case 0:
+        let allImages = document.images
+        for (let i=0; i < allImages.length; i++){
+          allImages[i].setAttribute("style", `height:${allImages[i].naturalHeight}`)
+        }
+        case 1:
+        [
+          "pin-tile-hide",
+          "board-tile-pic-hide",
+          "pin-image-hide"
+        ].forEach( (className) => {
+          let classes = document.getElementsByClassName(`${className}`);
+          while (classes.length){
+            classes[0].className = classes[0].className.replace("-hide","")
+          }
+          clearInterval(this.imageHeight)
+          return
+        })
+        counter += 1
       }
-    })
+    }, 800)
   }
 
   closeModal() {

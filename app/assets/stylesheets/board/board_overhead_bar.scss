@@ -1,3 +1,4 @@
+@import '../application.scss';
 // Place all the styles related to the boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
@@ -9,14 +10,17 @@
   align-items: flex-end;
   height: 110px;
   width: 100%;
-  background-color: #d7432d;
+  background-color: transparent;
+  color: $color-primary;
   margin-left: -10px;
+  margin-top: 40px;
   padding: 0px 12px 0px 6px;
+  border-bottom: 2px solid black;
 }
 
 #board-name {
   background-color: transparent;
-  color: white;
+  color: $color-primary;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 55px;
   margin-top: 7px;
@@ -47,7 +51,7 @@
 
 #board-author {
   background-color: transparent;
-  color: white;
+  color: $color-primary;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   padding: 0px 0px 10px 10px;
