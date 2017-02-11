@@ -8,5 +8,6 @@ json.pin do
   json.author_id @pin.user.id
   json.authorProfilePicture @pin.user.profile_picture
   json.image_url @pin.image_url
+  json.url @pin.url
   json.owner @pin.user_id == (@current_user ? @current_user.id : nil)
 end

@@ -78,7 +78,7 @@ export default class Session extends React.Component {
 
   handleGuestSubmit(e){
     e.preventDefault();
-    const user = {username: "Guest", password: "password"};
+    const user = {username: "Pusheen", password: "password"};
     this.props.processLogin(user).then( () => {
       hashHistory.push('/home')
     })

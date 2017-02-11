@@ -168,6 +168,13 @@ export default class Homepage extends React.Component{
       <div>
         <div className="homepage-welcome">
         </div>
+        <div className="board-overhead-bar-container">
+          <div className="board-overhead-bar">
+            <a id="board-name">
+              Discover
+            </a>
+          </div>
+        </div>
         {this.state.finishedLoading ? this.masonryLayout() : null}
         {this.state.finishedLoading ? this.pinShow() : null}
       </div>
