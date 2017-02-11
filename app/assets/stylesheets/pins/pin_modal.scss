@@ -101,8 +101,8 @@
   display: flex;
   flex-direction: column;
   justify-content:center;
-  align-items: center
-
+  align-items: center;
+  white-space: nowrap;
 }
 .pin-show-board-name-edit-button-container {
   display: flex;
@@ -113,6 +113,12 @@
 
 .edit-modal-cog {
   color: rgba(black, 0.4);
+}
+
+.edit-modal-cog:hover {
+  transition: 0.1;
+  color: rgba(black, 1);
+  cursor: pointer;
 }
 
 .pin-show-profile-picture {

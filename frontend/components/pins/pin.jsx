@@ -95,7 +95,7 @@ export default class Pin extends React.Component {
           <div className="pin-show-header-container">
             <div className="pin-show-title-board-name-container">
               <div className="pin-show-title-container">
-                <b id="pin-title">A TITLE OF SORTS{this.props.pin.pins.pins.title}</b>
+                <b id="pin-title">{this.props.pin.pins.pins.title}</b>
               </div>
               <div className="pin-show-pin-info-save-button-container">
                 <div className="pin-show-board-name-edit-button-container">
@@ -140,7 +140,7 @@ export default class Pin extends React.Component {
               </div>
             </div>
             <div className="pin-show-description-container">
-              A REALLY GREAT EXAMPLE OF A DESCRIPTION THAT IS TOTALLY WHAT I WILL BE PERMENANTLY HAVING ON MY WEB APP
+              {this.props.pin.pins.pins.body}
             </div>
             <div>
               {this.state.editFormOpen ? this.editPinModal() : null}

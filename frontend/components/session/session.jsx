@@ -88,7 +88,7 @@ export default class Session extends React.Component {
   _handleLogoutClick(e){
     e.preventDefault()
     this.props.processLogout().then( ()=> {
-      hashHistory.replace('/session')
+      hashHistory.push('/session')
     })
   }
 

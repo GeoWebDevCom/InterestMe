@@ -48,7 +48,7 @@ export default class Homepage extends React.Component{
 
   redirectToAuthorProfile(e){
     e.preventDefault()
-    hashHistory.replace(`/user/${e.target.getAttribute("value")}`)
+    hashHistory.push(`/user/${e.target.getAttribute("value")}`)
   }
 
   pinTileRender(){
@@ -75,7 +75,7 @@ export default class Homepage extends React.Component{
               </div>
               <div className="pin-tile-information-container">
                 <div className="pin-tile-title">
-                  {" placeholder text tile.title"}
+                  {tile.title}
                 </div>
               </div>
             </div>

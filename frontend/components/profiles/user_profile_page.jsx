@@ -28,6 +28,7 @@ export default class UserProfile extends React.Component{
       newBoardModalIsOpen: false
     }
     document.body.style.overflow = "auto";
+    this.newBoardModal= this.newBoardModal.bind(this);
     this.showPins = this.showPins.bind(this);
     this.showBoards = this.showBoards.bind(this);
     this.userInfo = this.userInfo.bind(this);
@@ -44,7 +45,6 @@ export default class UserProfile extends React.Component{
     this.handleFollowActionClick = this.handleFollowActionClick.bind(this);
     this.followButton = this.followButton.bind(this);
     this.isProfileOwner = this.isProfileOwner.bind(this);
-    this.boardsAndCreateBoard = this.boardsAndCreateBoard.bind(this);
     this.handleNewBoardClick = this.handleNewBoardClick.bind(this)
   }
 
@@ -302,11 +302,11 @@ export default class UserProfile extends React.Component{
     return(
       this.props.user.boards.map ((board, idx)=> {
         return (
-          <div key={idx} className="board-button-set">
+          <li key={idx} className="board-button-set">
             <button name={board.id} onClick={(e) => this.handleBoardClick(e)} className="user-profile-board-button" key={idx}>
               <div className="user-profile-board-images">
-                <div className="user-profile-main-image-board-pin-container">
-                  <img className="user-profile-main-image-board-pin" src={this.props.user.samplePins[idx][0]}/>
+                <div className="user-profile-first-pic-container">
+                  <img src={this.props.user.samplePins[idx][0]}/>
                 </div>
                 <div className="user-profile-sub-image-board-pin-container">
                   <div className="sub-image-single-pic-container">
@@ -317,14 +317,12 @@ export default class UserProfile extends React.Component{
                     <img src={this.props.user.samplePins[idx][2]}/>
                   </div>
                 </div>
-                <div className="board-title">
-                  {board.name}
-                </div>
               </div>
             </button>
-            <span className="board-title">
-            </span>
-          </div>
+            <div className="board-title">
+              {board.name}
+            </div>
+          </li>
         )
       })
     )
@@ -335,33 +333,57 @@ export default class UserProfile extends React.Component{
     this.setState({showNewBoardForm: true, newBoardModalIsOpen: true})
   }
 
-  boardsAndCreateBoard(){
-    return(
-      <div className="user-profile-board-show">
-        <button className="user-profile-board-button" onClick={this.handleNewBoardClick}>
-          <div className="add-new-board-container">
-            <div>
-              <i className="fa fa-plus fa-1x" aria-hidden="true"></i>
-              <div className="create-new-board-text">
-                Create a new Board
-              </div>
-            </div>
-          </div>
-          {
-            this.state.showNewBoardForm ?
-            <Modal
-              isOpen={this.state.newBoardModalIsOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
-              contentLabel="Modal"
-              className="board-new-modal"
+  boardMasonryLayout(){
+    var masonryOptions = {
+      fitWidth: true
+    };
+    return (
+      <div className='user-profile-board-pins'>
+        <div>
+          <div>
+            <Masonry
+              elementType={'div'}
+              disableImagesLoaded={false}
+              className='user-profile-boards-container'
+              options={masonryOptions}
+              >
+              <li className="board-button-set">
+                <button className="user-profile-board-button" onClick={this.handleNewBoardClick}>
+                  <div className="add-new-board-container">
+                    <i className="fa fa-plus fa-1x" aria-hidden="true"></i>
+                    <div className="create-new-board-text">
+                      Create a new Board
+                    </div>
+                  </div>
+                </button>
+                <div className="board-title-invisible">
+                  sdfdsag
+                </div>
+              </li>
+              {this.showBoards()}
+            </Masonry>
+        </div>
+      </div>
+    </div>
+    )
+  }
+
+  newBoardModal(){
+    return (
+      <div>
+        {
+          this.state.showNewBoardForm ?
+          <Modal
+            isOpen={this.state.newBoardModalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            contentLabel="Modal"
+            className="board-new-modal"
             >
-              <NewBoardContainer handleSelfClose={this.closeModal}/>
-            </Modal>
-            : null
-          }
-        </button>
-        {this.showBoards()}
+            <NewBoardContainer handleSelfClose={this.closeModal}/>
+          </Modal>
+          : null
+        }
       </div>
     )
   }
@@ -405,7 +427,6 @@ export default class UserProfile extends React.Component{
       <div className="user-info">
         <div className="username-image">
           <img className="profile-picture" src={this.props.user.user.profile_picture}/>
-          {this.props.user.user.username}
           <a className="profile-email">{this.props.user.user.email}</a>
           {this.isProfileOwner() ?
             <button className="edit-user-button" onClick={this.handleEditForm}>
@@ -458,6 +479,9 @@ export default class UserProfile extends React.Component{
         <div className="user-profile-body">
           {this.state.doneLoading ? this.userInfo() :null}
           <div className="user-profile-description">
+            <div className="user-profile-username">
+              {this.state.doneLoading ? this.props.user.user.username : null}
+            </div>
             {this.state.doneLoading ? this.props.user.user.description : null}
           </div>
         </div>
@@ -481,10 +505,11 @@ export default class UserProfile extends React.Component{
           <div className="board-pin-underbar">
               {this.state.followerOpen && this.state.doneLoading ? this.followers() : null}
               {this.state.followedOpen && this.state.doneLoading ? this.followed() : null}
-              {this.state.selectBoardTab && this.state.doneLoading ? this.boardsAndCreateBoard() : null }
+              {this.state.selectBoardTab && this.state.doneLoading ? this.boardMasonryLayout() : null }
               {this.state.selectPinTab && this.state.doneLoading ? this.masonryLayout() : null }
             </div>
         </div>
+        {this.newBoardModal()}
           {this.state.doneLoading ? this.pictureUpdateForm() : null}
           {this.state.doneLoading ? this.pinShow() : null }
       </div>

@@ -87,7 +87,7 @@ export default class Board extends React.Component {
               </div>
               <div className="pin-tile-information-container">
                 <div className="pin-tile-title">
-                  {" placeholder text tile.title"}
+                  {tile.title}
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ export default class Board extends React.Component {
   redirectToAuthorProfile(e){
     e.preventDefault()
     debugger
-    hashHistory.replace(`/user/${this.props.board.owner_id}`)
+    hashHistory.push(`/user/${this.props.board.owner_id}`)
   }
 
   handleBoardEditSubmit(){
@@ -159,7 +159,7 @@ export default class Board extends React.Component {
             <a id="board-author">a board by {this.props.board ? this.boardAuthor() : null} </a>
             <div className="owner-edit-buttons">
               {this.props.board.owner?
-                <button className="board-edit-button" onClick={this.handleEditButtonOpen}>
+                <button className="board-edit-button edit-modal-cog" onClick={this.handleEditButtonOpen}>
                   <i className="fa fa-cog fa-2x" aria-hidden="true"></i>
                 </button>
                  : null }

@@ -50,7 +50,7 @@ export default class BoardEdit extends React.Component {
 
   handleDeleteConfirm() {
     this.props.deleteBoard({id: this.props.board.boards.id});
-    hashHistory.replace('/home')
+    hashHistory.push('/home')
     this.forceUpdate()
   }
 

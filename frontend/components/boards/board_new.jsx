@@ -25,7 +25,7 @@ export default class Board extends React.Component {
     e.preventDefault();
     this.props.handleSelfClose()
     this.props.createBoard({name: this.state.name})
-    .then((action) => hashHistory.replace(`/boards/${action.board.id}`))
+    .then((action) => hashHistory.push(`/boards/${action.board.id}`))
   }
 
   newBoardForm() {

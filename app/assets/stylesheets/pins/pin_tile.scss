@@ -7,6 +7,8 @@
   margin: 36px 6px 15px 6px;
   border: 3px solid transparent;
   opacity: 0.0;
+  max-width: 294px;
+  min-width: 294px;
 }
 
 .pin-tile-container {
@@ -16,6 +18,8 @@
   margin: 15px;
   border: 3px solid $color-light-black;
   border-radius: 15px;
+  max-width: 294px;
+  min-width: 294px;
 }
 
 .pin-tile-content {
@@ -23,14 +27,18 @@
   background-color: transparent;
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
 }
 
 .pin-tile-author-container {
-  padding: 10px 0px 0px 0px;
+  padding: 10px 20px 0px 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 30%;
+  // width: 20%;
+  overflow-x: visible;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .pin-tile-author-profile-picture {
@@ -44,6 +52,7 @@
 .pin-tile-author-name {
   color: $color-primary;
   font-size: 18px;
+  display: inline-block;
 }
 
 .board-pin-author-button {
@@ -51,7 +60,7 @@
   background-color: transparent;
   margin: 0px;
   padding: 0px;
-  font-size: 18px;
+  font-size: 13px;
 }
 
 .pin-tile-information-container {
@@ -59,7 +68,6 @@
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-  width: 78%;
 }
 
 .pin-tile-title {

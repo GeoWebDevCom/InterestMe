@@ -48,7 +48,7 @@ export default class PinNewForm extends React.Component {
       image_url: this.state.imageUrl})
     this.setState( {imageUrl: false})
     this.props.handleChildCancelButton()
-    hashHistory.replace(`/boards/${this.state.boardId}`)
+    hashHistory.push(`/boards/${this.state.boardId}`)
   }
 
   update(text) {
