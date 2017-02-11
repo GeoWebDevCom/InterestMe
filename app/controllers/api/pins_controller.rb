@@ -8,6 +8,10 @@ class Api::PinsController < ApplicationController
     else
       @pins = pins
     end
+      @pin_user_info = []
+      @pins.each do |pin|
+        @pin_user_info << [pin.user.username, pin.user.profile_picture]
+      end
     render :index
   end
 

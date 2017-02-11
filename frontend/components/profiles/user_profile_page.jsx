@@ -27,7 +27,7 @@ export default class UserProfile extends React.Component{
       showNewBoardForm: false,
       newBoardModalIsOpen: false
     }
-
+    document.body.style.overflow = "auto";
     this.showPins = this.showPins.bind(this);
     this.showBoards = this.showBoards.bind(this);
     this.userInfo = this.userInfo.bind(this);
@@ -251,8 +251,7 @@ export default class UserProfile extends React.Component{
 
   masonryLayout(){
     var masonryOptions = {
-      fitWidth: true,
-      transitionDuration: 0.3
+      fitWidth: true
     };
     return (
       <div className='user-profile-board-pins'>

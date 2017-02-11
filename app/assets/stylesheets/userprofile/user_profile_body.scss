@@ -159,6 +159,16 @@ border-radius: 50%;
   color: black;
 }
 
+.profile-tab-button-active:hover {
+  padding: 12px 10px 12px 10px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  z-index: 0;
+  background-color: $color-lightest;
+  color: black;
+}
+
 .profile-tab-button-inactive {
   padding: 12px 10px 12px 10px;
   font-size: 15px;

@@ -52,7 +52,8 @@ export default class Board extends React.Component {
 
   componentWillMount() {
     this.props.getPins(this.props.boardId)
-    this.props.getBoard(this.props.boardId)
+    .then( () => this.props.getBoard(this.props.boardId))
+    .then( () => this.setState({finishedLoading: true}))
   }
 
   handleTileClick(e) {
@@ -63,6 +64,7 @@ export default class Board extends React.Component {
   }
 
   pinTileRender(){
+    console.log(this.props);
     return(
       this.props.pins.pins.map( (tile, idx) => {
         return(
@@ -72,17 +74,22 @@ export default class Board extends React.Component {
             </button>
             <div className="pin-tile-content">
               <div className="pin-tile-author-container">
-                <div className="pin-tile-author-name">
-                  {this.props.boards.pinAuthorInfo[idx][0]}
-                </div>
                 <div className="pin-tile-author-profile-picture-container">
-                  <img
+                  <img onClick={this.redirectToAuthorProfile}
                     className="pin-tile-author-profile-picture"
-                    src={this.props.boards.pinAuthorInfo[idx][1]}/>
+                    src={this.props.board.pinAuthorInfo[idx][1]}/>
+                </div>
+                <div className="pin-tile-author-name">
+                  {this.props.board.pinAuthorInfo[idx][0]}
                 </div>
               </div>
-              <div>
-
+              <div className="pin-tile-information-container">
+                <div className="pin-tile-title">
+                  {" placeholder text tile.title"}
+                </div>
+                <div className="pin-tile-body">
+                  {"tile.body"}
+                </div>
               </div>
             </div>
           </div>
@@ -123,6 +130,7 @@ export default class Board extends React.Component {
 
   redirectToAuthorProfile(e){
     e.preventDefault()
+    debugger
     hashHistory.replace(`/user/${this.props.board.owner_id}`)
   }
 
@@ -229,6 +237,7 @@ export default class Board extends React.Component {
           "pin-tile-container-hide"
         ].forEach( (className) => {
           let classes = document.getElementsByClassName(`${className}`);
+          console.log("asdfasdfsad");
           while (classes.length){
             classes[0].className = classes[0].className.replace("-hide","")
           }
@@ -237,16 +246,16 @@ export default class Board extends React.Component {
         })
         counter += 1
       }
-    }, 1500)
+    }, 800)
   }
 
 
   render() {
     return (
       <div>
-        {this.boardTitle()}
-        {this.masonryLayout()}
-        {this.pinShow()}
+        {this.state.finishedLoading ? this.boardTitle() : null}
+        {this.state.finishedLoading ? this.masonryLayout() : null}
+        {this.state.finishedLoading ? this.pinShow() : null}
         { this.state.newPinFormOpen ?
           this.openNewPinForm()
         : null }

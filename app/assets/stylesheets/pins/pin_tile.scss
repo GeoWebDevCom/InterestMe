@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  margin: 20px;
+  margin: 36px 6px 15px 6px;
+  border: 3px solid transparent;
   opacity: 0.0;
 }
 
@@ -13,9 +14,49 @@
   flex-direction: column;
   border-radius: 10px;
   margin: 15px;
+  border: 3px solid $color-light-black;
 }
 
 .pin-tile-content {
-  height: 100px;
+  height: 90px;
   background-color: $color-test;
+  display: flex;
+  flex-direction: row;
+}
+
+.pin-tile-author-container {
+  padding: 10px 0px 0px 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+}
+
+.pin-tile-author-profile-picture {
+  height: 50px;
+}
+
+.pin-tile-author-profile-picture:hover {
+  cursor: pointer
+}
+.pin-tile-author-name {
+  font-size: 20px
+}
+
+.pin-tile-information-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 78%;
+}
+
+.pin-tile-title {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.pin-tile-body {
+  margin-top: 10px;
+  font-size: 15px;
 }

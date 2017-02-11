@@ -1,8 +1,9 @@
 import React from 'react';
-import Masonry from 'react-masonry-component'
+import Masonry from 'react-masonry-component';
 import Modal from 'react-modal';
-import PinContainer from '../pins/pins_container'
-import ReactHeight from 'react-height'
+import PinContainer from '../pins/pins_container';
+import ReactHeight from 'react-height';
+import {hashHistory} from 'react-router';
 
 export default class Homepage extends React.Component{
   constructor(props){
@@ -10,7 +11,8 @@ export default class Homepage extends React.Component{
     this.state={
       pinsReceieved: false,
       modalIsOpen: false,
-      focusedPinId: null
+      focusedPinId: null,
+      finishedLoading: false
     }
     document.body.style.overflow = "auto";
     this.handleTileClick = this.handleTileClick.bind(this);
@@ -32,9 +34,9 @@ export default class Homepage extends React.Component{
   }
 
   componentWillMount(){
-    this.props.getHome().then( () => {
-      this.findImageHeight()
-    } )
+    this.props.getHome()
+    .then( () => this.findImageHeight())
+    .then( () => this.setState({finishedLoading: true}))
   }
 
   handleTileClick(e) {
@@ -44,18 +46,40 @@ export default class Homepage extends React.Component{
     document.body.style.overflow = "hidden";
   }
 
+  redirectToAuthorProfile(e){
+    e.preventDefault()
+    hashHistory.replace(`/user/${e.target.getAttribute("value")}`)
+  }
+
   pinTileRender(){
+    console.log(this.props);
     return(
       this.props.pins.pins.map( (tile, idx) => {
         return(
           <div key={idx} className="pin-tile-container-hide">
-            <button
-              className="board-tile-pic-hide"
-              name={tile.id}
-              onClick={(e) => this.handleTileClick(e)}
-              >
+            <button className="board-tile-pic-hide" name={tile.id} onClick={(e) => this.handleTileClick(e)}>
               <img className="pin-image-hide" src={tile.image_url}/>
             </button>
+            <div className="pin-tile-content">
+              <div className="pin-tile-author-container">
+                <div className="pin-tile-author-profile-picture-container">
+                  <img value={tile.user_id} onClick={this.redirectToAuthorProfile}
+                    className="pin-tile-author-profile-picture"
+                    src={this.props.pins.pinUserInfo[idx][1]}/>
+                </div>
+                <div className="pin-tile-author-name">
+                  {this.props.pins.pinUserInfo[idx][0]}
+                </div>
+              </div>
+              <div className="pin-tile-information-container">
+                <div className="pin-tile-title">
+                  {" placeholder text tile.title"}
+                </div>
+                <div className="pin-tile-body">
+                  {"tile.body"}
+                </div>
+              </div>
+            </div>
           </div>
         )
       })
@@ -109,7 +133,7 @@ export default class Homepage extends React.Component{
         })
         counter += 1
       }
-    }, 1500)
+    }, 800)
   }
 
   closeModal() {
@@ -145,8 +169,8 @@ export default class Homepage extends React.Component{
       <div>
         <div className="homepage-welcome">
         </div>
-        {this.masonryLayout()}
-        {this.pinShow()}
+        {this.state.finishedLoading ? this.masonryLayout() : null}
+        {this.state.finishedLoading ? this.pinShow() : null}
       </div>
     )
   }
