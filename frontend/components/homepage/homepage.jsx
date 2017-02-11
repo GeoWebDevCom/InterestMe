@@ -48,7 +48,7 @@ export default class Homepage extends React.Component{
     return(
       this.props.pins.pins.map( (tile, idx) => {
         return(
-          <li key={idx} className="pin-tile-hide">
+          <div key={idx} className="pin-tile-container-hide">
             <button
               className="board-tile-pic-hide"
               name={tile.id}
@@ -56,7 +56,7 @@ export default class Homepage extends React.Component{
               >
               <img className="pin-image-hide" src={tile.image_url}/>
             </button>
-          </li>
+          </div>
         )
       })
     )
@@ -97,7 +97,8 @@ export default class Homepage extends React.Component{
         [
           "pin-tile-hide",
           "board-tile-pic-hide",
-          "pin-image-hide"
+          "pin-image-hide",
+          "pin-tile-container-hide"
         ].forEach( (className) => {
           let classes = document.getElementsByClassName(`${className}`);
           while (classes.length){
@@ -108,7 +109,7 @@ export default class Homepage extends React.Component{
         })
         counter += 1
       }
-    }, 800)
+    }, 1500)
   }
 
   closeModal() {

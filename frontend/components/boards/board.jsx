@@ -70,6 +70,21 @@ export default class Board extends React.Component {
             <button className="board-tile-pic-hide" name={tile.id} onClick={(e) => this.handleTileClick(e)}>
               <img className="pin-image-hide" src={tile.image_url}/>
             </button>
+            <div className="pin-tile-content">
+              <div className="pin-tile-author-container">
+                <div className="pin-tile-author-name">
+                  {this.props.boards.pinAuthorInfo[idx][0]}
+                </div>
+                <div className="pin-tile-author-profile-picture-container">
+                  <img
+                    className="pin-tile-author-profile-picture"
+                    src={this.props.boards.pinAuthorInfo[idx][1]}/>
+                </div>
+              </div>
+              <div>
+
+              </div>
+            </div>
           </div>
         )
       })
@@ -222,7 +237,7 @@ export default class Board extends React.Component {
         })
         counter += 1
       }
-    }, 800)
+    }, 1500)
   }
 
 

@@ -2,7 +2,7 @@
   position: absolute;
   top: 0px;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 50px;
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -50,20 +50,4 @@
     height: 100%;
     background:rgba(255,255,255,0.85);
     z-index: 100;
-}
-
-.board-tile-pic{
-  min-width: 294px;
-  max-width: 294px;
-  min-height: 160px;
-  height: auto;
-}
-
-.board-tile-pic-hide{
-  min-width: 294px;
-  max-width: 294px;
-  min-height: 160px;
-  height: auto;
-  color: transparent;
-  background-color: transparent;
 }

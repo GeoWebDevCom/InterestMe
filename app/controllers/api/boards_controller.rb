@@ -37,6 +37,11 @@ class Api::BoardsController < ApplicationController
     @board = Board.find(params[:id])
     @current_user = current_user
     @board_pins = @board.pins.reverse
+    @board_pin_user_info = []
+    @board_pins.each_with_index do |pin, idx|
+      pin_owner = pin.user
+      @board_pin_user_info << [pin_owner.username, pin_owner.profile_picture]
+    end
     render :show
   end
 
