@@ -68,7 +68,7 @@ export default class Homepage extends React.Component{
                     src={this.props.pins.pinUserInfo[idx][1]}/>
                 </div>
                 <div className="pin-tile-author-name">
-                  <button className="board-pin-author-button" onClick={this.redirectToAuthorProfile}>
+                  <button className="board-pin-author-button" value={tile.user_id} onClick={this.redirectToAuthorProfile}>
                     {this.props.pins.pinUserInfo[idx][0]}
                   </button>
                 </div>
