@@ -108,6 +108,11 @@ border-radius: 50%;
   align-items: center;
 }
 
+.profile-picture {
+  min-width: 175px;
+  min-height: 175px;
+}
+
 .profile-email {
   font-size: 20px;
   color: #705858;
@@ -150,7 +155,7 @@ border-radius: 50%;
   border-radius: 30px;
   font-weight: bold;
   z-index: 0;
-  background-color: white;
+  background-color: $color-lightest;
   color: black;
 }
 
@@ -164,6 +169,16 @@ border-radius: 50%;
   color: black;
 }
 
+
+.profile-tab-button-inactive:hover {
+  padding: 12px 10px 12px 10px;
+  font-size: 15px;
+  border-radius: 30px;
+  font-weight: bold;
+  z-index: 0;
+  background-color: $color-lightest;
+  color: black;
+}
 
 .profile-follow-button {
   padding: 8px 6px 8px 6px;
@@ -208,12 +223,14 @@ border-radius: 50%;
   align-content: center;
   color: #d7432d;
   border-radius: 10px;
+  border: 3px solid rgba(black, 0.08);
   margin-top: 20px;
 }
 
 .user-profile-board-button:hover {
   background-color: white;
   filter: brightness(92%);
+  border: 3px solid rgba(black, 0.08);
 }
 
 .user-profile-board-images{

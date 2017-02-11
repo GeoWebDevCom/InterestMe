@@ -403,7 +403,7 @@ export default class UserProfile extends React.Component{
     return(
       <div className="user-info">
         <div className="username-image">
-          <img src={this.props.user.user.profile_picture}/>
+          <img className="profile-picture" src={this.props.user.user.profile_picture}/>
           {this.props.user.user.username}
           <a className="profile-email">{this.props.user.user.email}</a>
           {this.isProfileOwner() ?

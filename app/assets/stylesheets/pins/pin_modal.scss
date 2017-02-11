@@ -13,7 +13,7 @@
   max-height: 75vh;
   min-width: 500px;
   padding: 30px 60px 100px 60px;
-  background-color: white;
+  background-color: $color-light-white;
   border-radius: 15px;
   margin-top: 10vh;
   margin-bottom: 10vh;
@@ -48,7 +48,7 @@
 }
 
 .modal-container::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
     border-radius: 4px;
 }
 

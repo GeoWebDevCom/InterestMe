@@ -15,8 +15,10 @@
  */
 
 $color-primary: #3b93db;
-$color-light: #4B698B;
-$color-lightest: #738CA6;
+$color-light: rgba(#3b93db, 0.8);
+$color-lightest: rgba(#3b93db, 0.5);
+$color-light-black: rgba(black, .08);
+$color-light-white: rgba(white, .8);
 $color-dark: #133253;
 $color-darkest: #041D37;
 $color-test: rgba(#4f4f4f, 0.7);
@@ -62,8 +64,8 @@ textarea {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   border: solid 2px;
-  border-color: $color-primary;
-  color: $color-primary;
+  border-color: $color-light;
+  color: $color-light-black;
   background-color: rgba(#ffffff, 0.6);
 }
 

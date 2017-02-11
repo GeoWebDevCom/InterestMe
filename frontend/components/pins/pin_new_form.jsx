@@ -113,7 +113,7 @@ export default class PinNewForm extends React.Component {
             />
           <br/>
             <select className="new-pin-board-select-dropdown" onChange={this.update("boardId")}>
-              <option selected disabled>--Choose a board--</option>
+              <option value={"--Choose a board--"} disabled></option>
               {
                 this.props.x.boards.map(board =>
                   <option value={board.id} key={board.id}>{board.name}</option>

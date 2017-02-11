@@ -64,8 +64,7 @@ export default class Homepage extends React.Component{
 
   masonryLayout(){
     var masonryOptions = {
-      fitWidth: true,
-      transitionDuration: 10
+      fitWidth: true
     };
     return (
       <div>

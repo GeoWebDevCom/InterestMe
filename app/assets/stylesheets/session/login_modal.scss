@@ -12,7 +12,7 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  background-color: rgba(#dcebfc, 0.8) !important;
+  background-color: $color-light-white !important;
   margin: 10px !important;
   padding: 150px 50px 150px 50px;
   border: 1px solid $color-light !important;
@@ -27,16 +27,6 @@
   flex-grow: 1;
 }
 
-.session-add-item {
-  background-color: transparent;
-  margin: 10px;
-}
-
-.session-add-item:hover {
-  background-color: transparent;
-  color: white;
-}
-
 .textbox-login {
   width: 350px;
   font-size: 25px;
@@ -48,14 +38,17 @@
 }
 
 .session-button {
-  padding: 0px 10px 0px 10px;
-  margin: 22px 23px 22px 10px;
+  color: white;
+  background-color: transparent !important;
+}
+
+.session-button:hidden {
+  background-color: transparent !important;
 }
 
 .session-button-list{
   display: flex;
-  flex-direction: row;
-  height: 85px;
+  flex-direction: row
 }
 
 .submission-session-buttons {

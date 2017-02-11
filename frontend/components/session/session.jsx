@@ -170,7 +170,7 @@ export default class Session extends React.Component {
   signedInButtons(){
     return(
       <div className="session-button-list">
-      <button className="session-add-item" onClick={this.handleNewBoardClick}>
+      <button className="session-button" onClick={this.handleNewBoardClick}>
         <i
           className="fa fa-plus-circle fa-3x"
           aria-hidden="true"
