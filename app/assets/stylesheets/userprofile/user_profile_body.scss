@@ -62,8 +62,8 @@
   border-radius: 30px;
   font-weight: bold;
   z-index: 0;
+  color: $color-primary;
   background-color: transparent;
-  color: black;
   margin: 0px;
 }
 
@@ -197,7 +197,7 @@ border-radius: 50%;
   font-weight: bold;
   z-index: 0;
   background-color: transparent;
-  color: black;
+  color: $color-primary;
   margin: 0px;
 }
 
@@ -302,6 +302,7 @@ border-radius: 50%;
 .board-title {
   font-size: 20px;
   font-weight: bold;
+  color: $color-primary
 }
 .user-profile-board-show {
   margin-top: 13px;

@@ -317,10 +317,12 @@ export default class UserProfile extends React.Component{
                     <img src={this.props.user.samplePins[idx][2]}/>
                   </div>
                 </div>
+                <div className="board-title">
+                  {board.name}
+                </div>
               </div>
             </button>
             <span className="board-title">
-              {board.name}
             </span>
           </div>
         )

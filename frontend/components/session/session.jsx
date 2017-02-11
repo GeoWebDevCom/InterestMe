@@ -170,13 +170,16 @@ export default class Session extends React.Component {
   signedInButtons(){
     return(
       <div className="session-button-list">
-      <button className="session-button" onClick={this.handleNewBoardClick}>
-        <i
-          className="fa fa-plus-circle fa-3x"
-          aria-hidden="true"
-          >
-        </i>
-      </button>
+        <button className="session-button" onClick={this.handleNewBoardClick}>
+          <i
+            className="fa fa-plus-circle fa-3x"
+            aria-hidden="true"
+            >
+          </i>
+        </button>
+        <button className="session-button" onClick={this.handleLogoImageClick}>
+          <i className="fa fa-home fa-3x" aria-hidden="true"></i>
+        </button>
         <button className="session-button" onClick={this.handleProfileClick}>
           <i className="fa fa-user fa-3x" aria-hidden="true"></i>
         </button>
@@ -233,6 +236,7 @@ export default class Session extends React.Component {
       </Modal>
     )
   }
+
   handleLogoImageClick(e){
     e.preventDefault();
     hashHistory.push(`/home`)

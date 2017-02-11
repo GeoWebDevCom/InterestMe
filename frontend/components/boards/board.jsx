@@ -80,15 +80,14 @@ export default class Board extends React.Component {
                     src={this.props.board.pinAuthorInfo[idx][1]}/>
                 </div>
                 <div className="pin-tile-author-name">
-                  {this.props.board.pinAuthorInfo[idx][0]}
+                  <button className="board-pin-author-button" onClick={this.redirectToAuthorProfile}>
+                    {this.props.board.pinAuthorInfo[idx][0]}
+                  </button>
                 </div>
               </div>
               <div className="pin-tile-information-container">
                 <div className="pin-tile-title">
                   {" placeholder text tile.title"}
-                </div>
-                <div className="pin-tile-body">
-                  {"tile.body"}
                 </div>
               </div>
             </div>

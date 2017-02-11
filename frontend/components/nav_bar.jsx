@@ -14,7 +14,6 @@ export default class NavBar extends React.Component {
   }
 
   render() {
-    debugger
     return(
       <div>
         <div className="navigation-bar">

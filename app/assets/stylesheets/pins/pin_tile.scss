@@ -40,14 +40,25 @@
 .pin-tile-author-profile-picture:hover {
   cursor: pointer
 }
+
 .pin-tile-author-name {
-  font-size: 20px
+  color: $color-primary;
+  font-size: 18px;
+}
+
+.board-pin-author-button {
+  color: $color-primary;
+  background-color: transparent;
+  margin: 0px;
+  padding: 0px;
+  font-size: 18px;
 }
 
 .pin-tile-information-container {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  justify-content: center;
   width: 78%;
 }
 

@@ -80,35 +80,73 @@ export default class Pin extends React.Component {
 
   handleBoardNameClick(e){
     this.props.handleSelfClose()
+    debugger
     e.preventDefault()
     hashHistory.push(`/boards/${this.props.pin.pins.pins.board_id}`)
     document.body.style.overflow = "auto"
   }
 
   pinModal(){
+    //add favorites!?
+    console.log(this.props);
     return(
       <div className="modal-container">
-          <div className="image-container">
-            <div className="pin-edit-button">
+        <div className="pin-show-modal-content-container">
+          <div className="pin-show-header-container">
+            <div className="pin-show-title-board-name-container">
+              <div className="pin-show-title-container">
+                <b id="pin-title">A TITLE OF SORTS{this.props.pin.pins.pins.title}</b>
+              </div>
+              <div className="pin-show-pin-info-save-button-container">
+                <div className="pin-show-board-name-edit-button-container">
+                  <div className="important-text">
+                    <button className="pin-show-board-name" onClick={this.handleBoardNameClick}>
+                      {this.props.pin.pins.pins.board_name}
+                    </button>
+                  </div>
+                  <div className="pin-show-edit-button-container">
+                    {this.props.pin.pins.pins.owner ?
+                      <i
+                        className="fa fa-cog fa-2x edit-modal-cog"
+                        aria-hidden="true"
+                        onClick={this.handleEditButton}>
+                      </i>
+                      :
+                      null
+                    }
+                  </div>
+                </div>
+                <div className="pin-show-save-button-container">
+
+                </div>
+              </div>
             </div>
+          </div>
+          <div className="image-container">
             <img className= "pin-modal-image" src={this.props.pin.pins.pins.image_url}></img>
           </div>
-          <div className="title-user-container">
-              <a className="important-text">
-                <button className="important-text" onClick={this.handleBoardNameClick}>{this.props.pin.pins.pins.board_name}</button>
-                </a>
-                <br/>
-              <div className="small-text">
-                a board made by  <a className="link-set">{this.pinAuthor()}</a>
+          <div className="pin-show-description-user-container">
+            <div className="pin-show-user-name-picture-container">
+              <div className="pin-show-profile-picture-container">
+                <img className="pin-show-profile-picture"
+                  src={this.props.pin.pins.pins.authorProfilePicture}
+                  onClick={this.redirectToProfile}
+                  />
               </div>
+              <div className="pin-show-author-name-container">
+                <button className="pin-author-button" onClick={this.redirectToProfile}>
+                  {this.props.pin.pins.pins.owner ? "you" : this.props.pin.pins.pins.author }
+                </button>
+              </div>
+            </div>
+            <div className="pin-show-description-container">
+              A REALLY GREAT EXAMPLE OF A DESCRIPTION THAT IS TOTALLY WHAT I WILL BE PERMENANTLY HAVING ON MY WEB APP
+            </div>
             <div>
               {this.state.editFormOpen ? this.editPinModal() : null}
             </div>
           </div>
-          <div className="pin-author-container">
-            <b id="pin-title">{this.props.pin.pins.pins.title}</b>
-            <p id="pin-body">{this.props.pin.pins.pins.body}</p>
-          </div>
+        </div>
       </div>
     )
   }
@@ -126,8 +164,8 @@ export default class Pin extends React.Component {
           {this.props.pin.pins.pins.owner ? "you" : this.props.pin.pins.pins.author }
         </button>
         {this.props.pin.pins.pins.owner ? <button id="pin-edit-icon" onClick={this.handleEditButton}>
-                  edit
-                </button> : null }
+            edit
+          </button> : null }
       </div>
     )
   }
