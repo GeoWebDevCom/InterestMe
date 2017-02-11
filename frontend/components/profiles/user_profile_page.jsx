@@ -450,12 +450,13 @@ export default class UserProfile extends React.Component{
 
 
   render(){
+    console.log(this.props);
     return(
       <div className="user-profile">
         <div className="user-profile-body">
           {this.state.doneLoading ? this.userInfo() :null}
           <div className="user-profile-description">
-
+            {this.state.doneLoading ? this.props.user.user.description : null}
           </div>
         </div>
         <div className="user-profile-buttons-bar-container">

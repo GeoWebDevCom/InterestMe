@@ -15,11 +15,12 @@
   border-radius: 10px;
   margin: 15px;
   border: 3px solid $color-light-black;
+  border-radius: 15px;
 }
 
 .pin-tile-content {
   height: 90px;
-  background-color: $color-test;
+  background-color: transparent;
   display: flex;
   flex-direction: row;
 }

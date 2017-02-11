@@ -77,6 +77,7 @@ export default class UserProfileForm extends React.Component {
           </Dropzone>
 
           <form onSubmit={this.handleSubmit}>
+
               <button type="Submit" value="Submit">Update</button>
           </form>
         </div>
