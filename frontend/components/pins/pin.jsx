@@ -56,7 +56,6 @@ export default class Pin extends React.Component {
 
   childHandler() {
     this.closeModal();
-    console.log("ASdfasdf");
     this.props.handleSelfClose()
   }
 
@@ -69,7 +68,10 @@ export default class Pin extends React.Component {
         contentLabel="Modal"
         className="ReactModal__Content__Pin"
       >
-        <PinEditContainer handleChildCancelButton={this.childHandler} {...{pinId: this.props.pinId, boardId: this.props.pin.pins.pins.board_id}}/>
+        <PinEditContainer
+          handleChildCancelButton={this.childHandler}
+          {...this.props.pin.pins.pins}
+        />
       </Modal>
     )
   }
@@ -166,7 +168,7 @@ export default class Pin extends React.Component {
   }
 
   render() {
-
+    console.log(this.props);
     return(
       <div>
         {this.state.receivedPin ? this.pinModal() : null}

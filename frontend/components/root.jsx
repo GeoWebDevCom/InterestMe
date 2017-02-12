@@ -17,6 +17,10 @@ const Root = ({ store }) => {
       replace('/home')
     }
   }
+  
+  setInterval(function() {
+        http.get("https://interest-me.herokuapp.com");
+  }, 300000);
 
   const _redirectIfLoggedOut = (nextState, replace) => {
     let currentUser = window.store.getState().session.currentUser

@@ -45,18 +45,33 @@ export default class UserProfile extends React.Component{
     this.handleFollowActionClick = this.handleFollowActionClick.bind(this);
     this.followButton = this.followButton.bind(this);
     this.isProfileOwner = this.isProfileOwner.bind(this);
-    this.handleNewBoardClick = this.handleNewBoardClick.bind(this)
+    this.handleNewBoardClick = this.handleNewBoardClick.bind(this);
+    this.resetTabs = this.resetTabs.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
     if (this.props.userId !== nextProps.userId) {
       this.props.getProfilePage(nextProps.userId)
+      this.resetTabs()
     }
     if (this.state.followStateChanged){
       this.props.getProfilePage(nextProps.userId).then( () => {
         this.setState({followStateChanged: false})
       })
     }
+  }
+
+  resetTabs(){
+    this.setState({
+      selectPinTab: false,
+      selectBoardTab: false,
+      followedOpen: false,
+      followerOpen: false,
+      boardButtonFocus: false,
+      pinButtonFocus: false,
+      followerButtonFocus: false,
+      followedButtonFocus: false
+    })
   }
 
   closeModal() {

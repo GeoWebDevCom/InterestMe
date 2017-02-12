@@ -74,7 +74,7 @@ button {
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
   padding: 10px 15px 10px 15px;
-  background-color: $color-lightest;
+  background-color: $color-light;
   border: 4px;
   border-radius: 4px;
   margin-right: 20px;
@@ -87,7 +87,7 @@ button {
 }
 
 button:hover {
- background-color: rgba(black, 0.3);
+ background-color: $color-lightest;
  // background-color: #b0eb00;
  color: $color-dark;
  transition: 0.25s;

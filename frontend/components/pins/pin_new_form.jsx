@@ -28,6 +28,7 @@ export default class PinNewForm extends React.Component {
     this.handleCancelNewBoard = this.handleCancelNewBoard.bind(this);
     this.handleNewBoardButton = this.handleNewBoardButton.bind(this);
     this.handleBoardSubmit = this.handleBoardSubmit.bind(this);
+    this.handleNewPinCancelButton = this.handleNewPinCancelButton.bind(this);
   }
 
   handleDrop(img){
@@ -132,6 +133,9 @@ export default class PinNewForm extends React.Component {
             </select>
             <br/>
             <button type="Submit" value="Submit">Post</button>
+            <button onClick={this.handleNewPinCancelButton}>
+              Cancel
+            </button>
           </div>
         </form>
         <div className="pin-new-add-board-container">
@@ -142,6 +146,10 @@ export default class PinNewForm extends React.Component {
         </div>
       </div>
     )
+  }
+
+  handleNewPinCancelButton(){
+    this.props.handleChildCancelButton()
   }
 
   handleNewBoardButton(){

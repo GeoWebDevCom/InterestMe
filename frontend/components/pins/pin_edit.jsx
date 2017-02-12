@@ -40,26 +40,37 @@ export default class PinEdit extends React.Component {
 
   editForm() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <a id="pin-edit-title">Edit Pin</a>
-        Title
-        <input
-          autoFocus type='text' onChange={this.update('title')}/>
-        Body
-        <textarea
-          autoFocus type='textarea' onChange={this.update('body')}/>
+      <div className="pin-edit-form-container">
+        <form onSubmit={this.handleSubmit}>
+          <div id="pin-edit-title">Title</div>
+          <input
+            className="pin-edit-input"
+            autoFocus type='text'
+            onChange={this.update('title')}
+            defaultValue={this.props.title}
+         />
+       <div id="pin-edit-title">Description</div>
+
+          <textarea
+            className="pin-edit-form-textarea"
+            autoFocus type='textarea'
+            onChange={this.update('body')}
+            placeholder="What's this pin about?"
+          >
+          {this.props.body}
+          </textarea>
           <div>
             {
               this.state.deleteConfirmBox ?
               this.deleteConfirm() : this.updateButtonSet()
             }
           </div>
-      </form>
+        </form>
+      </div>
     );
   }
 
   handleDeleteSubmit(){
-    debugger
     this.props.deletePin(this.props.pinId);
     this.setState({deleteConfirmBox: false})
     this.props.handleChildCancelButton()
@@ -73,7 +84,7 @@ export default class PinEdit extends React.Component {
     return(
       <div className='pin-delete-confirm'>
         <button onClick={this.handleDeleteSubmit}>Delete</button>
-        <button onClick={this.handleDeleteConfirmCancel}> Cancel</button>
+        <button onClick={this.handleDeleteConfirmCancel}>Cancel</button>
         <br/>
         Are you sure you want to delete?
       </div>

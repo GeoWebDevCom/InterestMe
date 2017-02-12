@@ -16,10 +16,10 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  height:38vh;
+  height: 38vh;
   background-color: transparent;
-  width:100%;
-  margin-top:110px;
+  width: 100%;
+  margin-top: 110px;
 }
 
 .user-profile-buttons-bar-container{
@@ -88,10 +88,10 @@
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  height: 65%;
+  height: 100%;
   font-size: 25px;
-  justify-content: center;
   padding-right: 10vw;
+  min-width: 600px;
 }
 
 .user-profile-username {

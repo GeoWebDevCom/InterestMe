@@ -69,13 +69,16 @@ export default class BoardEdit extends React.Component {
   }
 
   editForm() {
+    console.log(this.props);
     return (
       <div>
         <form className="board-edit-form" onSubmit={this.handleUpdateSubmit}>
           <span className="edit-board-text">Edit name</span>
           <input
-            autoFocus type='text' onChange={this.update('name')}
-            />
+            autoFocus type='text'
+            onChange={this.update('name')}
+            defaultValue={this.props.board.boards.name}
+          />
           <div className="board-edit-form-buttons">
             {
               this.state.deleteConfirmBox ?
