@@ -163,6 +163,7 @@ export default class UserProfile extends React.Component{
         followedButtonFocus: false
       })
       this.findImageHeight()
+      document.body.style.overflow = "auto";
     }
   }
 
@@ -330,7 +331,7 @@ export default class UserProfile extends React.Component{
                   </div>
                   <div className="sub-image-single-pic-container">
                     <img src={this.props.user.samplePins[idx][2]}/>
-                  </div>
+                  </div>showBoards
                 </div>
               </div>
             </button>
@@ -362,19 +363,24 @@ export default class UserProfile extends React.Component{
               className='user-profile-boards-container'
               options={masonryOptions}
               >
-              <li className="board-button-set">
-                <button className="user-profile-board-button" onClick={this.handleNewBoardClick}>
-                  <div className="add-new-board-container">
-                    <i className="fa fa-plus fa-1x" aria-hidden="true"></i>
-                    <div className="create-new-board-text">
-                      Create a new Board
+              {
+                this.isProfileOwner() ?
+                <li className="board-button-set">
+                  <button className="user-profile-board-button" onClick={this.handleNewBoardClick}>
+                    <div className="add-new-board-container">
+                      <i className="fa fa-plus fa-1x" aria-hidden="true"></i>
+                      <div className="create-new-board-text">
+                        Create a new Board
+                      </div>
                     </div>
+                  </button>
+                  <div className="board-title-invisible">
+                    sdfdsag
                   </div>
-                </button>
-                <div className="board-title-invisible">
-                  sdfdsag
-                </div>
-              </li>
+                </li>
+                :
+                null
+              }
               {this.showBoards()}
             </Masonry>
         </div>

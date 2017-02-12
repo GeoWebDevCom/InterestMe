@@ -1,13 +1,21 @@
+pusheen = "http://res.cloudinary.com/andoo/image/upload/c_crop,h_175,r_100,w_173,x_74,y_0/v1484764852/vonrulf1kpsuhqlxobir.png"
 profile_picture = "http://res.cloudinary.com/andoo/image/upload/c_crop,h_175,r_100,w_173,x_74,y_0/v1484764852/vonrulf1kpsuhqlxobir.png"
-User.create!({username: "Pusheen", password:"password", profile_picture: profile_picture})
+monachan = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486925093/Screenshot_from_2017-02-12_10-44-34_c0tvuz.png"
+andrew1007 = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486926486/Screenshot_from_2017-02-12_11-07-50_ecwlbm.png"
+bamflame97 = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486926676/Screenshot_from_2017-02-12_11-11-02_uduvu8.png"
+pikachu = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486926870/Screenshot_from_2017-02-12_11-14-14_fnhnas.png"
+djjason = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486927081/Screenshot_from_2017-02-12_11-17-41_zekvkr.png"
+artemis = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486927000/Screenshot_from_2017-02-12_11-16-28_va2uox.png"
+peralta = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486927257/Screenshot_from_2017-02-12_11-20-32_thyhxm.png"
+User.create!({username: "Pusheen", password:"password", profile_picture: pusheen})
 User.create!({username: "andoo1007", password:"password", profile_picture: profile_picture})
-User.create!({username: "mona-chan", password:"password", profile_picture: profile_picture})
-User.create!({username: "bamflame97", password:"password", profile_picture: profile_picture})
-User.create!({username: "ilovedogs8", password:"password", profile_picture: profile_picture})
-User.create!({username: "pikachu", password:"password", profile_picture: profile_picture})
-User.create!({username: "DjJason", password:"password", profile_picture: profile_picture})
-User.create!({username: "Artemis", password:"password", profile_picture: profile_picture})
-User.create!({username: "peralta", password:"password", profile_picture: profile_picture})
+User.create!({username: "mona-chan", password:"password", profile_picture: monachan})
+User.create!({username: "bamflame97", password:"password", profile_picture: bamflame97})
+User.create!({username: "andrew1007", password:"password", profile_picture: andrew1007})
+User.create!({username: "pikachu", password:"password", profile_picture: pikachu})
+User.create!({username: "DjJason", password:"password", profile_picture: djjason})
+User.create!({username: "Artemis", password:"password", profile_picture: artemis})
+User.create!({username: "peralta", password:"password", profile_picture: peralta})
 User.create!({username: "Kasey", password:"password", profile_picture: profile_picture})
 User.create!({username: "spadesofaces", password:"password", profile_picture: profile_picture})
 User.create!({username: "JupiterHero", password:"password", profile_picture: profile_picture})
@@ -69,7 +77,7 @@ pins = [
   "http://res.cloudinary.com/andoo/image/upload/v1486827479/5e05846cc8b34cd1759dfa11ed1b41fd_qkgtrr.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486827690/04bf9ee4d854169ec7ed1a0fc77f6312_dhdsz7.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486827906/e30f9c94bf2746c1fbd6057f39efff48_bq6e2t.jpg",
-  "https://cloudinary.com/console/media_library#/dialog/image/upload/9ac230696dfe6e930e5c2bc4c3eff4a7_zkyuty",
+  "http://res.cloudinary.com/andoo/image/upload/v1486827975/9ac230696dfe6e930e5c2bc4c3eff4a7_zkyuty.jpg",
 
 ]
 titles = [
@@ -95,7 +103,6 @@ g = Board.create!({user_id: 3, name: "Black Butler"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486828301/6309af01a0817328b8fc580b0719db6c_knrb2c.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486828379/082a1983a0d9881c1ab31575e5b73c77_qvbour.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1486828472/02fc1f9c8843c5809cc6f35eb786f225_nqmiqa.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486828570/7600eb15ae9538d2ca6933c9e6428ca2_knyfdi.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486828652/8a3fff5c8e8076863b1d0e62ed0b0721_tcyprw.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486828787/4f53032f621b15bce5543e4aca266533_gvitrn.jpg",
@@ -105,8 +112,7 @@ image = [
 ]
 title = [
   "I came here for Sebastian, not feels",
-  "YES!",
-  "Ciel and Sebastian",
+  "!!",
   "Awesome cosplay",
   "LOL",
   "NG Sims 3",
@@ -130,7 +136,7 @@ image.each_index do |idx|
 end
 
 #4
-g = Board.create!({user_id: 3, name: "Reborn"})
+g = Board.create!({user_id: 3, name: "Hitman Reborn"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486829391/4c7c0a013f8688c1a74e8a7d7a8ba49f_xnss8q.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486829487/77b15f6344adae617e50e8ecb3cf6783_krgbbr.jpg",
@@ -150,10 +156,10 @@ title = [
 body = [
   "",
   "",
-  "Katekyo Hitman Reborn one of the best anime ever!!!! ",
+  "Katekyo Hitman Reborn one of the best animes ever!!!!",
   "",
   "",
-  "Hibari (Katekyo Hitman Reborn!) Don't know why but for some reason I feel that Prussia (Gilbert) & Hibari could be great friends due to their similar partners in crime: Gilbird & Hibird. XD "
+  "Hibari. Don't know why but for some reason I feel that Prussia (Gilbert) & Hibari could be great friends due to their similar partners in crime: Gilbird & Hibird. XD "
 ]
 image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 4, title: title[idx], body: body[idx], image_url:image[idx]})
@@ -240,7 +246,7 @@ g = Board.create!({user_id: 1, name: "Funny"})
   "http://res.cloudinary.com/andoo/image/upload/v1486831270/225edde5ce454be6d79b65657f9d7fe9_u05onp.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831353/fe693fdd25004815677dd6d5304a746d_anl0d0.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831393/8bab46e118515257dcafb665c0f753f8_d70qog.jpg",
-  "https://cloudinary.com/console/media_library#/dialog/image/upload/7696d8440bc9b47b6beb755832c0b967_uxhboh",
+  "http://res.cloudinary.com/andoo/image/upload/v1486831447/7696d8440bc9b47b6beb755832c0b967_uxhboh.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831506/07f63a6b66f18387d409cdd0342f55b8_v51oaz.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831592/807afadbf3a1bc619828c9a15f6a32ab_nztows.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831721/62e4703e2e395a42d91d993a11da1ab6_gz8ahf.jpg",
@@ -573,7 +579,7 @@ image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486921164/57a60b7992c9befbf87bc0afddb5f18e_ck6ozf.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486921245/cb16f47afd5826297c6cf70900449f65_pv8r60.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486921303/c88986c49226db4ffee2eb4da005079c_gpr0cy.jpg",
-  "https://cloudinary.com/console/media_library#/dialog/image/upload/f5e0e7e644d817c048d5c1e7a4b7d0f2_bjqlld",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921409/f5e0e7e644d817c048d5c1e7a4b7d0f2_bjqlld.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486921455/25ca0beb814b6c125444828e70a01f33_hxciyv.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486921519/f179a7b39588cf0b22a63d66d2171c01_eyxpx9.jpg"
 ]
