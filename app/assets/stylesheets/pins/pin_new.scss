@@ -108,6 +108,8 @@
   text-align: center;
   vertical-align: middle;
   border-color: $color-primary;
+  background-color: transparent;
+
 }
 
 .upload-text {
@@ -117,6 +119,7 @@
   background-color: white;
   color: #d7432d;
   font-size: 25px;
+  z-index: -1;
 }
 
 .image-preview img {

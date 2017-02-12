@@ -21,7 +21,7 @@ User.create!({username: "allisonkao", password:"password", profile_picture: prof
 User.create!({username: "saitama", password:"password", profile_picture: profile_picture})
 User.create!({username: "KaliSymn", password:"password", profile_picture: profile_picture})
 User.create!({username: "Don352", password:"password", profile_picture: profile_picture})
-
+# you used a super hacky way of letting you create stuff. fix it later
 g = Board.create!({id: 1, user_id: 1, name:"Fellow Felines"})
 
 pin_images = [

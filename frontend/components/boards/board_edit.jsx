@@ -56,10 +56,10 @@ export default class BoardEdit extends React.Component {
 
   handleUpdateSubmit(e) {
     e.preventDefault();
-    this.setState({deleteConfirmBox: false, editBoxOpen: false})
+    this.setState({deleteConfirmBox: false, editBoxOpen: false});
     this.props.editBoard({name: this.state.name,
-      id: this.props.board.boards.id})
-
+      id: this.props.board.boards.id});
+    this.props.handleSelfClose();
   }
 
   editForm() {

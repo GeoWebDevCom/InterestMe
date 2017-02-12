@@ -12,7 +12,6 @@ const mapStateToProps = ({boards, session, pins}, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   getBoard: (board) => dispatch(getBoard(board)),
   getPins: (id) => dispatch(getPins(id)),
-  newPin: (pin) => dispatch(createPin(pin))
 });
 
 export default connect(

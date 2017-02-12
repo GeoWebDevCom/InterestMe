@@ -12,6 +12,7 @@ class Api::BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     @board.user_id = current_user.id
+    @board.id = i + 1
     if @board.save
       @current_user = current_user
       @board_pins = @board.pins.reverse
@@ -36,7 +37,7 @@ class Api::BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @current_user = current_user
-    @board_pins = @board.pins.reverse
+    @board_pins = @board.pins.order(:updated_at)
     @board_pin_user_info = []
     @board_pins.each_with_index do |pin, idx|
       pin_owner = pin.user

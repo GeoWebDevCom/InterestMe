@@ -9,7 +9,8 @@
   overflow-y: scroll;
   padding: 1px;
   width: auto;
-  max-width: 70%;
+  // min-width: 30vw;
+  width: 30vw;
   max-height: 75vh;
   min-width: 500px;
   padding: 35px 60px 50px 60px;
@@ -31,6 +32,10 @@
   margin: 0px;
   padding: 0px;
   font-size: 25px;
+}
+
+.pin-author-button:hover {
+  background-color: transparent;
 }
 
 .pin-modal-image {
@@ -77,7 +82,7 @@
 }
 
 #pin-title {
-  font-size: 25px
+  font-size: 40px
 }
 
 #pin-body {
@@ -85,11 +90,15 @@
 }
 
 .pin-show-board-name{
-  font-size: 22px;
+  font-size: 30px;
   color: $color-primary;
   background-color: transparent;
   margin-right: 10px;
   padding: 0px
+}
+
+.pin-show-board-name:hover{
+  background-color: transparent;
 }
 
 .pin-show-pin-info-save-button-container {

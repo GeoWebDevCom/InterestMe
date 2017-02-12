@@ -12,7 +12,7 @@ export default class UserProfile extends React.Component{
     this.state={
       doneLoading: false,
       selectPinTab: false,
-      selectBoardTab: true,
+      selectBoardTab: false,
       modalIsOpen: false,
       focusedPinId: null,
       editFormOpen: false,
@@ -20,7 +20,7 @@ export default class UserProfile extends React.Component{
       followedOpen: false,
       isFollowing: false,
       pinButtonFocus: false,
-      boardButtonFocus: true,
+      boardButtonFocus: false,
       followerButtonFocus: false,
       followedButtonFocus: false,
       followStateChanged: false,
@@ -393,11 +393,13 @@ export default class UserProfile extends React.Component{
       this.props.user.followed.map( (user, idx) => {
         return (
         <div key={idx} className="followers-modal">
-          <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
-            <img className="follow-button-image" src={user.profile_picture}/>
+          <div className="user-profile-image-container">
+            <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
+              <img className="follow-button-image" src={user.profile_picture}/>
               <a className="follow-username">
               </a>
-          </button>
+            </button>
+          </div>
           {user.username}
         </div>
         )
@@ -410,11 +412,13 @@ export default class UserProfile extends React.Component{
       this.props.user.following.map( (user, idx) => {
         return (
         <div key={idx} className="followers-modal">
-          <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
-            <img className="follow-button-image" src={user.profile_picture}/>
-            <a className="follow-username">
-            </a>
-          </button>
+          <div className="user-profile-image-container">
+            <button name={user.id} onClick={this.handleProfileRedirect} className="follow-user-button">
+              <img className="follow-button-image" src={user.profile_picture}/>
+              <a className="follow-username">
+              </a>
+            </button>
+          </div>
           {user.username}
         </div>
         )
@@ -478,11 +482,13 @@ export default class UserProfile extends React.Component{
       <div className="user-profile">
         <div className="user-profile-body">
           {this.state.doneLoading ? this.userInfo() :null}
-          <div className="user-profile-description">
+          <div className="user-profile-description-container">
             <div className="user-profile-username">
               {this.state.doneLoading ? this.props.user.user.username : null}
             </div>
-            {this.state.doneLoading ? this.props.user.user.description : null}
+            <div className="user-profile-description">
+              {this.state.doneLoading ? this.props.user.user.description : null}
+            </div>
           </div>
         </div>
         <div className="user-profile-buttons-bar-container">

@@ -35,6 +35,7 @@ helper_method :current_user
   end
 
   def update
+    @curr_user = current_user
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       render :show

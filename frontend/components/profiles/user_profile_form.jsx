@@ -11,7 +11,7 @@ export default class UserProfileForm extends React.Component {
     super(props);
     this.state= {
       imageUrl: "",
-      email: ""
+      description: ""
     }
     //
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,9 +36,15 @@ export default class UserProfileForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    if (!this.state.imageUrl){
+      var imagex = this.props.user.user.profile_picture
+    } else {
+      var imagex = this.state.imageUrl
+    }
     this.props.editProfilePage({
-      profile_picture: this.state.imageUrl,
-      id: this.props.user.user.id
+      profile_picture: imagex,
+      id: this.props.user.user.id,
+      description: this.state.description
     })
     this.props.handleSelfClose()
     this.setState({imageUrl: null})
@@ -66,19 +72,28 @@ export default class UserProfileForm extends React.Component {
 
     render() {
       return (
-        <div>
+        <div className="user-profile-edit-container">
           <Dropzone
             multiple={false}
             accept="image/*"
             onDrop={this.handleDrop}
-            className="image-preview"
+            className="user-profile-edit-image-preview"
           >
+          <div className="user-profile-edit-image-dropzone-text">
             {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
+          </div>
           </Dropzone>
 
-          <form onSubmit={this.handleSubmit}>
-
+          <form className="user-profile-edit-form" onSubmit={this.handleSubmit}>
+              <textarea
+                className="user-profile-description-textarea"
+                type="textarea"
+                placeholder="Tell us about yourself"
+                onChange={this.update('description')}
+              />
+            <div className = "user-profile-edit-submit-button">
               <button type="Submit" value="Submit">Update</button>
+            </div>
           </form>
         </div>
       )

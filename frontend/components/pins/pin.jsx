@@ -17,7 +17,6 @@ export default class Pin extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.editButton = this.editButton.bind(this);
     this.childHandler = this.childHandler.bind(this);
-    this.userProfileRedirect = this.userProfileRedirect.bind(this);
     this.handleBoardNameClick = this.handleBoardNameClick.bind(this);
     this.redirectToProfile = this.redirectToProfile.bind(this);
     this.pinAuthor = this.pinAuthor.bind(this);
@@ -28,8 +27,9 @@ export default class Pin extends React.Component {
   }
 
   componentDidMount() {
+
     this.props.getPin(this.props.pinId).then(() => {
-      this.setState({receivedPin: true, backdropOpen: true})
+      this.setState({receivedPin: true})
     })
   }
 
@@ -55,7 +55,7 @@ export default class Pin extends React.Component {
   }
 
   childHandler() {
-    this.setState({editFormOpen: false})
+    this.closeModal();
     console.log("ASdfasdf");
     this.props.handleSelfClose()
   }
@@ -74,10 +74,6 @@ export default class Pin extends React.Component {
     )
   }
 
-  userProfileRedirect(){
-    //TODO Maybe one day...
-  }
-
   handleBoardNameClick(e){
     this.props.handleSelfClose()
     debugger
@@ -88,7 +84,6 @@ export default class Pin extends React.Component {
 
   pinModal(){
     //add favorites!?
-    console.log(this.props);
     return(
       <div className="modal-container">
         <div className="pin-show-modal-content-container">

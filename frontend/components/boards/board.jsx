@@ -32,10 +32,6 @@ export default class Board extends React.Component {
     this.redirectToAuthorProfile = this.redirectToAuthorProfile.bind(this);
   }
 
-  handleChildCancelButton(){
-    this.closeModal()
-  }
-
   componentDidMount(){
     this.findImageHeight()
   }
@@ -53,7 +49,7 @@ export default class Board extends React.Component {
   componentWillMount() {
     this.props.getPins(this.props.boardId)
     .then( () => this.props.getBoard(this.props.boardId))
-    .then( () => this.setState({finishedLoading: true}))
+    .then( () => this.setState({name: this.props.board.name, finishedLoading: true}))
   }
 
   handleTileClick(e) {
@@ -129,7 +125,6 @@ export default class Board extends React.Component {
 
   redirectToAuthorProfile(e){
     e.preventDefault()
-    debugger
     hashHistory.push(`/user/${this.props.board.owner_id}`)
   }
 
@@ -143,8 +138,15 @@ export default class Board extends React.Component {
   }
 
   handleSelfClose(){
-    this.props.getPins(this.props.board.id)
-    this.setState({modalIsOpen: false, newPinFormOpen: false})
+    this.setState({doneLoading: false})
+    this.props.getBoard(this.props.boardId)
+    .then( () => {
+      this.props.getPins(this.props.board.id)
+    })
+    .then( () => {
+      this.setState({name: this.props.board.name, modalIsOpen: false, newPinFormOpen: false,  editFormOpen: false})
+    })
+    debugger
     document.body.style.overflow = "auto";
   }
 
@@ -153,7 +155,7 @@ export default class Board extends React.Component {
       <div className="board-overhead-bar-container">
         <div className="board-overhead-bar">
           <a id="board-name">
-            {this.props.board.name}
+            {this.state.name}
           </a>
           <div className="author-edit-flexbox">
             <a id="board-author">a board by {this.props.board ? this.boardAuthor() : null} </a>
@@ -214,7 +216,7 @@ export default class Board extends React.Component {
         contentLabel="Session form"
         className="board-edit-modal"
         >
-        <BoardEditContainer handleSelfClose={this.closeModal} {...this.props}/>
+        <BoardEditContainer handleSelfClose={this.handleSelfClose} {...this.props}/>
       </Modal>
     )
   }

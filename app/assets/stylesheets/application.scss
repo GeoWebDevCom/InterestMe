@@ -92,7 +92,7 @@ button {
 }
 
 button:hover {
- background-color: $white;
+ background-color: rgba(black, 0.3);
  // background-color: #b0eb00;
  color: $color-dark;
  transition: 0.25s;
@@ -136,7 +136,7 @@ input {
   border-top-style: hidden;
   border-left-style: hidden;
   border-right-style: hidden;
-  border-bottom-color: $color-dark;
+  border-bottom-color: $color-primary;
   outline: none;
   margin-left: 10px;
   margin-bottom: 10px;

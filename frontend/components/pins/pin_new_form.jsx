@@ -40,7 +40,9 @@ export default class PinNewForm extends React.Component {
   }
 
   handleSubmit(e) {
+    // log(this.getPath())
     e.preventDefault();
+    debugger
     this.props.newPin({
       title: this.state.title,
       body: this.state.body,
@@ -48,7 +50,8 @@ export default class PinNewForm extends React.Component {
       image_url: this.state.imageUrl})
     this.setState( {imageUrl: false})
     this.props.handleChildCancelButton()
-    hashHistory.push(`/boards/${this.state.boardId}`)
+    debugger
+      hashHistory.push(`/boards/${this.state.boardId}`)
   }
 
   update(text) {
@@ -113,7 +116,7 @@ export default class PinNewForm extends React.Component {
             />
           <br/>
             <select className="new-pin-board-select-dropdown" onChange={this.update("boardId")}>
-              <option selected disabled>--Select a board</option>
+              <option selected disabled>--Select a board--</option>
               {
                 this.props.x.boards.map(board =>
                   <option value={board.id} key={board.id}>{board.name}</option>
@@ -159,6 +162,9 @@ export default class PinNewForm extends React.Component {
         </div>
         <div className="pin-board-new-user-input">
            {this.state.doneLoading ? this.inputForm() : null}
+           <div className="pin-new-add-board-instead">
+
+           </div>
         </div>
       </div>
     )

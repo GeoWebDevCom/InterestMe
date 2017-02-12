@@ -25,6 +25,7 @@ class Api::PinsController < ApplicationController
   def create
     @pin = Pin.new(pin_params)
     @pin.user_id = current_user.id
+    @board = Board.find(params[:pin][:board_id].to_i)
     if @pin.save
       @pins = Pin.where(:board_id => @pin.board_id)
       render "/api/boards/show"
