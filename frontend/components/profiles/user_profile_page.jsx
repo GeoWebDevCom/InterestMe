@@ -75,7 +75,7 @@ export default class UserProfile extends React.Component{
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false, editFormOpen: false, followerOpen: false, followedOpen: false});
+    this.setState({showNewBoardForm: false, modalIsOpen: false, editFormOpen: false, followerOpen: false, followedOpen: false});
     this.props.getProfilePage(this.props.userId)
     document.body.style.overflow = "auto";
   }
@@ -116,10 +116,6 @@ export default class UserProfile extends React.Component{
   handleEditForm(){
     console.log("edit form open");
     this.setState({editFormOpen: true})
-  }
-
-  closeModal(){
-    this.setState({modalIsOpen: false, editFormOpen: false, newBoardModalIsOpen: false})
   }
 
   handleProfileRedirect(e){
@@ -324,22 +320,22 @@ export default class UserProfile extends React.Component{
         return (
           <li name={board.id} onClick={this.handleBoardClick} key={idx} className="board-button-set">
             <button name={board.id} onClick={this.handleBoardClick} className="user-profile-board-button" key={idx}>
-              <div className="user-profile-board-images">
-                <div className="user-profile-first-pic-container">
-                  <img src={this.props.user.samplePins[idx][0]}/>
+              <div name={board.id} onClick={this.handleBoardClick} className="user-profile-board-images">
+                <div name={board.id} onClick={this.handleBoardClick} className="user-profile-first-pic-container">
+                  <img name={board.id} onClick={this.handleBoardClick} src={this.props.user.samplePins[idx][0]}/>
                 </div>
-                <div className="user-profile-sub-image-board-pin-container">
-                  <div className="sub-image-single-pic-container">
-                    <img src={this.props.user.samplePins[idx][1]}/>
+                <div name={board.id} onClick={this.handleBoardClick} className="user-profile-sub-image-board-pin-container">
+                  <div name={board.id} onClick={this.handleBoardClick} className="sub-image-single-pic-container">
+                    <img name={board.id} onClick={this.handleBoardClick} src={this.props.user.samplePins[idx][1]}/>
 
                   </div>
-                  <div className="sub-image-single-pic-container">
-                    <img src={this.props.user.samplePins[idx][2]}/>
+                  <div name={board.id} onClick={this.handleBoardClick} className="sub-image-single-pic-container">
+                    <img name={board.id} onClick={this.handleBoardClick} src={this.props.user.samplePins[idx][2]}/>
                   </div>
               </div>
             </div>
             </button>
-            <div className="board-title-invisible">
+            <div name={board.id} onClick={this.handleBoardClick} className="board-title-invisible">
               showBoards
             </div>
             <div name={board.id} className="board-title" onClick={this.handleBoardClick}>

@@ -8,14 +8,14 @@ djjason = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_18
 artemis = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486927000/Screenshot_from_2017-02-12_11-16-28_va2uox.png"
 peralta = "http://res.cloudinary.com/andoo/image/upload/c_scale,h_180,r_max,w_180/v1486927257/Screenshot_from_2017-02-12_11-20-32_thyhxm.png"
 User.create!({username: "Pusheen", password:"password", profile_picture: pusheen})
-User.create!({username: "andoo1007", password:"password", profile_picture: profile_picture})
+User.create!({username: "Artemis", password:"password", profile_picture: artemis})
 User.create!({username: "mona-chan", password:"password", profile_picture: monachan})
 User.create!({username: "bamflame97", password:"password", profile_picture: bamflame97})
 User.create!({username: "andrew1007", password:"password", profile_picture: andrew1007})
 User.create!({username: "pikachu", password:"password", profile_picture: pikachu})
 User.create!({username: "DjJason", password:"password", profile_picture: djjason})
-User.create!({username: "Artemis", password:"password", profile_picture: artemis})
 User.create!({username: "peralta", password:"password", profile_picture: peralta})
+User.create!({username: "andoo1007", password:"password", profile_picture: profile_picture})
 User.create!({username: "Kasey", password:"password", profile_picture: profile_picture})
 User.create!({username: "spadesofaces", password:"password", profile_picture: profile_picture})
 User.create!({username: "JupiterHero", password:"password", profile_picture: profile_picture})
@@ -31,6 +31,24 @@ User.create!({username: "KaliSymn", password:"password", profile_picture: profil
 User.create!({username: "Don352", password:"password", profile_picture: profile_picture})
 # you used a super hacky way of letting you create stuff. fix it later
 #1
+#follows
+user_count = (1..7).to_a
+
+user_count.each do |user_id|
+  follow_count = rand((3..user_count.length))
+  followed = []
+  i = 1
+  while i < follow_count
+    user = rand(1..7)
+    if user_id != user && !followed.include?(user)
+      Follow.create!(user_following_id: user_id, user_followed_by_id: user)
+      followed << user
+    end
+    i += 1
+  end
+end
+
+
 g = Board.create!({user_id: 1, name:"Fellow Felines"})
 pin_images = [
   "http://res.cloudinary.com/andoo/image/upload/v1486826048/e66ddbe6925551552200514fe8d114bc_fxuyn8.jpg",
@@ -126,8 +144,8 @@ body = [
   "Ciel phantomhive sebastian michaelis kuroshitsuji ",
   "More proof that girls make the cosplayers",
   "",
-  "wow undertaker looks perfect and sebastian ofc too",
   "Cieling... I AM DOING THIS TO THE ART ROOM ABSOLUTELY NO CHOICE I WILL HAVE MY CIELING ",
+  "",
   "",
   "Black Butler Anime Manga Watercolor Print Poster Kuroshitsuji Ciel Phantomhive Sebastian Michaelis "
 ]
@@ -283,7 +301,7 @@ Pin.create!({user_id: 1, board_id: 7, title: title[idx], body: body[idx], image_
 end
 
 #board 8
-Board.create!({user_id: 3,name:"Delish"})
+Board.create!({user_id: 7,name:"Delish"})
   title = [
     "Mongolian Beef Ramen",
     "Buffalo popcorn chicken",
@@ -605,7 +623,7 @@ end
 #board 11
 Board.create({user_id: 5, name:"Dishonored"})
 title = [
-  "Dishonored 2!!!",
+  "Dishonored 2 teaser",
   "Corvo's shade"
 ]
 body = [
