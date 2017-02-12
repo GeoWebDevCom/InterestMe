@@ -578,5 +578,86 @@ image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486921519/f179a7b39588cf0b22a63d66d2171c01_eyxpx9.jpg"
 ]
 image.each_index do |idx|
-  Pin.create!({user_id: , board_id: , title: title[idx], body: body[idx], image_url:image[idx]})
+  Pin.create!({user_id: 5, board_id: 10, title: title[idx], body: body[idx], image_url:image[idx]})
+end
+title = [
+  "Now that you think about it...",
+  "Gorgeous Shiek Fanart"
+]
+body = [
+  "wut.",
+  "Sheik (Princess Zelda's alter ego) ~ The Legend of Zelda: Ocarina of Time ~ Legend of Zelda Fan Art"
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486921672/86b90495f58fc13714e5b8ccbebbdb70_lkrdd2.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921785/067a765c276f3e51b91c82daabe3da27_aatpni.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 5, board_id: 10, title: title[idx], body: body[idx], image_url:image[idx]})
+end
+
+#board 11
+Board.create({user_id: 5, name:"Dishonored"})
+title = [
+  "Dishonored 2!!!",
+  "Corvo's shade"
+]
+body = [
+  "Really intrigued, but knowing my computer, I can maybe just about handle the first game instead. Perhaps if I feel like a detour from the AC marathon...",
+  "It is really fun to use game characters in RPG as NPCs... And really, really, REALLY fun to use them as villains... (Corvo from Dishonored by AJ Hateley)"
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486921991/668cc69e5d32097ea84f92072f0c3561_hos5tj.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922049/65156b35789f72e84182a8c7113f8c56_pz3e4h.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 5, board_id: 11, title: title[idx], body: body[idx], image_url:image[idx]})
+end
+
+#board 12
+Board.create({user_id: 6, name:"Pixar"})
+title = [
+  "Way too easy",
+  "Gorgeous Wall-E",
+  "One of my Favorites",
+  "Here to take us to a better place...",
+  "Up",
+  "Monsters inc minimalist",
+  "I love her"
+]
+body = [
+  "",
+  "Wall-E reminds me of one of my bff's he is so funny and does not talk much....wall-E",
+  "Buzz & Woody, the leaders, try to save the toys while they overcome obstacles. Exactly what Odysseus did, which was also the leader in The Odyssey.",
+  "The Claw by Danny Handke, Available in WonderGround Gallery in Downtown Disney District at the Disneyland Resort",
+  "Austin's Mondo Gallery has partnered with Oh My Disney for a new art exhibit titled Nothing’s Impossible, which pays tribute to classic…",
+  "",
+  "I never look back, darling. It distracts from the now. -Edna Mode in 'The Incredibles', Pixar movie quotes"
+
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486922210/cb60039057ce2efe6a9856d0069b4a08_mlcpee.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922267/552134ec3049f3adcd43fc38284cd67e_ou5cnb.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922343/0edec46280f825b6220026e87ec4f535_idz3dh.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922406/b1b1b2121c3d7895e3a880d871cd067b_azgd21.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922493/013be79bb1461d4440a39156d65515f1_mz6msn.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922557/8b3c44575d5303e713f098f0cb0c6bb1_u8lkbg.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922672/7524fa88a48afe2c4fb287e103166b20_hhy8f0.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 6, board_id: 12, title: title[idx], body: body[idx], image_url:image[idx]})
+end
+title = [
+  "You look a little cold",
+  "Pixar development process"
+]
+body = [
+  "Remember to wrap up warm when outside in the snow.",
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486922739/3fe747f1e1073a3a6d68685a3980319f_h7ibop.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486922843/95f6944d746ab0f53caf8a02ae9852c3_zwngp1.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 6, board_id: 12, title: title[idx], body: body[idx], image_url:image[idx]})
 end
