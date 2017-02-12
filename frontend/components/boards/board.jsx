@@ -19,9 +19,12 @@ export default class Board extends React.Component {
       newPinFormOpen: false,
       finishedLoading: false,
       imageUrl: null,
-      editFormOpen: false
+      editFormOpen: false,
+      name: ""
     }
     document.body.style.overflow = "auto"
+    this.editSelfClose = this.editSelfClose.bind(this);
+    this.handleEditButtonOpen = this.handleEditButtonOpen.bind(this);
     this.handleTileClick = this.handleTileClick.bind(this);
     this.pinTileRender = this.pinTileRender.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -32,24 +35,36 @@ export default class Board extends React.Component {
     this.redirectToAuthorProfile = this.redirectToAuthorProfile.bind(this);
   }
 
+  handleChildCancelButton(){
+    this.closeModal()
+  }
+
   componentDidMount(){
+    debugger
     this.findImageHeight()
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.boardId !== nextProps.boardId){
+      this.setState({finishedLoading: false})
       this.props.getBoard(nextProps.boardId)
-      this.props.getPins(nextProps.boardId)
-    }
-    if (this.props.pins.pins.length >= document.images.length){
-      this.findImageHeight()
+      .then ( () => this.props.getPins(nextProps.boardId))
+      .then ( () => this.setState({finishedLoading: true,
+        name: this.props.board.name
+      }))
+      .then( () => {
+        this.findImageHeight()
+      })
     }
   }
 
   componentWillMount() {
+    debugger
     this.props.getPins(this.props.boardId)
     .then( () => this.props.getBoard(this.props.boardId))
-    .then( () => this.setState({name: this.props.board.name, finishedLoading: true}))
+    .then( () => this.setState({finishedLoading: true,
+      name: this.props.board.name
+    }))
   }
 
   handleTileClick(e) {
@@ -125,6 +140,7 @@ export default class Board extends React.Component {
 
   redirectToAuthorProfile(e){
     e.preventDefault()
+    debugger
     hashHistory.push(`/user/${this.props.board.owner_id}`)
   }
 
@@ -133,24 +149,30 @@ export default class Board extends React.Component {
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false, newPinFormOpen: false, editFormOpen: false});
+    debugger
+    this.props.getPins(this.props.board.id)
+    .then( () => this.props.getBoard(this.props.boardId))
+    .then( () => {
+      this.setState({modalIsOpen: false, newPinFormOpen: false, editFormOpen: false, name: this.props.board.name})
+    })
     document.body.style.overflow = "auto";
   }
 
   handleSelfClose(){
-    this.setState({doneLoading: false})
-    this.props.getBoard(this.props.boardId)
+    this.props.getPins(this.props.board.id)
+    .then( () => this.props.getBoard(this.props.boardId))
     .then( () => {
-      this.props.getPins(this.props.board.id)
+        this.setState({modalIsOpen: false, newPinFormOpen: false, name: this.props.board.name, editFormOpen: false})
     })
-    .then( () => {
-      this.setState({name: this.props.board.name, modalIsOpen: false, newPinFormOpen: false,  editFormOpen: false})
-    })
-    debugger
     document.body.style.overflow = "auto";
   }
 
+  editSelfClose(){
+    this.setState({modalIsOpen: false, newPinFormOpen: false, editFormOpen: false})
+  }
+
   boardTitle(){
+    console.log(this.state);
     return(
       <div className="board-overhead-bar-container">
         <div className="board-overhead-bar">

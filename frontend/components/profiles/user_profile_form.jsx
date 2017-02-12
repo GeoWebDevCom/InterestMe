@@ -71,18 +71,21 @@ export default class UserProfileForm extends React.Component {
   }
 
     render() {
+      console.log(this.props);
       return (
         <div className="user-profile-edit-container">
-          <Dropzone
-            multiple={false}
-            accept="image/*"
-            onDrop={this.handleDrop}
-            className="user-profile-edit-image-preview"
-          >
-          <div className="user-profile-edit-image-dropzone-text">
-            {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
+          <div className="dropzone-image-container">
+            <Dropzone
+              multiple={false}
+              accept="image/*"
+              onDrop={this.handleDrop}
+              className="user-profile-edit-image-preview"
+              >
+              <div className="user-profile-edit-image-dropzone-text">
+                {this.state.imageUrl ? this.previewImage() : "click or drag to add image"}
+              </div>
+            </Dropzone>
           </div>
-          </Dropzone>
 
           <form className="user-profile-edit-form" onSubmit={this.handleSubmit}>
               <textarea
@@ -90,7 +93,9 @@ export default class UserProfileForm extends React.Component {
                 type="textarea"
                 placeholder="Tell us about yourself"
                 onChange={this.update('description')}
-              />
+              >
+              {this.props.user.user.description}
+            </textarea>
             <div className = "user-profile-edit-submit-button">
               <button type="Submit" value="Submit">Update</button>
             </div>

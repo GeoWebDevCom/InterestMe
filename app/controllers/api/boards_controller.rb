@@ -10,6 +10,7 @@ class Api::BoardsController < ApplicationController
   end
 
   def create
+    i = Board.last.id
     @board = Board.new(board_params)
     @board.user_id = current_user.id
     @board.id = i + 1

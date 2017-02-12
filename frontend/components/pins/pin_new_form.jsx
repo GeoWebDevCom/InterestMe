@@ -17,12 +17,17 @@ export default class PinNewForm extends React.Component {
       title: "",
       pinEditing: true,
       doneLoading: false,
-      boardId: ""
+      boardId: "",
+      name: "",
+      newBoardForm: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.previewImage = this.previewImage.bind(this);
+    this.handleCancelNewBoard = this.handleCancelNewBoard.bind(this);
+    this.handleNewBoardButton = this.handleNewBoardButton.bind(this);
+    this.handleBoardSubmit = this.handleBoardSubmit.bind(this);
   }
 
   handleDrop(img){
@@ -42,16 +47,17 @@ export default class PinNewForm extends React.Component {
   handleSubmit(e) {
     // log(this.getPath())
     e.preventDefault();
-    debugger
     this.props.newPin({
       title: this.state.title,
       body: this.state.body,
       board_id: parseInt(this.state.boardId),
       image_url: this.state.imageUrl})
     this.setState( {imageUrl: false})
-    this.props.handleChildCancelButton()
-    debugger
+    .then( () => {
+      this.props.handleChildCancelButton()
+      hashHistory.push(`/`)
       hashHistory.push(`/boards/${this.state.boardId}`)
+    })
   }
 
   update(text) {
@@ -104,17 +110,18 @@ export default class PinNewForm extends React.Component {
 
   inputForm(){
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="new-pin-form">
-          <a>Title</a>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="new-pin-form">
+            <a>Title</a>
             <br/><input onChange={this.update('title')}/><br/>
-          <a>Body</a>
+            <a>Body</a>
             <br/>
             <textarea className="new-pin-textarea"
               type="textarea"
               onChange={this.update('body')}
-            />
-          <br/>
+              />
+            <br/>
             <select className="new-pin-board-select-dropdown" onChange={this.update("boardId")}>
               <option selected disabled>--Select a board--</option>
               {
@@ -122,22 +129,58 @@ export default class PinNewForm extends React.Component {
                   <option value={board.id} key={board.id}>{board.name}</option>
                 )
               }
-        </select>
-        <br/>
-          <button type="Submit" value="Submit">Post</button>
+            </select>
+            <br/>
+            <button type="Submit" value="Submit">Post</button>
+          </div>
+        </form>
+        <div className="pin-new-add-board-container">
+          <button className="pin-new-add-board-button" onClick={this.handleNewBoardButton}>
+            <i className="fa fa-plus fa-1x" aria-hidden="true"></i>
+            Create a new Board
+          </button>
         </div>
-      </form>
+      </div>
     )
   }
 
-  onSelect(){
-    console.log("choices")
+  handleNewBoardButton(){
+    this.setState({newBoardForm: true})
   }
 
-  newBoardForm(){
-    return (
-      <BoardNewContainer/>
-    )
+  handleCancelNewBoard(){
+    this.setState({newBoardForm: false})
+  }
+
+  handleBoardSubmit(){
+    this.props.createBoard({name: this.state.name})
+    .then((action) => hashHistory.push(`/boards/${action.board.id}`))
+    this.props.handleChildCancelButton()
+  }
+
+  newBoardForm() {
+    return(
+      <div className='board-new-form-container'>
+        <form className="board-new-form" onSubmit={this.handleBoardSubmit}>
+          <span className="board-new-text">
+            New board
+          </span>
+          <br/>
+          <input
+            autoFocus type='text' onChange={this.update('name')}
+            />
+          <br/>
+          <div className="board-new-form-buttons-container">
+            <button type="Submit" value="Submit">
+              Create
+            </button>
+            <button onClick={this.handleCancelNewBoard}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    );
   }
 
   selectBoardForNewPin(){
@@ -157,14 +200,16 @@ export default class PinNewForm extends React.Component {
     // {this.state.doneLoading ? this.selectBoardForNewPin() : null}
     return (
       <div className="pin-new-content-in-box">
-        <div className="pin-new-image-drop">
-          {this.state.doneLoading ? this.dropZoneDropBox() : null}
-        </div>
+          {
+            this.state.doneLoading && !this.state.newBoardForm ?
+            <div className="pin-new-image-drop">
+              {this.dropZoneDropBox()}
+            </div>
+             : null
+           }
         <div className="pin-board-new-user-input">
-           {this.state.doneLoading ? this.inputForm() : null}
-           <div className="pin-new-add-board-instead">
-
-           </div>
+           {this.state.doneLoading && !this.state.newBoardForm ? this.inputForm() : null}
+           {this.state.doneLoading && this.state.newBoardForm ? this.newBoardForm() : null}
         </div>
       </div>
     )

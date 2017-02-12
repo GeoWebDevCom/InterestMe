@@ -95,12 +95,6 @@ export default class Session extends React.Component {
   componentWillMount() {
     Modal.setAppElement('body');
    }
-   //
-  //  componentDidMount() {
-  //     if (this.state.showDropdown) {
-  //       return
-  //     }
-  //  }
 
    update(text) {
      return e => this.setState({

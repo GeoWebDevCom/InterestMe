@@ -27,6 +27,8 @@ export default class BoardEdit extends React.Component {
 
   handleDeleteCancelButton(){
     this.setState({deleteConfirmBox: false})
+    const hiddenText = document.getElementsByClassName("board-edit-delete-confirm-text")
+    hiddenText[0].className = hiddenText[0].className + "-hidden"
   }
 
   editButton(){
@@ -44,8 +46,10 @@ export default class BoardEdit extends React.Component {
   }
 
   handleDeleteButton() {
-    debugger
     this.setState({deleteConfirmBox: true})
+    const hiddenText = document.getElementsByClassName("board-edit-delete-confirm-text-hidden")
+    hiddenText[0].className = hiddenText[0].className.replace("-hidden", "")
+    debugger
   }
 
   handleDeleteConfirm() {
@@ -57,8 +61,10 @@ export default class BoardEdit extends React.Component {
   handleUpdateSubmit(e) {
     e.preventDefault();
     this.setState({deleteConfirmBox: false, editBoxOpen: false});
-    this.props.editBoard({name: this.state.name,
-      id: this.props.board.boards.id});
+    if (this.state.name.split(" ").join("")){
+      this.props.editBoard({name: this.state.name,
+        id: this.props.board.boards.id});
+    }
     this.props.handleSelfClose();
   }
 
@@ -92,9 +98,6 @@ export default class BoardEdit extends React.Component {
               <div>
                 <button onClick={this.handleDeleteConfirm}>Yes</button>
                 <button onClick={this.handleDeleteCancelButton}>Cancel</button>
-                <div className="board-edit-delete-confirm-text">
-                  Are you sure you want to delete this board?
-                </div>
               </div>
               :
               null
@@ -120,6 +123,9 @@ export default class BoardEdit extends React.Component {
     return (
       <div className="edit-board-form">
         {this.editForm()}
+        <div className="board-edit-delete-confirm-text-hidden">
+          Are you sure you want to delete this board?
+        </div>
       </div>
     )
   }

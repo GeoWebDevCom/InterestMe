@@ -89,13 +89,15 @@
   flex-direction: column;
   background-color: transparent;
   height: 65%;
-  font-size: 30px;
+  font-size: 25px;
   justify-content: center;
+  padding-right: 10vw;
 }
 
 .user-profile-username {
   font-size: 50px;
   display: flex;
+  padding-bottom: 20px;
 }
 
 .follow-button {

@@ -1,10 +1,12 @@
 .board-edit-modal {
-  max-width: 700px;
-  width: 20vw;
-  min-width: 400px;
-  height: 25vh;
-  max-height: 700px;
-  padding: 50px !important;
+  display:flex;
+  padding: 50px 40px 40px 40px !important;
+  // max-width: 700px;
+  // width: 20vw;
+  // min-width: 400px;
+  // height: 25vh;
+  // max-height: 700px;
+  // padding: 50px !important;
   border-radius: 10px;
 }
 
@@ -50,6 +52,20 @@
 }
 
 .board-edit-delete-confirm-text {
+  margin-top: 15px;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.board-edit-delete-confirm-text-hidden {
+  opacity: 0;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.board-edit-delete-confirm-text-hidden:hover {
+  cursor: default;
+  opacity: 0;
   margin-top: 15px;
   font-size: 20px;
 }
