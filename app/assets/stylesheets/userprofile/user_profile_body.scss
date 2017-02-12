@@ -331,12 +331,16 @@
   background-color: white;
   filter: brightness(92%);
   border: 3px solid rgba(black, 0.08);
+  cursor: pointer;
 }
 
 .board-title {
   font-size: 20px;
   font-weight: bold;
   color: $color-primary
+}
+.board-title:hover {
+  cursor: pointer;
 }
 //
 // .user-profile-board-show {

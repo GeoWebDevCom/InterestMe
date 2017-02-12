@@ -667,3 +667,51 @@ image = [
 image.each_index do |idx|
   Pin.create!({user_id: 6, board_id: 12, title: title[idx], body: body[idx], image_url:image[idx]})
 end
+
+#board 13
+Board.create({user_id: 8, name:"Women's fashion"})
+title = [
+  "Trending in Summer 2016",
+  "Casual outfits for Spring",
+  " Fall Outfit Gray Cardigans Coat",
+  "Masculine Fashion Ideas For Women",
+  "Women's Two Tone Pumps - 2 Colors",
+  "Unboring Work Outfit For You",
+  "dashingly different",
+  "Florals and Stripes",
+  "Oversized Scarf + Leather Moto Jacket ",
+  "Ruched Design Destroy Washed Moto Jeans",
+  "Fashion Horned Rim Outline Sunglasses",
+  "Ecstasy Models"
+]
+body = [
+  "",
+  "",
+  "",
+  "Have you ever tried? No? then go and make it happen. For inspiration: Classic Masculine Fashion Ideas For Women",
+  "",
+  "Unboring Work Outfit For You Here are some hints on how you can make boring work outfits look interesting: Add some color",
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486930728/8a8e3f82d9ac56f3a18ff0331c84bc47_y2k0hy.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486930805/8f11c36f0a3fc7f2a4f03b978327ee8d_znpddn.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486930872/fda2363cd0e1ab95950debb5f9ae8005_o08wsl.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486930923/08030405f8d6a2eb933ebb1433300da7_foainv.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486930966/066e5ac27b83f29628b969986532cefd_ymuqld.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931018/bba004f0007962096c0391d2c3d5c616_zygkax.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931089/26663ed6dcb4c55c30d2a9c58b54b901_pkvd8c.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931145/6d3540628cbf87e19c483facee8ebac2_y8ugvr.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931169/63ba7672dfd48f387d12717499051eb2_qd5rjl.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931222/8a1e4a4fe799fb460665f00ada81e9a3_i03s4j.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931312/a5c8c64c3da1e2067f9602ecd1743ff3_shb5gx.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486931392/88fadd683e03ddd64b1844b31f14985f_s2oji8.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 8, board_id: 13, title: title[idx], body: body[idx], image_url:image[idx]})
+end

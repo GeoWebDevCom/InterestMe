@@ -104,7 +104,11 @@ export default class UserProfile extends React.Component{
 
   handleBoardClick(e){
     e.preventDefault()
-    const boardId = e.currentTarget.name
+    if (e.currentTarget.name){
+      var boardId = e.currentTarget.name
+    } else {
+      var boardId = e.target.getAttribute("name")
+    }
     hashHistory.push(`/boards/${boardId}`)
   }
 
@@ -318,8 +322,8 @@ export default class UserProfile extends React.Component{
     return(
       this.props.user.boards.map ((board, idx)=> {
         return (
-          <li key={idx} className="board-button-set">
-            <button name={board.id} onClick={(e) => this.handleBoardClick(e)} className="user-profile-board-button" key={idx}>
+          <li name={board.id} onClick={this.handleBoardClick} key={idx} className="board-button-set">
+            <button name={board.id} onClick={this.handleBoardClick} className="user-profile-board-button" key={idx}>
               <div className="user-profile-board-images">
                 <div className="user-profile-first-pic-container">
                   <img src={this.props.user.samplePins[idx][0]}/>
@@ -331,11 +335,14 @@ export default class UserProfile extends React.Component{
                   </div>
                   <div className="sub-image-single-pic-container">
                     <img src={this.props.user.samplePins[idx][2]}/>
-                  </div>showBoards
-                </div>
+                  </div>
               </div>
+            </div>
             </button>
-            <div className="board-title">
+            <div className="board-title-invisible">
+              showBoards
+            </div>
+            <div name={board.id} className="board-title" onClick={this.handleBoardClick}>
               {board.name}
             </div>
           </li>
