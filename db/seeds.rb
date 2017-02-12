@@ -22,7 +22,7 @@ User.create!({username: "saitama", password:"password", profile_picture: profile
 User.create!({username: "KaliSymn", password:"password", profile_picture: profile_picture})
 User.create!({username: "Don352", password:"password", profile_picture: profile_picture})
 # you used a super hacky way of letting you create stuff. fix it later
-
+#1
 g = Board.create!({user_id: 1, name:"Fellow Felines"})
 pin_images = [
   "http://res.cloudinary.com/andoo/image/upload/v1486826048/e66ddbe6925551552200514fe8d114bc_fxuyn8.jpg",
@@ -62,6 +62,7 @@ pin_body.each_index do |idx|
   Pin.create!({user_id: 1, board_id: 1, title: pin_title[idx], body: pin_body[idx], image_url:pin_images[idx]})
 end
 
+#2
 g = Board.create!({user_id: 3, name: "Free!"})
 pins = [
   "http://res.cloudinary.com/andoo/image/upload/v1486827398/c2f99629bbcbf1e2765f6c89dbf2c7e1_cnxkyu.jpg",
@@ -89,7 +90,7 @@ pins.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 2, title: titles[idx], body: body[idx], image_url:pins[idx]})
 end
 
-
+#3
 g = Board.create!({user_id: 3, name: "Black Butler"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486828301/6309af01a0817328b8fc580b0719db6c_knrb2c.jpg",
@@ -128,7 +129,7 @@ image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 3, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-
+#4
 g = Board.create!({user_id: 3, name: "Reborn"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486829391/4c7c0a013f8688c1a74e8a7d7a8ba49f_xnss8q.jpg",
@@ -158,7 +159,7 @@ image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 4, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-
+#5
 g = Board.create!({user_id: 3, name: "Tokyo Ghoul"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486830287/301fa63c666d6b66e80e86600af1c846_yh7llo.jpg",
@@ -182,7 +183,7 @@ image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 5, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-
+#6
 g = Board.create!({user_id: 1, name: "Star Wars"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486830722/101f4e42b041c22ae8eccf45f4b2e31d_p17zes.jpg",
@@ -233,6 +234,7 @@ image.each_index do |idx|
   Pin.create!({user_id: 1, board_id: 6, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
+#7
 g = Board.create!({user_id: 1, name: "Funny"})
   image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486831270/225edde5ce454be6d79b65657f9d7fe9_u05onp.jpg",
@@ -246,32 +248,32 @@ g = Board.create!({user_id: 1, name: "Funny"})
   "http://res.cloudinary.com/andoo/image/upload/v1486831895/249d0d8060020bdffc3680072c790a4a_exalxn.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831945/02d546fe72c5d1b9feb2490d39652a05_xyk4yr.jpg"
 ]
-  title = [
-  "Make your day better",
-  "Did someone say bacon?",
-  "Doggies",
-  "Why I can't sleep at night",
-  "Happy Monday",
-  "worst seal ever",
-  "Best love story ever",
-  "Aww :(",
-  "definitely fabs",
-  "Happy Friday"
+title = [
+"Make your day better",
+"Did someone say bacon?",
+"Doggies",
+"Why I can't sleep at night",
+"Happy Monday",
+"worst seal ever",
+"Best love story ever",
+"Aww :(",
+"definitely fabs",
+"Happy Friday"
 ]
-  body = [
-  "",
-  "",
-  "",
-  "Everybody else has this problem... right?",
-  "my favorite day of the week",
-  "Pretty cute though.. I GUESS",
-  "Like the notebook",
-  "",
-  "",
-  "the ACTUAL best day of the week"
+body = [
+"",
+"",
+"",
+"Everybody else has this problem... right?",
+"my favorite day of the week",
+"Pretty cute though.. I GUESS",
+"Like the notebook",
+"",
+"",
+"the ACTUAL best day of the week"
 ]
-  image.each_index do |idx|
-  Pin.create!({user_id: 1, board_id: 7, title: title[idx], body: body[idx], image_url:image[idx]})
+image.each_index do |idx|
+Pin.create!({user_id: 1, board_id: 7, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
 #board 8
@@ -491,3 +493,90 @@ Board.create!({user_id: 3,name:"Delish"})
   image.each_index do |idx|
     Pin.create!({user_id: 4, board_id: 8, title: title[idx], body: body[idx], image_url:image[idx]})
   end
+
+
+
+#board 9
+Board.create!({user_id: 4, name:"Men's Fashion"})
+title = [
+  "ZeusFactor",
+  "What to Wear On A New Year's Eve?",
+  "The dress shirt fit",
+  "That jean jacket",
+
+]
+body = [
+  "More fashion inspirations for men, menswear and lifestyle @ www.zeusfactor.com",
+  "",
+  "",
+  ""
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486920091/4893a5ea735a3750aaf36fd66c0206f4_t2gfd9.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920144/b05bf6a10a47419d2147f5bb11425dd1_nwf3cn.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920207/1f1ad3706d3fa195e2e2d3672bffd942_zl0h4h.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920342/902dd97eb383d14b4a08f1c2dcfc78b0_xyyyt2.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 4, board_id: 9, title: title[idx], body: body[idx], image_url:image[idx]})
+end
+
+title = [
+  "Every Guy Should Own A Camel Overcoat",
+  "Great look",
+  "Medium Hairstyles To Make You Look Younger",
+  "So sharp",
+  "Great scarf"
+]
+body = [
+  "Overcoats are hugely in fashion this year and for good reason. They give off a sophisticated business friendly vibe but at the same time…",
+  "hoodie // plaid shirt // joggers // tan sneakers",
+  "Do you have a medium hairstyles? Are you planning to grow them longer or maintain them for a variety of hairstyle you can explore with?…",
+  "Your groom will look sooooooo sharp! Get the S by Sebastian Dinner Jacket and you won't go wrong. Be Bold. "
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486920618/ebe0cadbc16ce71c2308f9b6c030d490_aq2ltj.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920675/2b43c506998eb4fa7297c2ea264f3989_vlsyhu.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920729/9fa029841c6dd5ce5243dcf01005f461_tuztwb.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920781/a6e92268f91e84abb541e19e8f162b59_u4flp1.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486920894/45fca59db4b5bd920a8a6ae1e5732feb_epyfqs.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: 4, board_id: 9, title: title[idx], body: body[idx], image_url:image[idx]})
+end
+
+#board 10
+Board.create!({user_id: 5, name:"Zelda"})
+title = [
+  "Dark link in the water temple",
+  "Young Link and Navi",
+  "Navi... sooooo annoying",
+  "So true LOL",
+  "Cucco Fury",
+  "Drop dead gorgous forest temple",
+  "Twilight Princess",
+  "SONG OF TIME T-Shirt"
+]
+body = [
+  "One of my favorite fights",
+  "Legend of Zelda by Conor Burke",
+  "",
+  "Worst reason ever",
+  "Everybody learns their lesson at least once",
+  "Illustrator/Legend of Zelda fan Jessica Smith, to celebrate Zelda Wii U coming out this year, painted this magnificent picture of what the…",
+  "The Legend of Zelda: Twilight Princess watching this game is like watching a movie! (A GOOD movie :))",
+  "SONG OF TIME T-Shirt"
+]
+image = [
+  "http://res.cloudinary.com/andoo/image/upload/v1486920993/3eac92deada76c095d8f6596665d1859_uipyms.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921104/ee14168cce175bb26fef3e7ebd18d66e_hpwy5x.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921164/57a60b7992c9befbf87bc0afddb5f18e_ck6ozf.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921245/cb16f47afd5826297c6cf70900449f65_pv8r60.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921303/c88986c49226db4ffee2eb4da005079c_gpr0cy.jpg",
+  "https://cloudinary.com/console/media_library#/dialog/image/upload/f5e0e7e644d817c048d5c1e7a4b7d0f2_bjqlld",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921455/25ca0beb814b6c125444828e70a01f33_hxciyv.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486921519/f179a7b39588cf0b22a63d66d2171c01_eyxpx9.jpg"
+]
+image.each_index do |idx|
+  Pin.create!({user_id: , board_id: , title: title[idx], body: body[idx], image_url:image[idx]})
+end
