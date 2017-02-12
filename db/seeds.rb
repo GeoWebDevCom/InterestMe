@@ -22,8 +22,8 @@ User.create!({username: "saitama", password:"password", profile_picture: profile
 User.create!({username: "KaliSymn", password:"password", profile_picture: profile_picture})
 User.create!({username: "Don352", password:"password", profile_picture: profile_picture})
 # you used a super hacky way of letting you create stuff. fix it later
-g = Board.create!({id: 1, user_id: 1, name:"Fellow Felines"})
 
+g = Board.create!({user_id: 1, name:"Fellow Felines"})
 pin_images = [
   "http://res.cloudinary.com/andoo/image/upload/v1486826048/e66ddbe6925551552200514fe8d114bc_fxuyn8.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486826194/7670360c4c619b9214bb719fb49e0076_pxtkey.jpg",
@@ -35,7 +35,6 @@ pin_images = [
   "http://res.cloudinary.com/andoo/image/upload/v1486826817/image_ocxdso.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486826938/7c979fcfa51d2eccf1eaabd0d15884fb_babus1.jpg"
 ]
-
 pin_title = [
   "A Bengal Cat",
   "A towel, obviously",
@@ -47,7 +46,6 @@ pin_title = [
   "The Sink REALLY Belongs To Them",
   "Cats: It’s their world"
 ]
-
 pin_body = [
   "A Belgian Bengal Cat Whose Deep Green Eyes and Unique Markings Make Him a Very Handsome Boy ",
   "",
@@ -60,48 +58,39 @@ pin_body = [
   "We’re just living in it "
 
 ]
-
 pin_body.each_index do |idx|
   Pin.create!({user_id: 1, board_id: 1, title: pin_title[idx], body: pin_body[idx], image_url:pin_images[idx]})
 end
 
-g = Board.create!({id: 2, user_id: 3, name: "Free!"})
-
+g = Board.create!({user_id: 3, name: "Free!"})
 pins = [
   "http://res.cloudinary.com/andoo/image/upload/v1486827398/c2f99629bbcbf1e2765f6c89dbf2c7e1_cnxkyu.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1486827594/large_na79wd.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1486827690/04bf9ee4d854169ec7ed1a0fc77f6312_dhdsz7.jpg",
+  "http://res.cloudinary.com/andoo/image/upload/v1486827479/5e05846cc8b34cd1759dfa11ed1b41fd_qkgtrr.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486827690/04bf9ee4d854169ec7ed1a0fc77f6312_dhdsz7.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486827906/e30f9c94bf2746c1fbd6057f39efff48_bq6e2t.jpg",
   "https://cloudinary.com/console/media_library#/dialog/image/upload/9ac230696dfe6e930e5c2bc4c3eff4a7_zkyuty",
 
 ]
-
 titles = [
   "Just finished :(",
   "Free: the boy band??",
   "Free! - Iwatobi Swim Club",
   "Such great years",
-  "My boys!!!",
   "They grow up so fast"
 ]
-
 body = [
   "Just finished this anime, i want more episodes! Luckily the next season comes out in the summer!! ",
   "The Backstroke Boys. I would listen to this band ALL the time!!!!!!!!!!!!!!",
   "haruka nanase, haru nanase, haru, nanase, haruka, dolphin, free!, iwatobi",
   "I cANt BREatH << anime 2017 free! iwatobi swimm club haikyuu!! yuri on ice!! killing stalking",
-  "They don't want the milkshake in your yard. XD ",
   "Free! ~~ They grow up so fast :: Rei, Rin, Nagisa, Makoto and Haruka "
 ]
-
 pins.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 2, title: titles[idx], body: body[idx], image_url:pins[idx]})
 end
 
 
-g = Board.create!({id: 3, user_id: 3, name: "Black butler"})
-
+g = Board.create!({user_id: 3, name: "Black Butler"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486828301/6309af01a0817328b8fc580b0719db6c_knrb2c.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486828379/082a1983a0d9881c1ab31575e5b73c77_qvbour.jpg",
@@ -113,7 +102,6 @@ image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486828916/e0a6c9b29d8d86ce178777f81a6372f4_ifkmn8.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486829078/7f0a40d65430d29e1dbb0075c2855603_gcmyn5.jpg"
 ]
-
 title = [
   "I came here for Sebastian, not feels",
   "YES!",
@@ -125,7 +113,6 @@ title = [
   "Story of my life",
   "Watercolor"
 ]
-
 body = [
   "And that's why I believe that Sebastian has at least some sort of feeling of love towards ceil because after all the pain he's gone through he's still kinder then alois or alot of other people.",
   "",
@@ -137,13 +124,12 @@ body = [
   "",
   "Black Butler Anime Manga Watercolor Print Poster Kuroshitsuji Ciel Phantomhive Sebastian Michaelis "
 ]
-
 image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 3, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-g = Board.create!({id: 4, user_id: 3, name: "Reborn"})
 
+g = Board.create!({user_id: 3, name: "Reborn"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486829391/4c7c0a013f8688c1a74e8a7d7a8ba49f_xnss8q.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486829487/77b15f6344adae617e50e8ecb3cf6783_krgbbr.jpg",
@@ -152,7 +138,6 @@ image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486829705/903174c3aaa3c6a259b7035c54b5d9b5_ezsh6j.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486829803/c22220fbb0624d5a82c98162e62aec51_pjjbxu.jpg"
 ]
-
 title = [
   "Katekyo",
   "My favsies",
@@ -161,7 +146,6 @@ title = [
   "",
   "Gilbird & Hibird XD"
 ]
-
 body = [
   "",
   "",
@@ -170,39 +154,36 @@ body = [
   "",
   "Hibari (Katekyo Hitman Reborn!) Don't know why but for some reason I feel that Prussia (Gilbert) & Hibari could be great friends due to their similar partners in crime: Gilbird & Hibird. XD "
 ]
-
 image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 4, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-g = Board.create!({id: 5, user_id: 3, name: "tokyo ghoul"})
 
+g = Board.create!({user_id: 3, name: "Tokyo Ghoul"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486830287/301fa63c666d6b66e80e86600af1c846_yh7llo.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486830342/de4634681ca318d17ac0f706201d1767_fly1sn.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486830420/8d28ffe859509bcf7abc5a7dbe1e9003_b1ndjl.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486830478/fe88b7cc892ab3140285da73d82a4815_zkgdds.jpg"
 ]
-
 title = [
   "Kaneki Ken",
   "",
   "kuro and shiro - Tim voi",
   ""
 ]
-
 body = [
   "Tokyo Ghoul | Toukyou Kushu - Kaneki Ken ",
   "unravel - Tokyo Ghoul by randyhuang",
   "",
   ""
 ]
-
 image.each_index do |idx|
   Pin.create!({user_id: 3, board_id: 5, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-g = Board.create!({id: 6, user_id: 1, name: "star wars"})
+
+g = Board.create!({user_id: 1, name: "Star Wars"})
 image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486830722/101f4e42b041c22ae8eccf45f4b2e31d_p17zes.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486830820/5f1ec2c8fe7c1bbb430dc9ae9e2b51a8_rsxbqi.jpg",
@@ -218,23 +199,21 @@ image = [
   "http://res.cloudinary.com/andoo/image/upload/v1484918487/02e3ebf534ee41ccf6a9b2639512bef7_mw7abj.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831020/2ee9a1ec53b6429ab595294a49e2112d_eiwbyc.jpg"
   ]
-
 title = [
   "Star Wars Force of Darkness Art Print",
   "Darth Vader",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
+  "Great pic",
+  "Fan art!",
+  "More vader :)",
+  "New order stormtrooper design",
+  "Deathstart... I think?",
+  "A kickback to the old movies",
+  ":)",
+  "New order!",
+  "Final battle",
+  "Obi-wan!!",
   "New movie!"
 ]
-
 body = [
   "Iconic characters from the Star Wars universe who have been lured to the Dark Side unleash their evil on the Star Wars Force of Darkness Art… ",
   "Darth Vader... Lord of the Sith More Mehr ",
@@ -250,14 +229,12 @@ body = [
   "",
   "The Title For ‘Star Wars: Episode VIII’ Has Been Revealed "
 ]
-
 image.each_index do |idx|
   Pin.create!({user_id: 1, board_id: 6, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
-g = Board.create!({id: 7, user_id: 1, name: "funny"})
-
-image = [
+g = Board.create!({user_id: 1, name: "Funny"})
+  image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486831270/225edde5ce454be6d79b65657f9d7fe9_u05onp.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831353/fe693fdd25004815677dd6d5304a746d_anl0d0.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831393/8bab46e118515257dcafb665c0f753f8_d70qog.jpg",
@@ -269,21 +246,19 @@ image = [
   "http://res.cloudinary.com/andoo/image/upload/v1486831895/249d0d8060020bdffc3680072c790a4a_exalxn.jpg",
   "http://res.cloudinary.com/andoo/image/upload/v1486831945/02d546fe72c5d1b9feb2490d39652a05_xyk4yr.jpg"
 ]
-
-title = [
+  title = [
   "Make your day better",
   "Did someone say bacon?",
-  "",
+  "Doggies",
   "Why I can't sleep at night",
   "Happy Monday",
   "worst seal ever",
   "Best love story ever",
-  "",
+  "Aww :(",
   "definitely fabs",
   "Happy Friday"
 ]
-
-body = [
+  body = [
   "",
   "",
   "",
@@ -295,100 +270,224 @@ body = [
   "",
   "the ACTUAL best day of the week"
 ]
-
-image.each_index do |idx|
+  image.each_index do |idx|
   Pin.create!({user_id: 1, board_id: 7, title: title[idx], body: body[idx], image_url:image[idx]})
 end
 
+#board 8
+Board.create!({user_id: 3,name:"Delish"})
+  title = [
+    "Mongolian Beef Ramen",
+    "Buffalo popcorn chicken",
+    "Pasta with Chicken Broth, Butter and Parmesan"
+  ]
+  body = [
+    "
+    Ingredients\n
+    Meat:\n
+    1 lb Sirloin streak\n
+    Produce:\n
+    1 large head Broccoli\n
+    1 Carrot\n
+    3 Garlic cloves\n
+    1 tsp Ginger\n
+    3 Green onions\n
+    Canned Goods:\n
+    1 cup Chicken broth\n
+    Condiments:\n
+    1/2 cup Soy sauce\n
+    Baking & Spices:\n
+    1/4 cup Brown sugar\n
+    2 tbsp Corn starch\n
+    1 pinch Red pepper flakes\n
+    1 Sesame seeds, Toasted\n
+    Oils & Vinegars:\n
+    1 tbsp Sesame oil\n
+    2 tbsp Vegetable oil\n
+    Other:\n
+    3 package Instant ramen, flavor pack discarded",
+    "Instant ramen noodles never tasted so good.
+    Ingredients:\n
+    Meat:\n
+    1 lb Sirloin streak\n
+    Produce:\n
+    1 large head Broccoli\n
+    1 Carrot\n
+    3 Garlic cloves\n
+    1 tsp Ginger\n
+    3 Green onions\n
+    Canned Goods:\n
+    1 cup Chicken broth\n
+    Condiments:\n
+    1/2 cup Soy sauce\n
+    Baking & Spices:\n
+    1/4 cup Brown sugar\n
+    2 tbsp Corn starch\n
+    1 pinch Red pepper flakes\n
+    1 Sesame seeds, Toasted\n
+    Oils & Vinegars\n
+    1 tbsp Sesame oil\n
+    2 tbsp Vegetable oil\n
+    Other:\n
+    3 package Instant ramen, flavor pack discarded",
 
-
-img = [
-  "http://res.cloudinary.com/andoo/image/upload/v1484591800/dogs/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591797/dogs/adoptable-size.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591796/dogs/dog-650299.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591796/dogs/860-header-dog-breeds.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591796/dogs/Common-dog-behaviors-explained.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591797/dogs/Shake-shiver-and-tremble-Why-dogs-do-it.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591798/dogs/dog-candy-junk-food-599x340.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591807/dogs/Introducing-puppy-to-older-dogs.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591820/dogs/original.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591806/dogs/The_16_Dogs_That_Won8217t_Make_You_Sneeze_2060_2848.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591810/dogs/puppy-1.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591805/dogs/_1.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591803/dogs/dogs.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591804/dogs/bear-dogs-310__605.jpg",
-  "https://cloudinary.com/console/media_library#/dialog/image/upload/dogs/15_Tiniest_Dog_Breeds_1718_3083",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591807/dogs/puppy-1_680-453.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484591799/dogs/b054f9bf75fe74a38995cb0ccc240af5.jpg"
-]
-
-g = Board.create!({id: 8, user_id: 1, name: "Dogs"})
-
-img.each_index do |idx|
-  x = Pin.new({user_id: 1, board_id:8, title:"", body:"",
-    image_url:img[idx]}
-  )
-  x.save
-end
-
-
-img6 = [
-  "http://res.cloudinary.com/andoo/image/upload/v1484916345/Tex-Mex_Bacon_Cheeseburgers_f69d_sm0yre.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916345/Pomegranate_Feta_Bison_Burgers_nr9seh.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916345/Pepper_Crusted_Bacon_Cheeseburgers_6ea9_gu3h1f.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916345/Michael_Symon_s_Fat_Doug_c_jwneds.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916345/d6ad79e959b39e3e23a200b03d343d2d_mdjyus.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916344/Cheddar_Stuffed_Apple_Slaw_Burger_f9cc3_mpqixo.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916344/Apple_Cheddar_Turkey_Burgers_chhfid.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916344/Bacon_Brie_Burger_ek3v4c.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916344/Beef_Chorizo_Sliders_n7nn3b.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916344/Bourbon_Burgers_f01yop.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484916345/Cheddar_chicken_burgers_80_gm5ltu.jpg"
-]
-
-title6 = [
-  "Tex-Mex Bacon Cheeseburgers",
-  "Pomegranate Feta Bison Burgers",
-  "Pepper Crusted Bacon Cheeseburgers",
-  "Michael Symon's Fat Doug",
-  "Cheddar Stuffed Apple Slaw Burger",
-  "Apple Cheddar Turkey Burgers",
-  "Bacon Brie Burger",
-  "Beef Chorizo Sliders",
-  "Bourbon Burgers",
-  "Cheddar chicken burgers"
-]
-
-Board.create!({user_id: 2, id: 9, name: "Burgers"})
-
-img6.each_with_index do |pic, idx|
-  Pin.create!({user_id: 2, board_id: 9, title: title6[idx], body:"",
-    image_url: pic})
-end
-
-img8 = [
-  "http://res.cloudinary.com/andoo/image/upload/v1484918949/e29b255b4aba7f51a5b02a25b758aed2_1_utub6u.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918949/d455518235eaaf43d69105925a04c3cf_merj38.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918947/cc162156e16348ba8f728f6f0240f854_jdysmh.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918946/c3cf306b7f1e8a9986589681bc802eaa_tcelji.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918946/b1f2195e7b2d9d903ec46a85074e1d52_pknmpd.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918947/adda56e5b0c19b73df664b081f57b3c1_ysix6z.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918941/9dea13259e9189bf414e806f2dd83b1b_y0yfji.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918942/73c2a371b1bb080b10f3b4116863d629_dthv6b.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918943/380b78c078b617ae850764431141ffb1_tkubvo.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918944/9342a1375c0c26b31bc495d9cadd0e39_xttaya.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918944/80306ca820723ce524217c74fa468043_hxblrr.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918944/277662384af4e81a1b2933c2b18bda6d_j1f2hh.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918944/7391863170be07a072ffeb3e7605db2a_yvfr4p.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918940/8f14b3a5bb42b8de002879f65c06e7c6_jk6een.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918940/6f00a85a6baa99e121c27e95737e3e49_f3onh8.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918938/6e36e8a856b73d01e68eddae94807c86_hi3n3p.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918936/1ca94a99f9ebe281b84844d3e4b791ef_pydqhh.jpg",
-  "http://res.cloudinary.com/andoo/image/upload/v1484918936/0d7d59232066c0f25702f77644807b75_twrc4p.jpg"
-]
-Board.create!({user_id: 1, id: 10, name: "Cute Animals"})
-
-img8.each do |img|
-  Pin.create!({user_id: 1, board_id: 10, title: "", body: "",
-    image_url: img})
-end
+    "Ingredients\n
+    Meat:\n
+    3 Chicken breasts, boneless skinless\n
+    2 cups Frank's buffalo wing sauce\n
+    Refrigerated:\n
+    3 Eggs\n
+    Baking & Spices\n
+    1/2 cup Flour\n
+    1 Salt and pepper\n
+    Bread & Baked Goods:\n
+    1/3 cup Bread crumbs, plain\n
+    1 cup Panko bread crumbs",
+    "This Pasta with Chicken Broth, Butter and Parmesan is pure comfort food!
+    It is a bowl of wonderful, warming, healing amazingness. One…\n
+    Ingredients:\n
+    Produce:\n
+    1 Basil, fresh\n
+    Canned Goods:\n
+    4 cups Chicken stock\n
+    Pasta & Grains:\n
+    2 cups Pasta shapes, small\n
+    Baking & Spices:\n
+    1 Black pepper\n
+    1 Salt\n
+    Dairy:\n
+    60 g Butter\n
+    1/4 cup Parmigiano cheese, grated"
+  ]
+  image = [
+    "http://res.cloudinary.com/andoo/image/upload/v1486917898/3dea7ba6b6b8c23dfd97d88c28aa4737_qtcoug.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486917991/7f5ff0396db05cdab9344315c44ab2c9_bcdbuk.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486918087/39acfedbf4e07d268375121a86bd4478_u0acbx.jpg"
+  ]
+  image.each_index do |idx|
+    Pin.create!({user_id: 4, board_id: 8, title: title[idx], body: body[idx], image_url:image[idx]})
+  end
+  title = [
+    "Cinnamon Roasted Chickpeas",
+    "Patty Melt",
+    "Crack Slaw",
+    "Chili Cheese Dog Pizza"
+  ]
+  body = [
+    "These sweet, crunchy chickpeas deliver in the snack department! Only four ingredients needed for this healthy, high protein, gluten free and…
+    Ingredients:
+    2 cans of garbanzo beans, 15oz each (another name for chickpeas)
+    2 Tbsp. olive oil
+    4 Tbsp. brown or dark brown sugar
+    2 Tbsp cinnamon
+    ¼ tsp. salt, optional",
+    "A griddled sandwich of ground beef, caramelized onions, cheese, and rye bread, the patty melt is a beloved staple of the burger lexicon.
+    ",
+    "Low Carb Crack Slaw – Persnickety Fitness by Mandy Jo",
+    "Meat:
+      1/2 tsp Better than bouillon beef base
+      1 lb Ground beef, quality lean cooked and finely chopped
+      4 Hotdogs, quality
+      Produce:
+      1/4 tsp Garlic powder
+      Canned Goods
+      1 (6 oz.) can Tomato paste
+      Condiments:
+      1/2 tsp Balsamic vinegar
+      1/4 tsp Table mustard, spicy brown or regular
+      1 1/2 tsp Worcestershire sauce
+      Baking & Spices:
+      1/4 tsp Black pepper, coarse ground
+      1/4 tsp Brown sugar, dark
+      1/4 tsp Cajun seasoning such as slap ya mama
+      1/4 tsp Cayenne
+      2 tbsp Chili powder
+      1/2 tsp Paprika, sweet smoked
+      1 lb Pizza dough
+      1/4 tsp Red pepper flakes
+      1/4 tsp Salt, smoked
+      1/4 tsp Table salt, regular
+      Nuts & Seeds:
+      1 tbsp Cumin
+      Liquids:
+      1 1/4 cups Water
+      Other:
+      ½ of an 8 oz. bag Sargento Off the Block Mozzarella and Provolone Blend Traditional Cut shredded cheese, or your own preferred brand
+      ½ cup V8 Spicy Hot Tomato Vegetable Juice"
+  ]
+  image = [
+    "http://res.cloudinary.com/andoo/image/upload/v1486918542/23337f62163b7b224eeab59adf32444d_omp2hk.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486918713/0daa82daa34a2d6e6bf3cf7235e7b734_imfe8i.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486918818/a79407825fd87a8926d6dd5f79d20d4f_okyhxo.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486918920/94a81e6bfb937288fcd028c7abf3ecab_vufmvi.jpg"
+  ]
+  image.each_index do |idx|
+    Pin.create!({user_id: 4, board_id: 8, title: title[idx], body: body[idx], image_url:image[idx]})
+  end
+  title = [
+    "S'mores Waffle Sundaes",
+    "Leprechaun Dessert Shooters",
+    "Garlic Parmesan Mozzarella Alfredo (Skinny!)",
+    "Oreo Chocolate Chip Cheesecake Cookie Bars"
+  ]
+  body = [
+    "Mini waffles are topped with ice cream, toasted marshmallows and all the fixings to create epic S'mores Waffle Sundaes.
+    Ingredients:
+    1 large egg
+    2 tablespoons light brown sugar
+    1 cup milk
+    1/4 cup vegetable oil
+    1/2 teaspoon pure vanilla extract
+    1 cup all-purpose flour
+    1/2 cup graham cracker crumbs (about 4 full sheets)
+    2 teaspoons baking powder
+    pinch of salt
+    ice cream
+    homemade hot fudge sauce
+    8 Campfire® Giant Roasters or Campfire regular marshmallows, toasted
+    whipped cream
+    sprinkles
+    maraschino cherries",
+    "Leprechaun Dessert Shooters, easy dessert recipes, easy recipes, st. patricks day, st patricks day food, st patricks day recipes, pudding…
+    Ingredients:
+    Vegetarian:
+    Baking & Spices
+    1 Chocolate chips, mini
+    3 drops Food coloring, green
+    1 Rainbow sprinkles
+    1 Whipped cream
+    Snacks:
+    4 Oreo cookies
+    Desserts
+    1 package Vanilla pudding - prepared to package directions, instant",
+    "I crave food that’s sweet and spicy. (Exhibit A, Exhibit B, Exhibit C) I crave food with a variety of textures. (Exhibit A, Exhibit B,…
+    Ingredients:
+    Produce:
+    6 Garlic cloves
+    1 tsp Onion pwdr
+    Canned Goods
+    1 1/2 cups Chicken broth, low sodium
+    Pasta & Grains:
+    1 lb Fettuccine
+    Baking & Spices:
+    1/4 cup All-purpose flour
+    1/4 tsp Black pepper
+    1/4 tsp Red pepper flakes
+    1/2 tsp Salt
+    Oils & Vinegars:
+    2 tbsp Olive oil
+    Dairy:
+    1 1/2 cups Milk, lowfat
+    3/4 cup Mozzarella cheese
+    1/2 cup Parmesan cheese",
+    "Oreo Chocolate Chip Cheesecake Cookie Bars"
+  ]
+  image = [
+    "http://res.cloudinary.com/andoo/image/upload/v1486919035/3d9d81970685f08246dfc4850bc66e08_lvyjap.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486919143/abe8ec56ba00b43ce692fa6d4b383d47_vvigpg.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486919288/25ddb0dc68b4a42355a89d8efcaea622_qisll1.jpg",
+    "http://res.cloudinary.com/andoo/image/upload/v1486919362/288c70e5c54b3e12815dd1664b43a749_q4r9nl.jpg"
+  ]
+  image.each_index do |idx|
+    Pin.create!({user_id: 4, board_id: 8, title: title[idx], body: body[idx], image_url:image[idx]})
+  end
