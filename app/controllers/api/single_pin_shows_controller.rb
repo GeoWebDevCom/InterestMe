@@ -5,6 +5,8 @@ class Api::SinglePinShowsController < ApplicationController
   def show
     @pin = Pin.find(params[:id])
     @current_user = current_user
+    debugger
+    @is_favorited = current_user.favorites.include?(@pin)
     render :show
   end
 

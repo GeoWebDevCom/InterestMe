@@ -9,4 +9,5 @@ json.pin do
   json.authorProfilePicture @pin.user.profile_picture
   json.image_url @pin.image_url
   json.owner @pin.user_id == (@current_user ? @current_user.id : nil)
+  json.favorited @is_favorited
 end

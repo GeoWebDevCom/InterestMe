@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :boards
   has_many :pins
+  has_many :favorites
 
   has_many :followers_join,
   class_name: "Follow",
@@ -28,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :following,
   through: :following_join,
   source: :user_following
+
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
