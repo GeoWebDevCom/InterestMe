@@ -9,7 +9,8 @@ export default class Pin extends React.Component {
     this.state = {
       editFormOpen: false,
       receivedPin: false,
-      hasBeenDeleted: false
+      hasBeenDeleted: false,
+      favorited: false
     };
     this.pinModal = this.pinModal.bind(this);
     this.handleEditButton = this.handleEditButton.bind(this);
@@ -20,6 +21,7 @@ export default class Pin extends React.Component {
     this.handleBoardNameClick = this.handleBoardNameClick.bind(this);
     this.redirectToProfile = this.redirectToProfile.bind(this);
     this.pinAuthor = this.pinAuthor.bind(this);
+    this.handleFavoritesClick = this.handleFavoritesClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -29,7 +31,11 @@ export default class Pin extends React.Component {
   componentDidMount() {
 
     this.props.getPin(this.props.pinId).then(() => {
-      this.setState({receivedPin: true})
+      console.log(this.props);
+      this.setState({
+        receivedPin: true,
+        favorited: this.props.pin.pins.favorited
+      })
     })
   }
 
@@ -70,7 +76,7 @@ export default class Pin extends React.Component {
       >
         <PinEditContainer
           handleChildCancelButton={this.childHandler}
-          {...this.props.pin.pins.pins}
+          {...this.props.pin.pins}
         />
       </Modal>
     )
@@ -80,8 +86,25 @@ export default class Pin extends React.Component {
     this.props.handleSelfClose()
 
     e.preventDefault()
-    hashHistory.push(`/boards/${this.props.pin.pins.pins.board_id}`)
+    hashHistory.push(`/boards/${this.props.pin.pins.board_id}`)
     document.body.style.overflow = "auto"
+  }
+
+  handleFavoritesClick(){
+    // debugger
+    if (!this.state.favorited){
+      console.log("hit favorited in pin.jsx");
+      this.props.createFavorite({pin_id: this.props.pin.pins.id})
+      .then( () => {
+        this.setState({favorited: true})
+      })
+    } else {
+      console.log("hit unfavorited");
+      this.props.deleteFavorite({pin_id: this.props.pin.pins.id})
+      .then( () => {
+        this.setState({favorited: false})
+      })
+    }
   }
 
   pinModal(){
@@ -93,25 +116,36 @@ export default class Pin extends React.Component {
             <div className="pin-show-title-board-name-container">
               <div className="pin-show-title-container">
                 <div id="pin-title">
-                  {this.props.pin.pins.pins.title}
-                  <span className="pin-show-edit-button-container">
-                    {this.props.pin.pins.pins.owner ?
+                  {this.props.pin.pins.title}
+                </div>
+                <div className="pin-show-edit-favorite-container">
+                    {this.props.pin.pins.owner ?
                       <i
-                        className="fa fa-pencil-square-o fa-1x edit-modal-cog"
+                        className="fa fa-pencil-square-o fa-3x edit-modal-cog"
                         aria-hidden="true"
                         onClick={this.handleEditButton}>
                       </i>
                       :
                       null
                     }
-                  </span>
+                    <div onClick={this.handleFavoritesClick}>
+                      {!this.props.pin.pins.owner ?
+                        (this.state.favorited ?
+                          <i className="fa fa-heart fa heart-active fa-3x" aria-hidden="true"></i>
+                          :
+                          <i className="fa fa-heart fa heart-inactive fa-3x" aria-hidden="true"></i>
+                        )
+                        :
+                        null
+                      }
+                    </div>
                 </div>
               </div>
               <div className="pin-show-pin-info-save-button-container">
                 <div className="pin-show-board-name-edit-button-container">
                   <div className="important-text">
                     <button className="pin-show-board-name" onClick={this.handleBoardNameClick}>
-                      {this.props.pin.pins.pins.board_name}
+                      {this.props.pin.pins.board_name}
                     </button>
                   </div>
                 </div>
@@ -122,24 +156,24 @@ export default class Pin extends React.Component {
             </div>
           </div>
           <div className="image-container">
-            <img className= "pin-modal-image" src={this.props.pin.pins.pins.image_url}></img>
+            <img className= "pin-modal-image" src={this.props.pin.pins.image_url}></img>
           </div>
           <div className="pin-show-description-user-container">
             <div className="pin-show-user-name-picture-container">
               <div className="pin-show-profile-picture-container">
                 <img className="pin-show-profile-picture"
-                  src={this.props.pin.pins.pins.authorProfilePicture}
+                  src={this.props.pin.pins.authorProfilePicture}
                   onClick={this.redirectToProfile}
                   />
               </div>
               <div className="pin-show-author-name-container">
                 <button className="pin-author-button" onClick={this.redirectToProfile}>
-                  {this.props.pin.pins.pins.owner ? "you" : this.props.pin.pins.pins.author }
+                  {this.props.pin.pins.owner ? "you" : this.props.pin.pins.author }
                 </button>
               </div>
             </div>
             <div className="pin-show-description-container">
-              {this.props.pin.pins.pins.body}
+              {this.props.pin.pins.body}
             </div>
             <div>
               {this.state.editFormOpen ? this.editPinModal() : null}
@@ -153,16 +187,16 @@ export default class Pin extends React.Component {
   redirectToProfile(e){
     e.preventDefault()
     this.props.handleSelfClose()
-    hashHistory.push(`/user/${this.props.pin.pins.pins.author_id}`)
+    hashHistory.push(`/user/${this.props.pin.pins.author_id}`)
   }
 
   pinAuthor(){
     return (
       <div className="link-set">
         <button className="pin-author-button" onClick={this.redirectToProfile}>
-          {this.props.pin.pins.pins.owner ? "you" : this.props.pin.pins.pins.author }
+          {this.props.pin.pins.owner ? "you" : this.props.pin.pins.author }
         </button>
-        {this.props.pin.pins.pins.owner ? <button id="pin-edit-icon" onClick={this.handleEditButton}>
+        {this.props.pin.pins.owner ? <button id="pin-edit-icon" onClick={this.handleEditButton}>
             edit
           </button> : null }
       </div>
@@ -170,7 +204,7 @@ export default class Pin extends React.Component {
   }
 
   render() {
-    //console.log(this.props);
+    console.log(this.props);
     return(
       <div>
         {this.state.receivedPin ? this.pinModal() : null}

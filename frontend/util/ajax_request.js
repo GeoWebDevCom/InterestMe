@@ -1,7 +1,31 @@
+export const getFavorites = user => {
+  $.ajax({
+    method: 'GET',
+    url: `/api/favorites/${user.id}`,
+    data: {user}
+  })
+}
+
+export const favorite = (pin) => (
+  $.ajax({
+    method: 'POST',
+    url: `/api/favorites`,
+    data: {pin}
+  })
+)
+
+export const unfavorite = (pin) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/favorites/${pin.user_id}`,
+    data: {pin}
+  })
+)
+
 export const unfollow = user => (
   $.ajax({
     method: 'DELETE',
-    url: `/api/follows/1`,
+    url: `/api/follows/${user.id}`,
     data: {user}
   })
 )

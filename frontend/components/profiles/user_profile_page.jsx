@@ -52,7 +52,6 @@ export default class UserProfile extends React.Component{
     this.handleNewBoardClick = this.handleNewBoardClick.bind(this);
     this.resetTabs = this.resetTabs.bind(this);
     this.redirectToAuthorProfile = this.redirectToAuthorProfile.bind(this);
-    debugger
   }
 
   componentWillReceiveProps(nextProps){
@@ -227,16 +226,21 @@ export default class UserProfile extends React.Component{
       this.props.deleteFollow({user_following_id: this.props.user.currentUserId,
       user_followed_by_id: parseInt(this.props.user.user.id)})
       .then( () => {
+        this.setState({isFollowing: false, followStateChanged: true})
+      })
+      .then( () => {
         this.props.getProfilePage(this.props.userId)
       })
-      this.setState({isFollowing: false, followStateChanged: true})
     } else {
       this.props.createFollow({user_following_id: this.props.userId,
       user_followed_by_id: this.props.user.currentUserId})
       .then( () => {
+        this.setState({isFollowing: true, followStateChanged: true})
+      })
+      .then( () => {
         this.props.getProfilePage(this.props.userId)
       })
-      this.setState({isFollowing: true, followStateChanged: true})
+
     }
   }
 

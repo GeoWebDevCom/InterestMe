@@ -27,6 +27,8 @@ $color-green: rgba(#18b50d, 0.7);
 $white: white;
 $background: white;
 $color-test: rgba(black, 0.05);
+$red: #e01b1b;
+$black: rgba(black, 0.9);
 
 #root .total-container {
   width: 100vw;
@@ -66,7 +68,7 @@ textarea {
   font-size: 20px;
   border: solid 2px;
   border-color: $color-primary;
-  color: black;
+  color:$black;
   background-color: rgba(white, 0.6);
 }
 
@@ -137,7 +139,7 @@ input {
   margin-bottom: 10px;
   font-size: 20px;
   width: 80%;
-  color: black;
+  color:$black;
   padding-left: 10px;
   padding-bottom: 4px;
   z-index: 100;

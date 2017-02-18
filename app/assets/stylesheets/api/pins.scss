@@ -1,6 +1,7 @@
 // Place all the styles related to the api/pins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import '../application.scss';
 
 .pin-tile button{
   display: block;
@@ -13,6 +14,34 @@
   background-color: transparent;
   margin: 10px;
   z-index: 1;
+}
+
+.pin-show-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.heart-inactive {
+  color: rgba(black, 0.5);
+}
+
+.heart-inactive:hover {
+  color: $red;
+}
+
+.heart-active {
+  color: $red
+}
+
+.pin-show-edit-favorite-container {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.fa-heart {
+
 }
 
 .pin-image {
@@ -44,6 +73,7 @@
    border-radius: 10px;
     transition: 0.25s;
     filter: brightness(75%);
+    background-color: transparent;
   }
 
 .pin-image {
@@ -75,7 +105,7 @@
 
 .pin-tile button:hover {
   transition: 0.25s;
-  color: black;
+  color:$black;
   background-color: transparent !important;
 }
 

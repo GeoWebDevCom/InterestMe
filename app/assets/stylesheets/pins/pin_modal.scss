@@ -87,7 +87,10 @@
 }
 
 #pin-title {
-  font-size: 33px
+  font-size: 33px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 #pin-body {
@@ -150,4 +153,18 @@
 
 .pin-show-header-container {
   margin-bottom: 10px;
+}
+
+.pin-show-favorites-heart-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.heart-inactive {
+  color: rbga(black, 0.7);
+}
+
+.heart-active {
+  color: $red;
 }

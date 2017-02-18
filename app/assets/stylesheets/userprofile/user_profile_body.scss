@@ -43,7 +43,7 @@
   height:55px;
   bottom: 301px;
   z-index: 1;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid$black;
   padding-bottom: 10px;
 }
 
@@ -180,7 +180,7 @@
   font-weight: normal;
   z-index: 0;
   background-color: $color-lightest;
-  color: black;
+  color:$black;
 }
 
 .profile-tab-button-active:hover {
@@ -189,7 +189,7 @@
   font-weight: normal;
   z-index: 0;
   background-color: $color-lightest;
-  color: black;
+  color:$black;
 }
 
 .profile-tab-button-inactive {
@@ -209,7 +209,7 @@
   font-weight: normal;
   z-index: 0;
   background-color: $color-lightest;
-  color: black;
+  color:$black;
 }
 
 .profile-follow-button {

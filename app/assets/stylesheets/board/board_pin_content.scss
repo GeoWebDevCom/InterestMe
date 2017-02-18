@@ -1,3 +1,5 @@
+@import '../application.scss';
+
 .board {
   position: absolute;
   top: 0px;
@@ -34,7 +36,7 @@
 
 .pin-tile button:hover {
   transition: 0.25s;
-  color: black;
+  color:$black;
   background-color: #d7432d
 }
 
